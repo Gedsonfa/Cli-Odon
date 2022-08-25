@@ -8,7 +8,7 @@ void tela_princi(void);
 void tela_sobre(void);
 
 //Variaveis de controle
-int opcao;
+int opcao_inicial;
 int voltar;
 
 //Principal
@@ -26,8 +26,8 @@ int main(void)
     printf("\t0- Sair\n");
     printf("\t==================================================\n");
     printf("\t=> ");
-    scanf("%i", &opcao);
-    switch (opcao)
+    scanf("%i", &opcao_inicial);
+    switch (opcao_inicial)
     {
     case 1:
         tela_equi();
@@ -39,7 +39,7 @@ int main(void)
         tela_sobre();
         break;
     }
-    }while (opcao != 0);
+    }while (opcao_inicial != 0);
     printf("\tSaindo do programa...\n");
     return 0;
 }
@@ -86,7 +86,13 @@ void tela_princi(void)
         printf("\tProjeto Sistema SIG-Dentistry\n");
         printf("\tDeveloped by @Gedsonfa and @=== == since Ago, 2022\n\n");
         printf("\t==================================================\n\n");
-        printf("\tInsira 0 para voltar\n");
+        printf("\t === Sistema Clínica Odontológica ===\n");
+        printf("\t1- Módulo Cliente\n");
+        printf("\t2- Módulo Funcionario\n");
+        printf("\t3- Trabalhos Realizados\n");
+        printf("\t4- Sobre Nós\n");
+        printf("\t0- Voltar\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%i", &voltar);
         break;
