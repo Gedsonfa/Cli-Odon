@@ -8,8 +8,8 @@ void tela_princi(void);
 void tela_sobre(void);
 
 //Variaveis de controle
-int op;
-int cont;
+int opcao;
+int voltar;
 
 //Principal
 int main(void)
@@ -26,8 +26,8 @@ int main(void)
     printf("\t0- Sair\n");
     printf("\t==================================================\n");
     printf("\t=> ");
-    scanf("%i", &op);
-    switch (op)
+    scanf("%i", &opcao);
+    switch (opcao)
     {
     case 1:
         tela_equi();
@@ -39,7 +39,7 @@ int main(void)
         tela_sobre();
         break;
     }
-    }while (op != 0);
+    }while (opcao != 0);
     printf("\tSaindo do programa...\n");
     return 0;
 }
@@ -64,11 +64,11 @@ void tela_sobre(void)
         printf("\t==================================================\n\n");
         printf("\tInsira 0 para voltar\n");
         printf("\t=> ");
-        scanf("%i", &cont);
+        scanf("%i", &voltar);
         break;
 
         return 0;
-    }while(cont != 0);
+    }while(voltar != 0);
     main();
 }
 
@@ -88,11 +88,11 @@ void tela_princi(void)
         printf("\t==================================================\n\n");
         printf("\tInsira 0 para voltar\n");
         printf("\t=> ");
-        scanf("%i", &cont);
+        scanf("%i", &voltar);
         break;
 
         return 0;
-    }while(cont != 0);
+    }while(voltar != 0);
     main();
 }
 
@@ -123,10 +123,10 @@ void tela_equi(void)
         printf("\t==================================================\n\n");
         printf("\tInsira 0 para voltar\n");
         printf("\t=> ");
-        scanf("%i", &cont);
+        scanf("%i", &voltar);
         break;
 
         return 0;
-    }while(cont != 0);
+    }while(voltar != 0);
     main();
 }
