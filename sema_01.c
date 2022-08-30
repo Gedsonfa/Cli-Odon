@@ -3,9 +3,9 @@
 #include <locale.h>
 
 //Assinatura das funcoes
-void tela_equi(void);
-void tela_princi(void);
-void tela_sobre(void);
+void tela_equi();
+void tela_princi();
+void tela_sobre();
 
 //Variaveis de controle
 int opcao_inicial;
@@ -40,12 +40,12 @@ int main(void)
         break;
     }
     }while (opcao_inicial != 0);
-    printf("\tSaindo do programa...\n");
     return 0;
+    printf("\tSaindo do programa...\n");
 }
 
 //fun��es
-void tela_sobre(void)
+void tela_sobre()
 {  
     do
     {
@@ -67,12 +67,12 @@ void tela_sobre(void)
         scanf("%i", &voltar);
         break;
 
-        return 0;
+        
     }while(voltar != 0);
     main();
 }
 
-void tela_princi(void)
+void tela_princi()
 {  
     do
     {
@@ -97,12 +97,12 @@ void tela_princi(void)
         scanf("%i", &voltar);
         break;
 
-        return 0;
+        
     }while(voltar != 0);
     main();
 }
 
-void tela_equi(void)
+void tela_equi()
 {
     do
     {
@@ -133,7 +133,7 @@ void tela_equi(void)
         scanf("%i", &voltar);
         break;
 
-        return 0;
+        
     }while(voltar != 0);
     main();
 }
