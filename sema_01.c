@@ -84,7 +84,7 @@ void tela_princi(void)
         printf("\tBacharelado em Sistemas de Informacao\n\n");
         printf("\tDisciplina DCT1106 == Programacao\n");
         printf("\tProjeto Sistema SIG-Dentistry\n");
-        printf("\tDeveloped by @Gedsonfa and @=== == since Ago, 2022\n\n");
+        printf("\tDeveloped by @Gedsonfa and @Japa since Ago, 2022\n\n");
         printf("\t==================================================\n\n");
         printf("\t === Sistema Clinica Odontologica ===\n");
         printf("\t1- Modulo Cliente\n");
