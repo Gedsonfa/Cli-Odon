@@ -16,7 +16,7 @@ int main(void)
 {
     do
     { 
-    system("cls");
+    system("clear");
     setlocale(LC_ALL, "Portuguese_Brazil");
     printf("\n\t==================================================\n");
     printf("\t== Selecione uma opção ==\n");
@@ -44,12 +44,12 @@ int main(void)
     return 0;
 }
 
-//Funções
+//funções
 void tela_sobre(void)
 {  
     do
     {
-        system("cls");
+        system("clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
         printf("\tCentro de Ensino Superior do Seridó\n");
@@ -76,7 +76,7 @@ void tela_princi(void)
 {  
     do
     {
-        system("cls");
+        system("clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
         printf("\tCentro de Ensino Superior do Seridó\n");
@@ -106,7 +106,7 @@ void tela_equi(void)
 {
     do
     {
-        system("cls");
+        system("clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
         printf("\tCentro de Ensino Superior do Seridó\n");
