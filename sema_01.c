@@ -30,10 +30,6 @@ void tela_sobre()
         printf("\tPrograma ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao,\n\tcom o objetivo de servir a uma clinica odontologica.\n");
         printf("\t==================================================\n\n");
         printf("\tTecle ENTER para continuar.\n");
-<<<<<<< HEAD
-        
-=======
->>>>>>> 4416241f8b7d64b34f7f8e31caa4094973e94076
         getchar();
 
 }
