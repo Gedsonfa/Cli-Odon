@@ -11,44 +11,11 @@ void tela_sobre();
 int opcao_inicial;
 int voltar;
 
-//Principal
-int main(void)
-{
-    do
-    { 
-    system("clear");
-    setlocale(LC_ALL, "Portuguese_Brazil");
-    printf("\n\t==================================================\n");
-    printf("\t== Selecione uma opcao ==\n");
-    printf("\t1- Tela de Equipe\n");
-    printf("\t2- Tela Principal\n");
-    printf("\t3- Tela de Informacao\n");
-    printf("\t0- Sair\n");
-    printf("\t==================================================\n");
-    printf("\t=> ");
-    scanf("%i", &opcao_inicial);
-    switch (opcao_inicial)
-    {
-    case 1:
-        tela_equi();
-        break;
-    case 2:
-        tela_princi();
-        break;
-    case 3:
-        tela_sobre();
-        break;
-    }
-    }while (opcao_inicial != 0);
-    return 0;
-    printf("\tSaindo do programa...\n");
-}
 
-//fun��es
+//funcoes
 void tela_sobre()
 {  
-    do
-    {
+
         system("clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
@@ -62,14 +29,10 @@ void tela_sobre()
         printf("\t=== Clinica Odontologica ===\n\n");
         printf("\tPrograma ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao,\n\tcom o objetivo de servir a uma clinica odontologica.\n");
         printf("\t==================================================\n\n");
-        printf("\tInsira 0 para voltar\n");
-        printf("\t=> ");
-        scanf("%i", &voltar);
-        break;
-
+        printf("\tTecle ENTER para continuar.\n");
         
-    }while(voltar != 0);
-    main();
+        getchar();
+
 }
 
 void tela_princi()
@@ -99,13 +62,12 @@ void tela_princi()
 
         
     }while(voltar != 0);
-    main();
+    
 }
 
 void tela_equi()
 {
-    do
-    {
+
         system("clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
@@ -128,12 +90,42 @@ void tela_equi()
         printf("\tRedes sociais: @gabriel_wallace_17===\n");
         printf("\tGit: https://github.com/Japagabriel===\n\n");
         printf("\t==================================================\n\n");
-        printf("\tInsira 0 para voltar\n");
-        printf("\t=> ");
-        scanf("%i", &voltar);
-        break;
-
+        printf("\tTecle ENTER para continuar.\n");
+        getchar();
         
-    }while(voltar != 0);
-    main();
+
+
+}
+//Principal
+int main(void)
+{
+    do
+    { 
+    system("clear");
+    setlocale(LC_ALL, "Portuguese_Brazil");
+    printf("\n\t==================================================\n");
+    printf("\t== Selecione uma opcao ==\n");
+    printf("\t1- Tela de Equipe\n");
+    printf("\t2- Tela Principal\n");
+    printf("\t3- Tela de Informacao\n");
+    printf("\t0- Sair\n");
+    printf("\t==================================================\n");
+    printf("\t=> ");
+    scanf("%i", &opcao_inicial);
+    switch (opcao_inicial)
+    {
+    case 1:
+        tela_equi();
+        break;
+    case 2:
+        tela_princi();
+        break;
+    case 3:
+        tela_sobre();
+        break;
+    }
+    }while (opcao_inicial != 0);
+    system("clear");
+    printf("\tSaindo do programa...\n");
+    return 0;
 }
