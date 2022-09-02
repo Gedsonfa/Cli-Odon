@@ -29,8 +29,9 @@ void tela_sobre()
         printf("\t=== Clinica Odontologica ===\n\n");
         printf("\tPrograma ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao,\n\tcom o objetivo de servir a uma clinica odontologica.\n");
         printf("\t==================================================\n\n");
-        printf("\tInsira 0 para voltar\n");
-        printf("\t=> ");
+        printf("\tTecle ENTER para continuar.\n");
+        
+        getchar();
 
 }
 
@@ -89,8 +90,8 @@ void tela_equi()
         printf("\tRedes sociais: @gabriel_wallace_17===\n");
         printf("\tGit: https://github.com/Japagabriel===\n\n");
         printf("\t==================================================\n\n");
-        printf("\tInsira 0 para voltar\n");
-        printf("\t=> ");
+        printf("\tTecle ENTER para continuar.\n");
+        getchar();
         
 
 
