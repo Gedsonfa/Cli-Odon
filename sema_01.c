@@ -6,6 +6,9 @@
 void tela_equi();
 void tela_princi();
 void tela_sobre();
+void tela_pacientes();
+void tela_servicos();
+void tela_funcio();
 
 //Variaveis de controle
 int opcao_inicial;
@@ -49,12 +52,80 @@ void tela_princi()
         printf("\tDeveloped by @Gedsonfa and @=== == since Ago, 2022\n\n");
         printf("\t==================================================\n\n");
         printf("\t === Sistema Clinica Odontologica ===\n");
-        printf("\t1- Modulo Cliente\n");
-        printf("\t2- Modulo Funcionario\n");
-        printf("\t3- Trabalhos Realizados\n");
-        printf("\t4- Sobre Nos\n");
-        printf("\t0- Voltar\n");
+        printf("\t === 1- Modulo Cliente\n");
+        printf("\t === 2- Modulo Funcionario\n");
+        printf("\t === 3- Trabalhos Realizados\n");
+        printf("\t === 4- Sobre Nos\n");
+        printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%i", &voltar);
+        break;
+
+        
+    }while(voltar != 0);
+    
+}
+
+void tela_pacientes()
+{  
+    do
+    {
+        system("clear");
+
+        printf("\t==================================================\n\n");
+        printf("\t === Módulo Pacientes ===\n");
+        printf("\t === 1- Cadastrar Paciente\n");
+        printf("\t === 2- Pesquisar Paciente\n");
+        printf("\t === 3- Editar Paciente\n");
+        printf("\t === 4- Excluir Paciente\n");
+        printf("\t === 0- Voltar\n");
+        printf("\n\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%i", &voltar);
+        break;
+
+        
+    }while(voltar != 0);
+    
+}
+
+void tela_servicos()
+{  
+    do
+    {
+        system("clear");
+
+        printf("\t==================================================\n\n");
+        printf("\t === Módulo de Serviços ===\n");
+        printf("\t === 1- pesquisar serviço\n");
+        printf("\t === 2- Tabela de preço\n");
+        printf("\t === 3- Editar serviço\n");
+        printf("\t === 4- Excluir serviço\n");
+        printf("\t === 0- Voltar\n");
+        printf("\n\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%i", &voltar);
+        break;
+
+        
+    }while(voltar != 0);
+    
+}
+
+void tela_funcio()
+{  
+    do
+    {
+        system("clear");
+
+        printf("\t==========================================\n\n");
+        printf("\t === Módulo Funcionários ===\n");
+        printf("\t === 1- ADM serviços\n");
+        printf("\t === 2- ADM clientes\n");
+        printf("\t === 3- ADM funcionários\n");
+        printf("\t === 0- Voltar\n");
+        printf("\n\t=========================================\n\n");
         printf("\t=> ");
         scanf("%i", &voltar);
         break;
@@ -103,11 +174,11 @@ int main(void)
     system("clear");
     setlocale(LC_ALL, "Portuguese_Brazil");
     printf("\n\t==================================================\n");
-    printf("\t== Selecione uma opcao ==\n");
-    printf("\t1- Tela de Equipe\n");
-    printf("\t2- Tela Principal\n");
-    printf("\t3- Tela de Informacao\n");
-    printf("\t0- Sair\n");
+    printf("\t == Selecione uma opcao ==\n");
+    printf("\t == 1- Tela de Equipe\n");
+    printf("\t == 2- Tela Principal\n");
+    printf("\t == 3- Tela de Informacao\n");
+    printf("\t == 0- Sair\n");
     printf("\t==================================================\n");
     printf("\t=> ");
     scanf("%i", &opcao_inicial);
