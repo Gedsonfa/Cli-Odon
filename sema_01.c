@@ -9,6 +9,7 @@ void tela_sobre();
 void tela_pacientes();
 void tela_servicos();
 void tela_funcio();
+void tela_adm();
 
 //Variaveis de controle
 int opcao_inicial;
@@ -119,6 +120,29 @@ void tela_funcio()
     {
         system("clear");
 
+        printf("\t==================================================\n\n");
+        printf("\t === Módulo Pacientes ===\n");
+        printf("\t === 1- Cadastrar funcionário\n");
+        printf("\t === 2- Pesquisar funcionário\n");
+        printf("\t === 3- Editar funcionário\n");
+        printf("\t === 4- Excluir funcionário\n");
+        printf("\t === 0- Voltar\n");
+        printf("\n\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%i", &voltar);
+        break;
+
+        
+    }while(voltar != 0);
+    
+}
+
+void tela_adm()
+{  
+    do
+    {
+        system("clear");
+
         printf("\t==========================================\n\n");
         printf("\t === Módulo Funcionários ===\n");
         printf("\t === 1- ADM serviços\n");
@@ -134,6 +158,8 @@ void tela_funcio()
     }while(voltar != 0);
     
 }
+
+
 
 void tela_equi()
 {
