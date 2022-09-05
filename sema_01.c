@@ -10,17 +10,17 @@ void tela_pacientes();
 void tela_servicos();
 void tela_funcio();
 void tela_adm();
+void tela_d_entrada();
 
 //Variaveis de controle
-int opcao_inicial;
-int voltar;
-
+int opcao_navegacao,voltar,opcao_inicial;
 
 //funcoes
 void tela_sobre()
 {  
-
-        system("clear");
+    do
+    {
+        system("cls||clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
         printf("\tCentro de Ensino Superior do Serido\n");
@@ -33,8 +33,9 @@ void tela_sobre()
         printf("\t=== Clinica Odontologica ===\n\n");
         printf("\tPrograma ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao,\n\tcom o objetivo de servir a uma clinica odontologica.\n");
         printf("\t==================================================\n\n");
-        printf("\tTecle ENTER para continuar.\n");
-        getchar();
+        printf("\tTecle 0 para continuar.\n");
+        scanf("%i", &voltar);
+    }while(voltar!=0);
 
 }
 
@@ -42,29 +43,36 @@ void tela_princi()
 {  
     do
     {
-        system("clear");
+        system("cls||clear");
         printf("\n\t==================================================\n\n");
-        printf("\tUniversidade Federal do Rio Grande do Norte\n");
-        printf("\tCentro de Ensino Superior do Serido\n");
-        printf("\tDepartamento de Computacao e Tecnologia\n");
-        printf("\tBacharelado em Sistemas de Informacao\n\n");
-        printf("\tDisciplina DCT1106 == Programacao\n");
-        printf("\tProjeto Sistema SIG-Dentistry\n");
-        printf("\tDeveloped by @Gedsonfa and @=== == since Ago, 2022\n\n");
+        printf("\tProjeto Sistema SIG-Dentistry\n\n"); 
         printf("\t==================================================\n\n");
         printf("\t === Sistema Clinica Odontologica ===\n");
-        printf("\t === 1- Modulo Cliente\n");
-        printf("\t === 2- Modulo Funcionario\n");
-        printf("\t === 3- Trabalhos Realizados\n");
-        printf("\t === 4- Sobre Nos\n");
+        printf("\t === 1- Modulo Pacientes\n");
+        printf("\t === 2- Modulo Servicos\n");
+        printf("\t === 3- Modulo Funcionarios\n");
+        printf("\t === 4- Modulo Administrativo\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
-        scanf("%i", &voltar);
-        break;
-
-        
-    }while(voltar != 0);
+        scanf("%i", &opcao_navegacao);
+        switch (opcao_navegacao)
+        {
+        case 1:
+            tela_pacientes();
+            break;    
+        case 2:
+            tela_servicos();
+            break;  
+        case 3:
+            tela_funcio();
+            break;  
+        case 4:
+            tela_adm();
+            break;
+        }
+               
+    }while(opcao_navegacao != 0);
     
 }
 
@@ -72,7 +80,7 @@ void tela_pacientes()
 {  
     do
     {
-        system("clear");
+        system("cls||clear");
 
         printf("\t==================================================\n\n");
         printf("\t === Módulo Pacientes ===\n");
@@ -95,7 +103,7 @@ void tela_servicos()
 {  
     do
     {
-        system("clear");
+        system("cls||clear");
 
         printf("\t==================================================\n\n");
         printf("\t === Módulo de Serviços ===\n");
@@ -118,10 +126,10 @@ void tela_funcio()
 {  
     do
     {
-        system("clear");
+        system("cls||clear");
 
         printf("\t==================================================\n\n");
-        printf("\t === Módulo Pacientes ===\n");
+        printf("\t === Módulo Funcionarios ===\n");
         printf("\t === 1- Cadastrar funcionário\n");
         printf("\t === 2- Pesquisar funcionário\n");
         printf("\t === 3- Editar funcionário\n");
@@ -141,10 +149,10 @@ void tela_adm()
 {  
     do
     {
-        system("clear");
+        system("cls||clear");
 
         printf("\t==========================================\n\n");
-        printf("\t === Módulo Funcionários ===\n");
+        printf("\t === Módulo Admnistrativo ===\n");
         printf("\t === 1- ADM serviços\n");
         printf("\t === 2- ADM clientes\n");
         printf("\t === 3- ADM funcionários\n");
@@ -163,8 +171,9 @@ void tela_adm()
 
 void tela_equi()
 {
-
-        system("clear");
+    do
+    {
+        system("cls||clear");
         printf("\n\t==================================================\n\n");
         printf("\tUniversidade Federal do Rio Grande do Norte\n");
         printf("\tCentro de Ensino Superior do Serido\n");
@@ -186,42 +195,48 @@ void tela_equi()
         printf("\tRedes sociais: @gabriel_wallace_17===\n");
         printf("\tGit: https://github.com/Japagabriel===\n\n");
         printf("\t==================================================\n\n");
-        printf("\tTecle ENTER para continuar.\n");
-        getchar();
+        printf("\tTecle 0 para continuar.\n");
+        scanf("%i", &voltar);
+    }while(voltar!=0);
         
 
 
 }
+void tela_d_entrada()
+{  
+    do
+    { 
+        system("cls||clear");
+        setlocale(LC_ALL, "Portuguese_Brazil");
+        printf("\n\t==================================================\n");
+        printf("\t == Selecione uma opcao ==\n");
+        printf("\t == 1- Tela de Equipe\n");
+        printf("\t == 2- Tela Principal\n");
+        printf("\t == 3- Tela de Informacao\n");
+        printf("\t == 0- Sair\n");
+        printf("\t==================================================\n");
+        printf("\t=> ");
+        scanf("%i", &opcao_inicial);
+        switch (opcao_inicial)
+        {
+            case 1:
+            tela_equi();
+            break;
+            case 2:
+            tela_princi();
+            break;
+            case 3:
+            tela_sobre();
+            break;
+        }
+    }while (opcao_inicial != 0);
+    system("cls||clear");
+    printf("\tSaindo do programa...\n");
+}
+
 //Principal
 int main(void)
 {
-    do
-    { 
-    system("clear");
-    setlocale(LC_ALL, "Portuguese_Brazil");
-    printf("\n\t==================================================\n");
-    printf("\t == Selecione uma opcao ==\n");
-    printf("\t == 1- Tela de Equipe\n");
-    printf("\t == 2- Tela Principal\n");
-    printf("\t == 3- Tela de Informacao\n");
-    printf("\t == 0- Sair\n");
-    printf("\t==================================================\n");
-    printf("\t=> ");
-    scanf("%i", &opcao_inicial);
-    switch (opcao_inicial)
-    {
-    case 1:
-        tela_equi();
-        break;
-    case 2:
-        tela_princi();
-        break;
-    case 3:
-        tela_sobre();
-        break;
-    }
-    }while (opcao_inicial != 0);
-    system("clear");
-    printf("\tSaindo do programa...\n");
+    tela_d_entrada();
     return 0;
 }
