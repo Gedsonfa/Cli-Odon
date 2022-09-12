@@ -11,9 +11,10 @@ void tela_servicos();
 void tela_funcio();
 void tela_adm();
 void tela_d_entrada();
+void cadast_paciente();
 
 //Variaveis de controle
-int opcao_navegacao,voltar,opcao_inicial;
+int opcao_navegacao, voltar, opcao_inicial, opcao_paci;
 
 //funcoes
 void tela_sobre()
@@ -91,11 +92,47 @@ void tela_pacientes()
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
-        scanf("%i", &voltar);
+        scanf("%i", &opcao_paci);
+        switch (opcao_paci)
+        {
+        case 0:
+            voltar = 0;
+            break;
+        case 1:
+            cadast_paciente();
+            break;
+        case 2:
+            ;
+            break;
+        case 3:
+            ;
+            break;
+        case 4:
+            ;
+            break;
+        }
         break;
 
-        
     }while(voltar != 0);
+    
+}
+
+void cadast_paciente()
+{
+    do
+    {
+        system ("cls||clear");
+
+        printf("\n\t=== Cadastra Paciente ===\n");
+        printf("\t === Insina o CPF:\n");
+        printf("\t === Insira o nome:\n");
+        printf("\t === Insira o genero:\n");
+        printf("\t === Insira o endereco:\n");
+        printf("\t === Digite 0 para confirmar\n");
+        printf("\t=>");
+        scanf("%i", &voltar);
+    } while (voltar != 0);
+    
     
 }
 
@@ -211,7 +248,7 @@ void tela_d_entrada()
         printf("\n\t==================================================\n");
         printf("\t == Selecione uma opcao ==\n");
         printf("\t == 1- Tela de Equipe\n");
-        printf("\t == 2- Tela Principal\n");
+        printf("\t == 2- Entrar no Programa\n");
         printf("\t == 3- Tela de Informacao\n");
         printf("\t == 0- Sair\n");
         printf("\t==================================================\n");
