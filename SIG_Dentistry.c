@@ -73,7 +73,7 @@ void tela_princi()
             break;
         }
                
-    }while(opcao_navegacao != 0);
+    }while(opcao_navegacao);
     
 }
 
@@ -113,7 +113,7 @@ void tela_pacientes()
         }
         break;
 
-    }while(voltar != 0);
+    }while(voltar);
     
 }
 
@@ -135,7 +135,7 @@ void cadast_paciente()
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
         scanf("%i", &voltar);
-    } while (voltar != 0);
+    } while (voltar);
        
 }
 
@@ -157,7 +157,7 @@ void tela_servicos()
         scanf("%i", &voltar);
         break;
     
-    }while(voltar != 0);
+    }while(voltar);
     
 }
 
@@ -179,7 +179,7 @@ void tela_funcionari()
         scanf("%i", &voltar);
         break;
        
-    }while(voltar != 0);
+    }while(voltar);
     
 }
 
@@ -200,7 +200,7 @@ void tela_adm()
         scanf("%i", &voltar);
         break;
      
-    }while(voltar != 0);
+    }while(voltar);
     
 }
 
@@ -264,7 +264,7 @@ void tela_entrada()
             break;
         }
 
-    }while (opcao_inicial != 0);
+    }while (opcao_inicial);
     system("cls||clear");
     printf("\tSaindo do programa...\n");
 }
