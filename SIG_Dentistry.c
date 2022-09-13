@@ -8,9 +8,9 @@ void tela_princi();
 void tela_sobre();
 void tela_pacientes();
 void tela_servicos();
-void tela_funcio();
+void tela_funcionari();
 void tela_adm();
-void tela_d_entrada();
+void tela_entrada();
 void cadast_paciente();
 
 //Variaveis de controle
@@ -66,7 +66,7 @@ void tela_princi()
             tela_servicos();
             break;  
         case 3:
-            tela_funcio();
+            tela_funcionari();
             break;  
         case 4:
             tela_adm();
@@ -125,15 +125,18 @@ void cadast_paciente()
 
         printf("\n\t=== Cadastra Paciente ===\n");
         printf("\t === Insina o CPF:\n");
+        scanf(";");
         printf("\t === Insira o nome:\n");
+        scanf(";");
         printf("\t === Insira o genero:\n");
+        scanf(";");
         printf("\t === Insira o endereco:\n");
+        scanf(";");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
         scanf("%i", &voltar);
     } while (voltar != 0);
-    
-    
+       
 }
 
 void tela_servicos()
@@ -153,13 +156,12 @@ void tela_servicos()
         printf("\t=> ");
         scanf("%i", &voltar);
         break;
-
-        
+    
     }while(voltar != 0);
     
 }
 
-void tela_funcio()
+void tela_funcionari()
 {  
     do
     {
@@ -176,8 +178,7 @@ void tela_funcio()
         printf("\t=> ");
         scanf("%i", &voltar);
         break;
-
-        
+       
     }while(voltar != 0);
     
 }
@@ -198,13 +199,10 @@ void tela_adm()
         printf("\t=> ");
         scanf("%i", &voltar);
         break;
-
-        
+     
     }while(voltar != 0);
     
 }
-
-
 
 void tela_equi()
 {
@@ -234,12 +232,11 @@ void tela_equi()
         printf("\t==================================================\n\n");
         printf("\tTecle 0 para continuar.\n");
         scanf("%i", &voltar);
+
     }while(voltar!=0);
         
-
-
 }
-void tela_d_entrada()
+void tela_entrada()
 {  
     do
     { 
@@ -266,6 +263,7 @@ void tela_d_entrada()
             tela_sobre();
             break;
         }
+
     }while (opcao_inicial != 0);
     system("cls||clear");
     printf("\tSaindo do programa...\n");
@@ -274,6 +272,6 @@ void tela_d_entrada()
 //Principal
 int main(void)
 {
-    tela_d_entrada();
+    tela_entrada();
     return 0;
 }
