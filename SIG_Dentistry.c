@@ -12,6 +12,7 @@ void tela_funcionari();
 void tela_adm();
 void tela_entrada();
 void cadast_paciente();
+void pesqui_paciente();
 
 //Variaveis de controle
 int opcao_navegacao, voltar, opcao_inicial, opcao_paci;
@@ -102,7 +103,7 @@ void tela_pacientes()
             cadast_paciente();
             break;
         case 2:
-            ;
+            pesqui_paciente();
             break;
         case 3:
             ;
@@ -137,6 +138,18 @@ void cadast_paciente()
         scanf("%i", &voltar);
     } while (voltar);
        
+}
+
+void pesqui_paciente(){
+    do{
+        system ("cls||clear");
+
+        printf("\t === Pesquisar Paciente ===\n");
+        printf("\t === Digite o codigo a ser buscado:\n");
+        scanf(";");
+        printf("\t=== Aqui estaram os dados ===\n");
+
+    }while(voltar);
 }
 
 void tela_servicos()
