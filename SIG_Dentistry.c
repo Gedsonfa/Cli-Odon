@@ -3,22 +3,27 @@
 #include <locale.h>
 
 //Assinatura das funcoes
-void tela_equi();
-void tela_princi();
-void tela_sobre();
+void tela_desenvolvedores();
+void tela_progr_odont();
+void tela_especificacao();
 void tela_pacientes();
 void tela_servicos();
-void tela_funcionari();
-void tela_adm();
+void tela_funcionarios();
 void tela_entrada();
-void cadast_paciente();
-void pesqui_paciente();
-
+void tela_cadastrar_paciente();
+void tela_pesquisar_paciente();
+void tela_alterar_paciente();
+void tela_excluir_paciente();
 //Variaveis de controle
 int opcao_navegacao, voltar, opcao_inicial, opcao_paci;
 
+//principal
+int main(void){
+    tela_entrada();
+    return 0;
+}
 //funcoes
-void tela_sobre()
+void tela_especificacao()
 {  
     do
     {
@@ -37,12 +42,12 @@ void tela_sobre()
         printf("\t==================================================\n\n");
         printf("\tTecle 0 para continuar.\n");
         scanf("%i", &voltar);
+        getchar();
     }while(voltar!=0);
 
 }
 
-void tela_princi()
-{  
+void tela_progr_odont(){  
     do
     {
         system("cls||clear");
@@ -53,11 +58,11 @@ void tela_princi()
         printf("\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
-        printf("\t === 4- Modulo Administrativo\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%i", &opcao_navegacao);
+        getchar();
         switch (opcao_navegacao)
         {
         case 1:
@@ -67,59 +72,46 @@ void tela_princi()
             tela_servicos();
             break;  
         case 3:
-            tela_funcionari();
+            tela_funcionarios();
             break;  
-        case 4:
-            tela_adm();
-            break;
-        }
-               
-    }while(opcao_navegacao);
-    
+        }             
+    }while(opcao_navegacao);    
 }
 
-void tela_pacientes()
-{  
+void tela_pacientes(){  
     do
     {
         system("cls||clear");
 
         printf("\t==================================================\n\n");
-        printf("\t === Módulo Pacientes ===\n");
+        printf("\t === Modulo Pacientes ===\n");
         printf("\t === 1- Cadastrar Paciente\n");
         printf("\t === 2- Pesquisar Paciente\n");
-        printf("\t === 3- Editar Paciente\n");
+        printf("\t === 3- Alterar Paciente\n");
         printf("\t === 4- Excluir Paciente\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%i", &opcao_paci);
-        switch (opcao_paci)
-        {
-        case 0:
-            voltar = 0;
-            break;
+        getchar();
+        switch (opcao_paci){
         case 1:
-            cadast_paciente();
+            tela_cadastrar_paciente();
             break;
         case 2:
-            pesqui_paciente();
+            tela_pesquisar_paciente();
             break;
         case 3:
-            ;
+            tela_alterar_paciente();
             break;
         case 4:
-            ;
+            tela_excluir_paciente();
             break;
         }
-        break;
-
-    }while(voltar);
-    
+    }while(voltar);    
 }
 
-void cadast_paciente()
-{
+void tela_cadastrar_paciente(){
     do
     {
         system ("cls||clear");
@@ -127,20 +119,25 @@ void cadast_paciente()
         printf("\n\t=== Cadastra Paciente ===\n");
         printf("\t === Insina o CPF:\n");
         scanf(";");
+        getchar();
         printf("\t === Insira o nome:\n");
         scanf(";");
+        getchar();
         printf("\t === Insira o genero:\n");
         scanf(";");
+        getchar();
         printf("\t === Insira o endereco:\n");
         scanf(";");
+        getchar();
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
+        getchar();
         scanf("%i", &voltar);
-    } while (voltar);
-       
+        getchar();
+    } while (voltar);       
 }
 
-void pesqui_paciente(){
+void tela_pesquisar_paciente(){
     do{
         system ("cls||clear");
 
@@ -148,7 +145,41 @@ void pesqui_paciente(){
         printf("\t === Digite o codigo a ser buscado:\n");
         scanf(";");
         printf("\t=== Aqui estaram os dados ===\n");
+        printf("\t === Digite 0 para voltar\n");
+        printf("\t=>");
+        scanf("%i", &voltar);
+        getchar();
+    }while(voltar);
+}
 
+void tela_alterar_paciente(){
+    do{
+        system ("cls||clear");
+
+        printf("\t === Pesquisar Paciente ===\n");
+        printf("\t === Digite o codigo a ser buscado:\n");
+        scanf(";");
+        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t === Aqui estaram as opcoes para alteracao ===\n");
+        printf("\t === Digite 0 para confirmar\n");
+        printf("\t=>");
+        scanf("%i", &voltar);
+        getchar();
+    }while(voltar);
+}
+
+void tela_excluir_paciente(){
+    do{
+        system ("cls||clear");
+
+        printf("\t === Pesquisar Paciente ===\n");
+        printf("\t === Digite o codigo a ser buscado:\n");
+        scanf(";");
+        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t === Digite 0 para confirmar a exlusao\n");
+        printf("\t=>");
+        scanf("%i", &voltar);
+        getchar();
     }while(voltar);
 }
 
@@ -168,14 +199,12 @@ void tela_servicos()
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%i", &voltar);
-        break;
-    
+        getchar();
     }while(voltar);
     
 }
 
-void tela_funcionari()
-{  
+void tela_funcionarios(){  
     do
     {
         system("cls||clear");
@@ -190,35 +219,11 @@ void tela_funcionari()
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%i", &voltar);
-        break;
-       
-    }while(voltar);
-    
+        getchar();
+    }while(voltar);  
 }
 
-void tela_adm()
-{  
-    do
-    {
-        system("cls||clear");
-
-        printf("\t==========================================\n\n");
-        printf("\t === Módulo Admnistrativo ===\n");
-        printf("\t === 1- ADM serviços\n");
-        printf("\t === 2- ADM clientes\n");
-        printf("\t === 3- ADM funcionários\n");
-        printf("\t === 0- Voltar\n");
-        printf("\n\t=========================================\n\n");
-        printf("\t=> ");
-        scanf("%i", &voltar);
-        break;
-     
-    }while(voltar);
-    
-}
-
-void tela_equi()
-{
+void tela_desenvolvedores(){
     do
     {
         system("cls||clear");
@@ -245,35 +250,35 @@ void tela_equi()
         printf("\t==================================================\n\n");
         printf("\tTecle 0 para continuar.\n");
         scanf("%i", &voltar);
-
-    }while(voltar!=0);
-        
+        getchar();
+    }while(voltar!=0);      
 }
-void tela_entrada()
-{  
+
+void tela_entrada(){  
     do
     { 
         system("cls||clear");
         setlocale(LC_ALL, "Portuguese_Brazil");
         printf("\n\t==================================================\n");
         printf("\t == Selecione uma opcao ==\n");
-        printf("\t == 1- Tela de Equipe\n");
-        printf("\t == 2- Entrar no Programa\n");
+        printf("\t == 1- Entrar no Programa\n");
+        printf("\t == 2- Tela de Equipe\n");
         printf("\t == 3- Tela de Informacao\n");
         printf("\t == 0- Sair\n");
         printf("\t==================================================\n");
         printf("\t=> ");
         scanf("%i", &opcao_inicial);
+        getchar();
         switch (opcao_inicial)
         {
             case 1:
-            tela_equi();
+            tela_progr_odont();
             break;
             case 2:
-            tela_princi();
+            tela_desenvolvedores();
             break;
             case 3:
-            tela_sobre();
+            tela_especificacao();
             break;
         }
 
@@ -282,9 +287,4 @@ void tela_entrada()
     printf("\tSaindo do programa...\n");
 }
 
-//Principal
-int main(void)
-{
-    tela_entrada();
-    return 0;
-}
+
