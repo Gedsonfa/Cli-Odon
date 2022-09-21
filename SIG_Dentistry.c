@@ -15,7 +15,7 @@ void tela_pesquisar_paciente();
 void tela_alterar_paciente();
 void tela_excluir_paciente();
 //Variaveis de controle
-int opcao_navegacao, voltar, opcao_inicial, opcao_paci;
+int opcao_navegacao, voltar, voltar, opcao_inicial, opcao_paci;
 
 //principal
 int main(void){
@@ -43,7 +43,7 @@ void tela_especificacao()
         printf("\tTecle 0 para continuar.\n");
         scanf("%i", &voltar);
         getchar();
-    }while(voltar!=0);
+    }while(voltar);
 
 }
 
@@ -118,20 +118,11 @@ void tela_cadastrar_paciente(){
 
         printf("\n\t=== Cadastra Paciente ===\n");
         printf("\t === Insina o CPF:\n");
-        scanf(";");
-        getchar();
         printf("\t === Insira o nome:\n");
-        scanf(";");
-        getchar();
         printf("\t === Insira o genero:\n");
-        scanf(";");
-        getchar();
         printf("\t === Insira o endereco:\n");
-        scanf(";");
-        getchar();
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
-        getchar();
         scanf("%i", &voltar);
         getchar();
     } while (voltar);       
@@ -143,7 +134,7 @@ void tela_pesquisar_paciente(){
 
         printf("\t === Pesquisar Paciente ===\n");
         printf("\t === Digite o codigo a ser buscado:\n");
-        scanf(";");
+        printf("\t === codigo digitado ===\n");
         printf("\t=== Aqui estaram os dados ===\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -158,7 +149,7 @@ void tela_alterar_paciente(){
 
         printf("\t === Pesquisar Paciente ===\n");
         printf("\t === Digite o codigo a ser buscado:\n");
-        scanf(";");
+        printf("\t === codigo digitado ===\n");
         printf("\t === Aqui estaram os dados ===\n");
         printf("\t === Aqui estaram as opcoes para alteracao ===\n");
         printf("\t === Digite 0 para confirmar\n");
@@ -174,7 +165,7 @@ void tela_excluir_paciente(){
 
         printf("\t === Pesquisar Paciente ===\n");
         printf("\t === Digite o codigo a ser buscado:\n");
-        scanf(";");
+        printf("\t === codigo digitado ===\n");
         printf("\t === Aqui estaram os dados ===\n");
         printf("\t === Digite 0 para confirmar a exlusao\n");
         printf("\t=>");
