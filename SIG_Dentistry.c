@@ -52,6 +52,7 @@ void tela_especificacao()
         printf("\tPrograma ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao,\n\tcom o objetivo de servir a uma clinica odontologica.\n");
         printf("\t==================================================\n\n");
         printf("\tTecle 0 para continuar.\n");
+        printf("\t=> ");
         scanf("%i", &voltar);
         getchar();
     }while(voltar);
