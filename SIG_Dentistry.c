@@ -85,7 +85,12 @@ void tela_progr_odont(){
             break;  
         case 3:
             tela_funcionarios();
-            break;  
+            break;
+        default:
+            printf("\tOpcao invalida, insira uma opcao valida.\n");
+            printf("\tTecle ENTER para continuar...\n");
+            getchar();
+            break;
         }             
     }while(opcao_navegacao);    
 }
@@ -122,6 +127,11 @@ void tela_pacientes(){
         case 4:
             tela_excluir_paciente();
             tela_pacientes();
+            break;
+        default:
+            printf("\tOpcao invalida, insira uma opcao valida.\n");
+            printf("\tTecle ENTER para continuar...\n");
+            getchar();
             break;
         }
     }while(voltar);    
@@ -227,6 +237,11 @@ void tela_servicos()
                 tela_excluir_servico();
                 tela_servicos();
                 break;
+            default:
+                printf("\tOpcao invalida, insira uma opcao valida.\n");
+                printf("\tTecle ENTER para continuar...\n");
+                getchar();
+                break;
         }
     }while(voltar); 
 }
@@ -330,6 +345,11 @@ void tela_funcionarios(){
             case 4:
                 tela_excluir_funcionario();
                 tela_funcionarios();
+                break;
+            default:
+                printf("\tOpcao invalida, insira uma opcao valida.\n");
+                printf("\tTecle ENTER para continuar...\n");
+                getchar();
                 break;
         }
     }while(voltar);  
@@ -451,16 +471,20 @@ void tela_entrada(){
         switch (opcao_inicial)
         {
             case 1:
-            tela_progr_odont();
-            break;
+                tela_progr_odont();
+                break;
             case 2:
-            tela_desenvolvedores();
-            break;
+                tela_desenvolvedores();
+                break;
             case 3:
-            tela_especificacao();
-            break;
+                tela_especificacao();
+                break;
+            default:
+                printf("\tOpcao invalida, insira uma opcao valida.\n");
+                printf("\tTecle ENTER para continuar...\n");
+                getchar();
+                break;
         }
-
     }while (opcao_inicial);
     system("cls||clear");
     printf("\tSaindo do programa...\n");
