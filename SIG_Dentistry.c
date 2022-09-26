@@ -63,10 +63,11 @@ void tela_progr_odont(){
     do
     {
         system("cls||clear");
-        printf("\n\t==================================================\n\n");
-        printf("\tProjeto Sistema SIG-Dentistry\n\n"); 
-        printf("\t==================================================\n\n");
-        printf("\t === Sistema Clinica Odontologica ===\n");
+        printf("\n\t====================================================\n");
+        printf("\t=========   Projeto Sistema SIG-Dentistry   ========\n"); 
+        printf("\t====================================================\n");
+        printf("\t=========   Sistema Clinica Odontologica   =========\n");
+        printf("\t====================================================\n");
         printf("\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
@@ -100,8 +101,9 @@ void tela_pacientes(){
     {
         system("cls||clear");
 
-        printf("\t==================================================\n\n");
-        printf("\t === Modulo Pacientes ===\n");
+        printf("\t===================================================\n");
+        printf("\t===============   Modulo Paciente   ===============\n");
+        printf("\t===================================================\n\n");
         printf("\t === 1- Cadastrar Paciente\n");
         printf("\t === 2- Pesquisar Paciente\n");
         printf("\t === 3- Alterar Paciente\n");
@@ -140,9 +142,10 @@ void tela_pacientes(){
 void tela_cadastrar_paciente(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\n\t=== Cadastra Paciente ===\n");
-        printf("\t === Insina o CPF:\n");
+        printf("\t===================================================\n");
+        printf("\t===============   Cadastrar Paciente   ============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === Insira o CPF:\n");
         printf("\t === Insira o nome:\n");
         printf("\t === Insira o genero:\n");
         printf("\t === Insira o endereco:\n");
@@ -157,11 +160,10 @@ void tela_cadastrar_paciente(){
 void tela_pesquisar_paciente(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Paciente ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t===================================================\n");
+        printf("\t===============   Pesquisar Paciente   ============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -173,12 +175,10 @@ void tela_pesquisar_paciente(){
 void tela_alterar_paciente(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Paciente ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
-        printf("\t === Aqui estaram as opcoes para alteracao ===\n");
+        printf("\t===================================================\n");
+        printf("\t================   Alterar Paciente   =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -190,12 +190,10 @@ void tela_alterar_paciente(){
 void tela_excluir_paciente(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Paciente ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
-        printf("\t === Digite 0 para confirmar a exclusao\n");
+        printf("\t===================================================\n");
+        printf("\t==============   Pesquisar Paciente   =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...\n");
         printf("\t==================================================\n\n");
         printf("\t=>");
         scanf("%i", &voltar);
@@ -209,8 +207,9 @@ void tela_servicos()
     {
         system("cls||clear");
 
-        printf("\t==================================================\n\n");
-        printf("\t === Modulo de Servicos ===\n");
+        printf("\t===================================================\n");
+        printf("\t==============   Modulo de Servicos   =============\n");
+        printf("\t===================================================\n\n");
         printf("\t === 1- Cadastrar servico\n");
         printf("\t === 2- Pesquisar servico\n");
         printf("\t === 3- Editar servico\n");
@@ -249,13 +248,13 @@ void tela_servicos()
 void tela_cadastrar_servico(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\n\t=== Cadastra Servico ===\n");
-        printf("\t === Digite o codigo\n");
-        printf("\t === Digite o nome\n");
-        printf("\t === Digite o custo\n");
-        printf("\t === Digite o tempo do procedimento\n");
-        printf("\t === Digite a disponibilidade\n");
+        printf("\t===================================================\n");
+        printf("\t==============   Cadastrar Servicos   =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === Digite o nome do servico:\n");
+        printf("\t === Digite o custo do servico:\n");
+        printf("\t === Digite o tempo do procedimento:\n");
+        printf("\t === Digite a disponibilidade:\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -267,11 +266,10 @@ void tela_cadastrar_servico(){
 void tela_pesquisar_servico(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Servico ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t===================================================\n");
+        printf("\t==============   Pesquisar Servicos   =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO... \n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -283,12 +281,10 @@ void tela_pesquisar_servico(){
 void tela_alterar_servico(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Servico ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
-        printf("\t === Aqui estaram as opcoes para alteracao ===\n");
+        printf("\t===================================================\n");
+        printf("\t===============   Alterar Servicos   ==============\n");
+        printf("\t===================================================\n\n");
+        printf("\t ===  EM DESENVOLVIMENTO... \n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -300,11 +296,10 @@ void tela_alterar_servico(){
 void tela_excluir_servico(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Servico ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t===================================================\n");
+        printf("\t===============   Excluir Servicos   ==============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO... \n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar a exclusao\n");
         printf("\t=>");
@@ -318,14 +313,15 @@ void tela_funcionarios(){
     {
         system("cls||clear");
 
-        printf("\t==================================================\n\n");
-        printf("\t === Modulo Funcionarios ===\n");
+        printf("\t=========================================================\n");
+        printf("\t===============   Modulo de Funcionarios   ==============\n");
+        printf("\t=========================================================\n\n");
         printf("\t === 1- Cadastrar funcionario\n");
         printf("\t === 2- Pesquisar funcionario\n");
         printf("\t === 3- Alterar funcionario\n");
         printf("\t === 4- Excluir funcionaio\n");
         printf("\t === 0- Voltar\n");
-        printf("\n\t==================================================\n\n");
+        printf("\n\t======================================================\n\n");
         printf("\t=> ");
         scanf("%i", &opcao_funci);
         getchar();
@@ -358,8 +354,9 @@ void tela_funcionarios(){
 void tela_cadastrar_funcionario(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\n\t=== Cadastra Funcionario ===\n");
+        printf("\t=========================================================\n");
+        printf("\t===============   Cadastrar Funcionarios   ==============\n");
+        printf("\t=========================================================\n\n");
         printf("\t === Insina o CPF:\n");
         printf("\t === Insira o nome:\n");
         printf("\t === Insira o genero:\n");
@@ -375,11 +372,10 @@ void tela_cadastrar_funcionario(){
 void tela_pesquisar_funcionario(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Funcionario ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t=========================================================\n");
+        printf("\t===============   Pesquisar Funcionarios   ==============\n");
+        printf("\t=========================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -391,12 +387,10 @@ void tela_pesquisar_funcionario(){
 void tela_alterar_funcionario(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Funcionario ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
-        printf("\t === Aqui estaram as opcoes para alteracao ===\n");
+        printf("\t=========================================================\n");
+        printf("\t================   Alterar Funcionarios   ===============\n");
+        printf("\t=========================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...       \n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -408,11 +402,10 @@ void tela_alterar_funcionario(){
 void tela_excluir_funcionario(){
     do{
         system ("cls||clear");
-        printf("\t==================================================\n\n");
-        printf("\t === Pesquisar Funcionario ===\n");
-        printf("\t === Digite o codigo a ser buscado:\n");
-        printf("\t === codigo digitado ===\n");
-        printf("\t === Aqui estaram os dados ===\n");
+        printf("\t=========================================================\n");
+        printf("\t================   Excluir Funcionarios   ===============\n");
+        printf("\t=========================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...  \n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar a exclusao\n");
         printf("\t=>");
@@ -458,13 +451,14 @@ void tela_entrada(){
     { 
         system("cls||clear");
         setlocale(LC_ALL, "Portuguese_Brazil");
-        printf("\n\t==================================================\n");
-        printf("\t == Selecione uma opcao ==\n");
+        printf("\t=========================================================\n");
+        printf("\t=================   SELECIONE A OPCAO   =================\n");
+        printf("\t=========================================================\n\n");
         printf("\t == 1- Entrar no Programa\n");
         printf("\t == 2- Tela de Equipe\n");
         printf("\t == 3- Tela de Informacao\n");
         printf("\t == 0- Sair\n");
-        printf("\t==================================================\n");
+        printf("\t====================================================\n");
         printf("\t=> ");
         scanf("%i", &opcao_inicial);
         getchar();
