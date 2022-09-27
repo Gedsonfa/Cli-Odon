@@ -7,26 +7,37 @@ void tela_desenvolvedores();
 void tela_progr_odont();
 void tela_especificacao();
 void tela_entrada();
+
 //Funções pacientes
 void tela_pacientes();
 void tela_cadastrar_paciente();
 void tela_pesquisar_paciente();
 void tela_alterar_paciente();
 void tela_excluir_paciente();
+
 //Funções serviços
 void tela_servicos();
 void tela_cadastrar_servico();
 void tela_pesquisar_servico();
 void tela_alterar_servico();
 void tela_excluir_servico();
+
 //Funções funcionários
 void tela_funcionarios();
 void tela_cadastrar_funcionario();
 void tela_pesquisar_funcionario();
 void tela_alterar_funcionario();
 void tela_excluir_funcionario();
+
+//Funções Agendamento
+void tela_Agendamento_consultas();
+void tela_agend();
+
+//Funções Compra
+void tela_compra();
+
 //Variaveis de controle
-int opcao_navegacao, voltar, opcao_inicial, opcao_paci, opcao_serv, opcao_funci;
+int opcao_navegacao, voltar, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
 
 //principal
 int main(void){
@@ -71,6 +82,7 @@ void tela_progr_odont(){
         printf("\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
+        printf("\t === 4- Modulo Agendamento e Pagamentos\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
@@ -86,7 +98,9 @@ void tela_progr_odont(){
             break;  
         case 3:
             tela_funcionarios();
-            break;  
+            break;
+        case 4:
+            tela_Agendamento_consultas();  
         }             
     }while(opcao_navegacao);    
 }
@@ -392,6 +406,64 @@ void tela_excluir_funcionario(){
         scanf("%i", &voltar);
         getchar();
     }while(voltar);
+}
+
+void tela_compra(){
+    do{
+        system ("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t===============   Efetuar pagamento   =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t==================================================\n\n");
+        printf("\t === Digite 0 para confirmar\n");
+        printf("\t=>");
+        scanf("%i", &voltar);
+        getchar();
+    }while(voltar);         
+}
+
+void tela_Agend(){
+    do{
+        system ("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t===============   Tela Agendamento   ==============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t==================================================\n\n");
+        printf("\t === Digite 0 para confirmar\n");
+        printf("\t=>");
+        scanf("%i", &voltar);
+        getchar();
+    }while(voltar);         
+}
+
+void tela_Agendamento_consultas(){
+    do{
+        system ("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t======   Agendamento e compras de servicos   ======\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Agendamento de consultas\n");
+        printf("\t === 2- Pagamento de servicos\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=>");
+        scanf("%i", &opcao_agend);
+        getchar();
+        switch (opcao_agend){
+        case 1:
+            tela_Agend();
+            tela_Agendamento_consultas();
+            break;
+        case 2:
+            tela_compra();
+            tela_Agendamento_consultas();
+            break;
+
+        }
+    
+    }while(voltar);         
 }
 
 void tela_desenvolvedores(){
