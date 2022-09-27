@@ -473,6 +473,9 @@ void tela_entrada(){
             case 3:
                 tela_especificacao();
                 break;
+            case 0:
+                opcao_inicial = 0;
+                break;
             default:
                 printf("\tOpcao invalida, insira uma opcao valida.\n");
                 printf("\tTecle ENTER para continuar...\n");
