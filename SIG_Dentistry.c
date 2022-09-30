@@ -27,7 +27,6 @@ void tela_alterar_funcionario();
 void tela_excluir_funcionario();
 
 //Funções Agendamento
-void tela_Agendamento_consultas();
 void tela_agend();
 
 //Funções Compra
@@ -58,7 +57,7 @@ void tela_progr_odont(){
         printf("\t === 4- Modulo Agendamento\n");
         printf("\t === 5- Modulo Pagamento\n");
         printf("\t === 0- Voltar\n");
-        printf("\n\t==================================================\n\n");
+        printf("\t==================================================\n");
         printf("\t=> ");
         scanf("%i", &opcao_navegacao);
         getchar();
@@ -74,13 +73,16 @@ void tela_progr_odont(){
             tela_funcionarios();
             break;
         case 4:
-            tela_Agend();
+            tela_agend();
             break; 
         case 5:
             tela_compra();
             break;
         }             
     }while(opcao_navegacao);    
+    printf("\tSaindo do programa...\n");
+    sleep(1);
+    system("cls||clear");
 }
 
 void tela_pacientes(){  
@@ -123,15 +125,35 @@ void tela_pacientes(){
 }
 
 void tela_cadastrar_paciente(){
+    char cpf_paciente[14];
+    char nome_paciente[51];
+    char idade_paciente[3];
+    char endereco_paciente[51];
+    char email_paciente[51];
+    char numero_paciente[12];
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
         printf("\t===============   Cadastrar Paciente   ============\n");
         printf("\t===================================================\n\n");
-        printf("\t === Insira o CPF:\n");
-        printf("\t === Insira o nome:\n");
-        printf("\t === Insira o genero:\n");
-        printf("\t === Insira o endereco:\n");
+        printf("\t === Insira o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_paciente);
+        getchar();
+        printf("\t === Insira o nome:   ");
+        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_paciente);
+        getchar();
+        printf("\t === Insira a idade:  ");
+        scanf("%s", idade_paciente);
+        getchar();
+        printf("\t === Insira o endereco:   ");
+        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_paciente);
+        getchar();
+        printf("\t === Insira o e-mail: ");
+        scanf("%[A-Za-z0-9@._]", email_paciente);
+        getchar();
+        printf("\t === Insira o numero telefonico:  ");
+        scanf("%[0-9]", numero_paciente);
+        getchar();
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -141,12 +163,14 @@ void tela_cadastrar_paciente(){
 }
 
 void tela_pesquisar_paciente(){
+    char cpf_paciente[14];
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
         printf("\t===============   Pesquisar Paciente   ============\n");
         printf("\t===================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t === Digite o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_paciente);
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -327,15 +351,35 @@ void tela_funcionarios(){
 }
 
 void tela_cadastrar_funcionario(){
+    char cpf_funcionario[14];
+    char nome_funcionario[51];
+    char idade_funcionario[3];
+    char endereco_funcionario[51];
+    char email_funcionario[51];
+    char numero_funcionario[12];
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
         printf("\t===============   Cadastrar Funcionarios   ==============\n");
         printf("\t=========================================================\n\n");
-        printf("\t === Insina o CPF:\n");
-        printf("\t === Insira o nome:\n");
-        printf("\t === Insira o genero:\n");
-        printf("\t === Insira o endereco:\n");
+        printf("\t === Insira o CPF:    ");
+        scanf("%[0-9./]", cpf_funcionario);
+        getchar();
+        printf("\t === Insira o nome:   ");
+        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_funcionario);
+        getchar();
+        printf("\t === Insira a idade:  ");
+        scanf("%s", idade_funcionario);
+        getchar();
+        printf("\t === Insira o endereco:   ");
+        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_funcionario);
+        getchar();
+        printf("\t === Insira o e-mail: ");
+        scanf("%[A-Za-z0-9@._]", email_funcionario);
+        getchar();
+        printf("\t === Insira o numero telefonico:  ");
+        scanf("%[0-9]", numero_funcionario);
+        getchar();
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -404,7 +448,7 @@ void tela_compra(){
     }while(voltar);         
 }
 
-void tela_Agend(){
+void tela_agend(){
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
