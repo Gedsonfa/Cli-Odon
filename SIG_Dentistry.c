@@ -33,7 +33,7 @@ void tela_agend();
 void tela_compra();
 
 //Variaveis de controle
-int opcao_navegacao, voltar, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
+char opcao_navegacao, voltar, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
 
 //principal
 int main(void){
@@ -59,27 +59,27 @@ void tela_progr_odont(){
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n");
         printf("\t=> ");
-        scanf("%i", &opcao_navegacao);
+        scanf("%c", &opcao_navegacao);
         getchar();
         switch (opcao_navegacao)
         {
-        case 1:
+        case '1':
             tela_pacientes();
             break;    
-        case 2:
+        case '2':
             tela_servicos();
             break;  
-        case 3:
+        case '3':
             tela_funcionarios();
             break;
-        case 4:
+        case '4':
             tela_agend();
             break; 
-        case 5:
+        case '5':
             tela_compra();
             break;
         }             
-    }while(opcao_navegacao);    
+    }while(opcao_navegacao!='0');    
     printf("\tSaindo do programa...\n");
     sleep(1);
     system("cls||clear");
@@ -100,28 +100,28 @@ void tela_pacientes(){
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
-        scanf("%i", &opcao_paci);
+        scanf("%c", &opcao_paci);
         getchar();
         switch (opcao_paci){
-        case 1:
+        case '1':
             tela_cadastrar_paciente();
             tela_pacientes();
             break;
-        case 2:
+        case '2':
             tela_pesquisar_paciente();
             tela_pacientes();
             break;
-        case 3:
+        case '3':
             tela_alterar_paciente();
             tela_pacientes();
             break;
-        case 4:
+        case '4':
             tela_excluir_paciente();
             tela_pacientes();
             break;
 
         }
-    }while(voltar);    
+    }while(voltar!='0');    
 }
 
 void tela_cadastrar_paciente(){
@@ -157,9 +157,9 @@ void tela_cadastrar_paciente(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
-        scanf("%i", &voltar);
+        scanf("%c", &voltar);
         getchar();
-    }while(voltar);         
+    }while(voltar!='0');         
 }
 
 void tela_pesquisar_paciente(){
@@ -174,18 +174,20 @@ void tela_pesquisar_paciente(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
-        scanf("%i", &voltar);
+        scanf("%c", &voltar);
         getchar();
-    }while(voltar);
+    }while(voltar!='0');
 }
 
 void tela_alterar_paciente(){
+    char cpf_paciente[14];
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
         printf("\t================   Alterar Paciente   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t === Digite o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_paciente);
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -195,12 +197,14 @@ void tela_alterar_paciente(){
 }
 
 void tela_excluir_paciente(){
+    char cpf_paciente[14];
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
         printf("\t==============   Pesquisar Paciente   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t === Digite o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_paciente);
         printf("\t==================================================\n\n");
         printf("\t=>");
         scanf("%i", &voltar);
@@ -389,12 +393,14 @@ void tela_cadastrar_funcionario(){
 }
 
 void tela_pesquisar_funcionario(){
+    char cpf_funcionario[14];
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
         printf("\t===============   Pesquisar Funcionarios   ==============\n");
         printf("\t=========================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t === Digite o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_funcionario);
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -404,12 +410,14 @@ void tela_pesquisar_funcionario(){
 }
 
 void tela_alterar_funcionario(){
+    char cpf_funcionario[14];
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
         printf("\t================   Alterar Funcionarios   ===============\n");
         printf("\t=========================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...       \n");
+        printf("\t === Digite o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_funcionario);
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -419,12 +427,14 @@ void tela_alterar_funcionario(){
 }
 
 void tela_excluir_funcionario(){
+    char cpf_funcionario[14];
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
         printf("\t================   Excluir Funcionarios   ===============\n");
         printf("\t=========================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...  \n");
+        printf("\t === Digite o CPF:    ");
+        scanf("%[0-9 .-/]", cpf_funcionario);
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar a exclusao\n");
         printf("\t=>");
