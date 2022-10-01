@@ -33,7 +33,8 @@ void tela_agend();
 void tela_compra();
 
 //Variaveis de controle
-char opcao_navegacao, voltar, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
+char opcao_navegacao, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
+int voltar;
 
 //principal
 int main(void){
@@ -121,7 +122,7 @@ void tela_pacientes(){
             break;
 
         }
-    }while(voltar!='0');    
+    }while(voltar);    
 }
 
 void tela_cadastrar_paciente(){
@@ -157,9 +158,9 @@ void tela_cadastrar_paciente(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
-        scanf("%c", &voltar);
+        scanf("%i", &voltar);
         getchar();
-    }while(voltar!='0');         
+    }while(voltar);         
 }
 
 void tela_pesquisar_paciente(){
@@ -174,9 +175,9 @@ void tela_pesquisar_paciente(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
-        scanf("%c", &voltar);
+        scanf("%i", &voltar);
         getchar();
-    }while(voltar!='0');
+    }while(voltar);
 }
 
 void tela_alterar_paciente(){
@@ -228,7 +229,7 @@ void tela_servicos()
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
-        scanf("%i", &opcao_serv);
+        scanf("%c", &opcao_serv);
         getchar();
         switch(opcao_serv){
             case 1:
@@ -330,7 +331,7 @@ void tela_funcionarios(){
         printf("\t === 0- Voltar\n");
         printf("\n\t======================================================\n\n");
         printf("\t=> ");
-        scanf("%i", &opcao_funci);
+        scanf("%c", &opcao_funci);
         getchar();
         switch(opcao_funci){
             case 1:
