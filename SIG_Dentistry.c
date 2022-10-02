@@ -23,10 +23,6 @@ void tela_agend();
 //Funções Compra
 void tela_compra();
 
-//Variaveis de controle
-char opcao_navegacao, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
-int voltar;
-
 //principal
 int main(void){
     tela_progr_odont();
@@ -35,6 +31,7 @@ int main(void){
 //funcoes
 
 void tela_progr_odont(){  
+    char opcao_navegacao;
     do
     {
         system("cls||clear");
@@ -77,6 +74,7 @@ void tela_progr_odont(){
 }
 
 void tela_pacientes(){  
+    char opcao_paci;
     do
     {
         system("cls||clear");
@@ -112,11 +110,11 @@ void tela_pacientes(){
             break;
 
         }
-    }while(voltar);    
+    }while(opcao_paci!='0');    
 }
 
-void tela_servicos()
-{  
+void tela_servicos(){  
+    char opcao_serv;
     do
     {
         system("cls||clear");
@@ -152,10 +150,11 @@ void tela_servicos()
                 break;
 
         }
-    }while(voltar); 
+    }while(opcao_serv!='0'); 
 }
 
 void tela_funcionarios(){  
+    char opcao_funci;
     do
     {
         system("cls||clear");
@@ -191,10 +190,11 @@ void tela_funcionarios(){
                 break;
 
         }
-    }while(voltar);  
+    }while(opcao_funci!='0');  
 }
 
 void tela_compra(){
+    char opcao_compra;
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
@@ -204,12 +204,13 @@ void tela_compra(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
-        scanf("%i", &voltar);
+        scanf("%c", &opcao_compra);
         getchar();
-    }while(voltar);         
+    }while(opcao_compra!='0');         
 }
 
 void tela_agend(){
+    char opcao_agend;
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
@@ -219,7 +220,7 @@ void tela_agend(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
-        scanf("%i", &voltar);
+        scanf("%c", &opcao_agend);
         getchar();
-    }while(voltar);         
+    }while(opcao_agend!='0');         
 }
