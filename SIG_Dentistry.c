@@ -2,6 +2,24 @@
 #include <stdlib.h>
 #include <locale.h>
 
+#include "funcoes_paciente.h"
+#include "funcoes_servico.h"
+#include "funcoes_funcionarios.h"
+
+//Assinatura das funcoes
+void tela_progr_odont();
+
+//Funções pacientes
+void tela_pacientes();
+
+//Funções serviços
+void tela_servicos();
+
+//Funções funcionários
+void tela_funcionarios();
+
+//Funções Agendamento
+
 //Assinatura das funcoes
 void tela_desenvolvedores();
 void tela_progr_odont();
@@ -36,6 +54,16 @@ void tela_agend();
 //Funções Compra
 void tela_compra();
 
+
+//principal
+int main(void){
+    tela_progr_odont();
+    return 0;
+}
+//funcoes
+
+void tela_progr_odont(){  
+    char opcao_navegacao;
 //Variaveis de controle
 int opcao_navegacao, voltar, opcao_inicial, opcao_paci, opcao_serv, opcao_funci, opcao_agend;
 
@@ -82,6 +110,38 @@ void tela_progr_odont(){
         printf("\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
+        printf("\t === 4- Modulo Agendamento\n");
+        printf("\t === 5- Modulo Pagamento\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n");
+        printf("\t=> ");
+        scanf("%c", &opcao_navegacao);
+        getchar();
+        switch (opcao_navegacao)
+        {
+        case '1':
+            tela_pacientes();
+            break;    
+        case '2':
+            tela_servicos();
+            break;  
+        case '3':
+            tela_funcionarios();
+            break;
+        case '4':
+            tela_agend();
+            break; 
+        case '5':
+            tela_compra();
+            break;
+        }             
+    }while(opcao_navegacao!='0');    
+    printf("\tSaindo do programa...\n");
+    system("cls||clear");
+}
+
+void tela_pacientes(){  
+    char opcao_paci;
         printf("\t === 4- Modulo Agendamento e Pagamentos\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
@@ -111,7 +171,6 @@ void tela_pacientes(){
     do
     {
         system("cls||clear");
-
         printf("\t===================================================\n");
         printf("\t===============   Modulo Paciente   ===============\n");
         printf("\t===================================================\n\n");
@@ -122,6 +181,22 @@ void tela_pacientes(){
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
+        scanf("%c", &opcao_paci);
+        getchar();
+        switch (opcao_paci){
+        case '1':
+            tela_cadastrar_paciente();
+            tela_pacientes();
+            break;
+        case '2':
+            tela_pesquisar_paciente();
+            tela_pacientes();
+            break;
+        case '3':
+            tela_alterar_paciente();
+            tela_pacientes();
+            break;
+        case '4':
         scanf("%i", &opcao_paci);
         getchar();
         switch (opcao_paci){
@@ -141,8 +216,12 @@ void tela_pacientes(){
             tela_excluir_paciente();
             tela_pacientes();
             break;
-
         }
+    }while(opcao_paci!='0');    
+}
+
+void tela_servicos(){  
+    char opcao_serv;
     }while(voltar);    
 }
 
@@ -224,6 +303,7 @@ void tela_servicos()
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
+        scanf("%c", &opcao_serv);
         scanf("%i", &opcao_serv);
         getchar();
         switch(opcao_serv){
@@ -245,6 +325,11 @@ void tela_servicos()
                 break;
 
         }
+    }while(opcao_serv!='0'); 
+}
+
+void tela_funcionarios(){  
+    char opcao_funci;
     }while(voltar); 
 }
 
@@ -326,6 +411,7 @@ void tela_funcionarios(){
         printf("\t === 0- Voltar\n");
         printf("\n\t======================================================\n\n");
         printf("\t=> ");
+        scanf("%c", &opcao_funci);
         scanf("%i", &opcao_funci);
         getchar();
         switch(opcao_funci){
@@ -347,6 +433,11 @@ void tela_funcionarios(){
                 break;
 
         }
+    }while(opcao_funci!='0');  
+}
+
+void tela_compra(){
+    char opcao_compra;
     }while(voltar);  
 }
 
@@ -423,6 +514,13 @@ void tela_compra(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
+        scanf("%c", &opcao_compra);
+        getchar();
+    }while(opcao_compra!='0');         
+}
+
+void tela_agend(){
+    char opcao_agend;
         scanf("%i", &voltar);
         getchar();
     }while(voltar);         
@@ -438,6 +536,10 @@ void tela_Agend(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
+        scanf("%c", &opcao_agend);
+        getchar();
+    }while(opcao_agend!='0');         
+}
         scanf("%i", &voltar);
         getchar();
     }while(voltar);         
@@ -544,5 +646,6 @@ void tela_entrada(){
     system("cls||clear");
     printf("\tSaindo do programa...\n");
 }
+
 
 
