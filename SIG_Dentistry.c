@@ -531,7 +531,6 @@ void tela_entrada(){
             case 3:
                 tela_especificacao();
                 break;
-<<<<<<< HEAD
             case 0:
                 opcao_inicial = 0;
                 break;
@@ -540,9 +539,6 @@ void tela_entrada(){
                 printf("\tTecle ENTER para continuar...\n");
                 getchar();
                 break;
-=======
-
->>>>>>> c793cf8947f4cacc2c69c7a4f77260eecdf062d5
         }
     }while (opcao_inicial);
     system("cls||clear");
