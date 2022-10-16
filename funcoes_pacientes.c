@@ -48,6 +48,7 @@ void tela_pesquisar_paciente(){
         printf("\t===================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_paciente);
+        getchar();
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para voltar\n");
         printf("\t=>");
@@ -66,6 +67,7 @@ void tela_alterar_paciente(){
         printf("\t===================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_paciente);
+        getcahr();
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -84,6 +86,7 @@ void tela_excluir_paciente(){
         printf("\t===================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_paciente);
+        getchar();
         printf("\t==================================================\n\n");
         printf("\t=>");
         scanf("%c", &voltar);

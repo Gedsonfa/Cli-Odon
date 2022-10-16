@@ -20,7 +20,7 @@ void tela_cadastrar_funcionario(){
         scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_funcionario);
         getchar();
         printf("\t === Insira a idade:  ");
-        scanf("%s", idade_funcionario);
+        scanf("%[0-9 ]", idade_funcionario);
         getchar();
         printf("\t === Insira o endereco:   ");
         scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_funcionario);
