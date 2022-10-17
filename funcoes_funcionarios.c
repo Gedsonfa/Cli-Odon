@@ -11,7 +11,7 @@ void tela_cadastrar_funcionario(){
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
-        printf("\t===============   Cadastrar Funcionarios   ==============\n");
+        printf("\t===============   Cadastrar Funcionários   ==============\n");
         printf("\t=========================================================\n\n");
         printf("\t === Insira o CPF:    ");
         scanf("%[0-9./]", cpf_funcionario);
@@ -20,9 +20,9 @@ void tela_cadastrar_funcionario(){
         scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_funcionario);
         getchar();
         printf("\t === Insira a idade:  ");
-        scanf("%s", idade_funcionario);
+        scanf("%[0-9 ]", idade_funcionario);
         getchar();
-        printf("\t === Insira o endereco:   ");
+        printf("\t === Insira o endereço:   ");
         scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_funcionario);
         getchar();
         printf("\t === Insira o e-mail: ");
@@ -45,7 +45,7 @@ void tela_pesquisar_funcionario(){
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
-        printf("\t===============   Pesquisar Funcionarios   ==============\n");
+        printf("\t===============   Pesquisar Funcionários   ==============\n");
         printf("\t=========================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_funcionario);
@@ -63,7 +63,7 @@ void tela_alterar_funcionario(){
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
-        printf("\t================   Alterar Funcionarios   ===============\n");
+        printf("\t================   Alterar Funcionários   ===============\n");
         printf("\t=========================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_funcionario);
@@ -81,12 +81,12 @@ void tela_excluir_funcionario(){
     do{
         system ("cls||clear");
         printf("\t=========================================================\n");
-        printf("\t================   Excluir Funcionarios   ===============\n");
+        printf("\t================   Excluir Funcionários   ===============\n");
         printf("\t=========================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_funcionario);
         printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar a exclusao\n");
+        printf("\t === Digite 0 para confirmar a exclusão\n");
         printf("\t=>");
         scanf("%c", &voltar);
         getchar();
