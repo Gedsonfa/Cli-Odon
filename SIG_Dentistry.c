@@ -4,6 +4,7 @@
 #include "funcoes_paciente.h"
 #include "funcoes_servico.h"
 #include "funcoes_funcionarios.h"
+#include "funcoes_pagamento.h"
 
 //Assinatura das funcoes
 void tela_progr_odont();
@@ -21,7 +22,7 @@ void tela_funcionarios();
 void tela_agend();
 
 //Funções Compra
-void tela_compra();
+void tela_pagamento();
 
 //principal
 int main(void){
@@ -68,7 +69,7 @@ void tela_progr_odont(){
             tela_agend();
             break; 
         case '5':
-            tela_compra();
+            tela_pagamento();
             break;
         }             
     }while(opcao_navegacao!='0');    
@@ -135,19 +136,19 @@ void tela_servicos(){
         scanf("%c", &opcao_serv);
         getchar();
         switch(opcao_serv){
-            case 1:
+            case '1':
                 tela_cadastrar_servico();
                 tela_servicos();
                 break;
-            case 2:
+            case '2':
                 tela_pesquisar_servico();
                 tela_servicos();
                 break;
-            case 3:
+            case '3':
                 tela_alterar_servico();
                 tela_servicos();
                 break;
-            case 4:
+            case '4':
                 tela_excluir_servico();
                 tela_servicos();
                 break;
@@ -175,19 +176,19 @@ void tela_funcionarios(){
         scanf("%c", &opcao_funci);
         getchar();
         switch(opcao_funci){
-            case 1:
+            case '1':
                 tela_cadastrar_funcionario();
                 tela_funcionarios();
                 break;
-            case 2:
+            case '2':
                 tela_pesquisar_funcionario();
                 tela_funcionarios();
                 break;
-            case 3:
+            case '3':
                 tela_alterar_funcionario();
                 tela_funcionarios();
                 break;
-            case 4:
+            case '4':
                 tela_excluir_funcionario();
                 tela_funcionarios();
                 break;
@@ -196,19 +197,41 @@ void tela_funcionarios(){
     }while(opcao_funci!='0');  
 }
 
-void tela_compra(){
+void tela_pagamento(){
     char opcao_compra;
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
-        printf("\t===============   Efetuar pagamento   =============\n");
+        printf("\t===============   Tela Pagamento   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t === 1- Efetuar pagamento\n");
+        printf("\t === 2- Consultar pagamento\n");
+        printf("\t === 3- Editar pagamento\n");
+        printf("\t === 4- Excluir pagamento\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
         scanf("%c", &opcao_compra);
         getchar();
+        switch (opcao_compra)
+        {
+        case '1':
+            tela_cadastrar_pagamento();
+            tela_pagamento();            
+            break;       
+        case '2':
+            tela_pesquisar_pagamento();
+            tela_pagamento();   
+            break;
+        case '3':
+            tela_alterar_pagamento();
+            tela_pagamento();   
+            break;
+        case '4':
+            tela_excluir_pagamento();
+            tela_pagamento();   
+            break;
+        }
     }while(opcao_compra!='0');         
 }
 
@@ -219,12 +242,30 @@ void tela_agend(){
         printf("\t===================================================\n");
         printf("\t===============   Tela Agendamento   ==============\n");
         printf("\t===================================================\n\n");
-        printf("\t === EM DESENVOLVIMENTO...\n");
+        printf("\t === 1- Novo agendamento\n");
+        printf("\t === 2- Exibir agendamento\n");
+        printf("\t === 3- Alterar agendamento\n");
+        printf("\t === 4- Desagendamento\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
         scanf("%c", &opcao_agend);
         getchar();
+        switch (opcao_agend)
+        {
+        case '1':
+            tela_agend();
+            break;
+        case '2':
+            tela_agend();
+            break;
+        case '3':
+            tela_agend();
+            break;
+        case '4':
+            tela_agend();
+            break;
+        }
     }while(opcao_agend!='0');         
 }
 

@@ -67,7 +67,7 @@ void tela_alterar_paciente(){
         printf("\t===================================================\n\n");
         printf("\t === Digite o CPF:    ");
         scanf("%[0-9 .-/]", cpf_paciente);
-        getcahr();
+        getchar();
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
