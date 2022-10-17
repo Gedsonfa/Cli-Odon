@@ -22,7 +22,7 @@ void tela_cadastrar_paciente(){
         printf("\t === Insira a idade:  ");
         scanf("%s", idade_paciente);
         getchar();
-        printf("\t === Insira o endereco:   ");
+        printf("\t === Insira o endereço:   ");
         scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_paciente);
         getchar();
         printf("\t === Insira o e-mail: ");

@@ -10,15 +10,15 @@ void tela_cadastrar_servico(){
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
-        printf("\t==============   Cadastrar Servicos   =============\n");
+        printf("\t==============   Cadastrar Serviços   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === Digite o codigo do servico:\n");
+        printf("\t === Digite o codigo do serviço:\n");
         scanf("%[0-9A-Z]", codigo_servico);
         getchar();
-        printf("\t === Digite o nome do servico:\n");
+        printf("\t === Digite o nome do serviço:\n");
         scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_servico);
         getchar();
-        printf("\t === Digite o custo do servico:\n");
+        printf("\t === Digite o custo do serviço:\n");
         scanf("%[0-9]", custo_servico);
         getchar();
         printf("\t === Digite o tempo do procedimento(hh/mm):\n");
@@ -40,9 +40,9 @@ void tela_pesquisar_servico(){
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
-        printf("\t==============   Pesquisar Servicos   =============\n");
+        printf("\t==============   Pesquisar Serviços   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === Digite o codigo:\n");
+        printf("\t === Digite o código:\n");
         scanf("%[0-9A-Z]", codigo_servico);
         getchar();
         printf("\t==================================================\n\n");
@@ -59,9 +59,9 @@ void tela_alterar_servico(){
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
-        printf("\t===============   Alterar Servicos   ==============\n");
+        printf("\t===============   Alterar Serviços   ==============\n");
         printf("\t===================================================\n\n");
-        printf("\t === Digite o codigo:\n");
+        printf("\t === Digite o código:\n");
         scanf("%[0-9A-Z]", codigo_servico);
         getchar();
         printf("\t==================================================\n\n");
@@ -78,13 +78,13 @@ void tela_excluir_servico(){
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
-        printf("\t===============   Excluir Servicos   ==============\n");
+        printf("\t===============   Excluir Serviços   ==============\n");
         printf("\t===================================================\n\n");
-        printf("\t === Digite o codigo:\n");
+        printf("\t === Digite o código:\n");
         scanf("%[0-9A-Z]", codigo_servico);
         getchar();
         printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar a exclusao\n");
+        printf("\t === Digite 0 para confirmar a exclusão\n");
         printf("\t=>");
         scanf("%c", &voltar);
         getchar();

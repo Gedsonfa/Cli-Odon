@@ -44,7 +44,7 @@ void tela_progr_odont(){
         printf("\t=========   Sistema Clinica Odontologica   =========\n");
         printf("\t====================================================\n");
         printf("\t === 1- Modulo Pacientes\n");
-        printf("\t === 2- Modulo Servicos\n");
+        printf("\t === 2- Modulo Serviços\n");
         printf("\t === 3- Modulo Funcionarios\n");
         printf("\t === 4- Modulo Agendamento\n");
         printf("\t === 5- Modulo Pagamento\n");
@@ -125,10 +125,10 @@ void tela_servicos(){
         printf("\t===================================================\n");
         printf("\t==============   Modulo de Servicos   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Cadastrar servico\n");
-        printf("\t === 2- Pesquisar servico\n");
-        printf("\t === 3- Editar servico\n");
-        printf("\t === 4- Excluir servico\n");
+        printf("\t === 1- Cadastrar serviço\n");
+        printf("\t === 2- Pesquisar serviço\n");
+        printf("\t === 3- Editar serviço\n");
+        printf("\t === 4- Excluir serviço\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
@@ -163,12 +163,12 @@ void tela_funcionarios(){
         system("cls||clear");
 
         printf("\t=========================================================\n");
-        printf("\t===============   Modulo de Funcionarios   ==============\n");
+        printf("\t===============   Modulo de Funcionários   ==============\n");
         printf("\t=========================================================\n\n");
-        printf("\t === 1- Cadastrar funcionario\n");
-        printf("\t === 2- Pesquisar funcionario\n");
-        printf("\t === 3- Alterar funcionario\n");
-        printf("\t === 4- Excluir funcionaio\n");
+        printf("\t === 1- Cadastrar funcionário\n");
+        printf("\t === 2- Pesquisar funcionário\n");
+        printf("\t === 3- Alterar funcionário\n");
+        printf("\t === 4- Excluir funcionáio\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t======================================================\n\n");
         printf("\t=> ");
