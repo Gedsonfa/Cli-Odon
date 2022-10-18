@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "validar.h"
-void tela_cadastrar_funcionario(){
-    char voltar;
+
+void tela_cadastrar_funcionario(void){
+    
     char cpf_funcionario[15];
     char nome_funcionario[30];
     char idade_funcionario[3];
@@ -13,7 +14,7 @@ void tela_cadastrar_funcionario(){
     system ("cls||clear");
     printf("\t=========================================================\n");
     printf("\t===============   Cadastrar Funcionarios   ==============\n");
-    printf("\t=========================================================\n\n");
+    printf("\t=========================================================\n");
     do{
         printf("\t === Insira o CPF:    ");
         scanf("%s", cpf_funcionario);
