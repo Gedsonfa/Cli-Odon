@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "validar.h"
 void tela_cadastrar_pagamento(){
     char voltar;
     char cpf_funcionario[14];

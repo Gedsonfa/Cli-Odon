@@ -1,7 +1,9 @@
 //Autor:https://gist.github.com/eduardoedson
 //Retorno: [1] - Se for válido | [0] - Se for inválido
+#include <string.h>
 
-int validarCPF(char *cpf)
+
+int validarCPF(char cpf[])
 {
     int i, j, digito1 = 0, digito2 = 0;
     if(strlen(cpf) != 11)
@@ -39,3 +41,29 @@ int validarCPF(char *cpf)
     }
     return 1;
 }
+
+
+int lerLetras(char nome[])
+{
+
+  int tamanho = strlen(nome);
+
+  if (tamanho < 1) {
+      return 0; 
+  } else {
+      for (int i = 0; i <= (tamanho - 1); i++) 
+        if ((nome[i] <= 'z') && (nome[i] >= 'A'))
+        {
+           if (((nome[i] <= 'a') && (nome[i] <= 'Z')) || (nome[i] == ' ')) {
+            return 1;
+           }
+              if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
+                return 0;
+              }
+            } else{  
+              return 0;
+      
+              }          
+      }
+      return 1;    
+  }
