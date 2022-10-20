@@ -1,15 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "validar.h"
 
 void tela_cadastrar_funcionario(void){
-    
-    char cpf_funcionario[15];
-    char nome_funcionario[30];
-    char idade_funcionario[3];
-    char endereco_funcionario[31];
-    char email_funcionario[31];
-    char numero_funcionario[12];
+    struct Dados_Funcionario{
+    char cpf[15];
+    char nome[30];
+    char idade[3];
+    char endereco[31];
+    char email[31];
+    char telefone[12];
+    };
+    typedef struct Dados_Funcionario Dados_Funcionario;
+
+    Dados_Funcionario Funcionario;
     
     system ("cls||clear");
     printf("\t=========================================================\n");
@@ -17,27 +22,27 @@ void tela_cadastrar_funcionario(void){
     printf("\t=========================================================\n");
     do{
         printf("\t === Insira o CPF:    ");
-        scanf("%s", cpf_funcionario);
+        scanf("%s",Funcionario.cpf);
         getchar();
-    }while(!validarCPF(cpf_funcionario));
+    }while(!validarCPF(Funcionario.cpf));
 
     do{
     printf("\t === Insira o nome:   ");
-    scanf("%s", nome_funcionario);
+    scanf("%s", Funcionario.nome);
     getchar();
-    }while(!lerLetras(nome_funcionario));
+    }while(!lerLetras(Funcionario.nome));
 
     printf("\t === Insira a idade:  ");
-    scanf("%s", idade_funcionario);
+    scanf("%s", Funcionario.idade);
     getchar();
     printf("\t === Insira o endereco:   ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_funcionario);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", Funcionario.endereco);
     getchar();
     printf("\t === Insira o e-mail: ");
-    scanf("%[A-Za-z0-9@._]", email_funcionario);
+    scanf("%[A-Za-z0-9@._]", Funcionario.email);
     getchar();
     printf("\t === Insira o numero telefonico:  ");
-    scanf("%[0-9]", numero_funcionario);
+    scanf("%[0-9]", Funcionario.telefone);
     getchar();
     printf("\t==================================================\n\n");
     system("\tPause");
