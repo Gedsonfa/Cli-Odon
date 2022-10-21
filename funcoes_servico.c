@@ -13,24 +13,24 @@ void tela_cadastrar_servico(){
     printf("\t===================================================\n\n");
    
     printf("\t === Digite o codigo do serviço:\n");
-    scanf("%[0-9A-Z]", Servico.codigo);
-    getchar();
+    fgets(Servico.codigo,6,stdin);
+    
     
     printf("\t === Digite o nome do serviço:\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", Servico.nome);
-    getchar();
+    fgets(Servico.nome,51,stdin);
+    
     
     printf("\t === Digite o custo do serviço:\n");
-    scanf("%[0-9]", Servico.custo);
-    getchar();
+    fgets(Servico.custo,7,stdin);
+    
     
     printf("\t === Digite o tempo do procedimento(hh/mm):\n");
-    scanf("%[0-9 :]", Servico.tempo);
-    getchar();
+    fgets(Servico.tempo,6,stdin);
+    
     
     printf("\t === Digite a disponibilidade:\n");
-    scanf("%[disponivel indisponivel]", Servico.disposto);
-    getchar();
+    fgets(Servico.disposto,13,stdin);
+    
     
     printf("\t==================================================\n\n");
 
@@ -46,8 +46,8 @@ void tela_pesquisar_servico(){
     printf("\t===================================================\n\n");
     
     printf("\t === Digite o código:\n");
-    scanf("%[0-9A-Z]", Servico.codigo);
-    getchar();
+    fgets(Servico.codigo,6,stdin);
+    
     
     printf("\t==================================================\n\n");
 
@@ -63,8 +63,8 @@ void tela_alterar_servico(){
     printf("\t===================================================\n\n");
     
     printf("\t === Digite o código:\n");
-    scanf("%[0-9A-Z]", Servico.codigo);
-    getchar();
+    fgets(Servico.codigo,6,stdin);
+    
     
     printf("\t==================================================\n\n");
     
@@ -80,8 +80,8 @@ void tela_excluir_servico(){
     printf("\t===================================================\n\n");
    
     printf("\t === Digite o código:\n");
-    scanf("%[0-9A-Z]", Servico.codigo);
-    getchar();
+    fgets(Servico.codigo,6,stdin);
+    
    
     printf("\t==================================================\n\n");
    

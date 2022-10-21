@@ -1,6 +1,7 @@
 //Autor:https://gist.github.com/eduardoedson
 //Retorno: [1] - Se for válido | [0] - Se for inválido
 #include <string.h>
+#include "structs.h"
 
 
 int validarCPF(char cpf[])

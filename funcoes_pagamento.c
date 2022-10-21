@@ -14,8 +14,8 @@ void tela_cadastrar_pagamento(){
     printf("\t===================================================\n\n");
     
     printf("\t === CPF do funcionário:  ");
-    scanf("%[0-9 .-/]", Pagamento.id);
-    getchar();
+    fgets(Pagamento.id,6,stdin);
+    
     
     printf("\t==================================================\n\n");
     

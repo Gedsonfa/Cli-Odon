@@ -16,31 +16,33 @@ void tela_cadastrar_paciente(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s",Paciente.cpf);
+        scanf("%s", Paciente.cpf);
         getchar();
+        
     } while (!validarCPF(Paciente.cpf));
     
     do{
         printf("\t === Insira o nome:   ");
         scanf("%s", Paciente.nome);
         getchar();
+        
     }while(!lerLetras(Paciente.nome));
 
     printf("\t === Insira a idade:  ");
-    scanf("%s", Paciente.idade);
-    getchar();
+    fgets(Paciente.idade,3,stdin);
+    
 
     printf("\t === Insira o endereço:   ");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", Paciente.endereco);
-    getchar();
+    fgets(Paciente.endereco,51,stdin);
+    
 
     printf("\t === Insira o e-mail: ");
-    scanf("%[A-Za-z0-9@._]", Paciente.email);
-    getchar();
+    fgets(Paciente.email,51,stdin);
+    
 
     printf("\t === Insira o numero telefonico:  ");
-    scanf("%[0-9]", Paciente.numero);
-    getchar();
+    fgets(Paciente.numero,12,stdin);
+    
 
     printf("\t==================================================\n\n");
     system("\tPause");
@@ -57,8 +59,9 @@ void tela_pesquisar_paciente(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s",Paciente.cpf);
+        scanf("%s", Paciente.cpf);
         getchar();
+        
     } while (!validarCPF(Paciente.cpf));
     
     printf("\t==================================================\n\n");
@@ -78,8 +81,9 @@ void tela_alterar_paciente(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s",Paciente.cpf);
+        scanf("%s", Paciente.cpf);
         getchar();
+        
     } while (!validarCPF(Paciente.cpf));
     
     printf("\t==================================================\n\n");
@@ -99,8 +103,9 @@ void tela_excluir_paciente(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s",Paciente.cpf);
+        scanf("%s", Paciente.cpf);
         getchar();
+        
     } while (!validarCPF(Paciente.cpf));
     
     printf("\t==================================================\n\n");
