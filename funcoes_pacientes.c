@@ -53,10 +53,16 @@ void tela_pesquisar_paciente(){
     printf("\t===================================================\n");
     printf("\t===============   Pesquisar Paciente   ============\n");
     printf("\t===================================================\n\n");
-    printf("\t === Digite o CPF:    ");
-    scanf("%[0-9 .-/]", Paciente.cpf);
-    getchar();
+    
+    do
+    {
+        printf("\t === Insira o CPF:    ");
+        scanf("%s",Paciente.cpf);
+        getchar();
+    } while (!validarCPF(Paciente.cpf));
+    
     printf("\t==================================================\n\n");
+    
     system("\tPause");
     system("cls | clear");
 
@@ -67,12 +73,17 @@ void tela_alterar_paciente(){
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t================   Alterar Paciente   =============\n");
+    
     printf("\t===================================================\n\n");
-    printf("\t === Digite o CPF:    ");
-    scanf("%[0-9 .-/]", Paciente.cpf);
-    getchar();
+    do
+    {
+        printf("\t === Insira o CPF:    ");
+        scanf("%s",Paciente.cpf);
+        getchar();
+    } while (!validarCPF(Paciente.cpf));
+    
     printf("\t==================================================\n\n");
-    printf("\t === Digite 0 para confirmar\n");
+    
     system("\tPause");
     system("cls | clear");
 
@@ -84,10 +95,16 @@ void tela_excluir_paciente(){
     printf("\t===================================================\n");
     printf("\t==============   Pesquisar Paciente   =============\n");
     printf("\t===================================================\n\n");
-    printf("\t === Digite o CPF:    ");
-    scanf("%[0-9 .-/]", Paciente.cpf);
-    getchar();
+   
+    do
+    {
+        printf("\t === Insira o CPF:    ");
+        scanf("%s",Paciente.cpf);
+        getchar();
+    } while (!validarCPF(Paciente.cpf));
+    
     printf("\t==================================================\n\n");
+    
     system("\tPause");
     system("cls | clear");
 }

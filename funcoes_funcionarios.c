@@ -12,6 +12,7 @@ void tela_cadastrar_funcionario(void){
     printf("\t=========================================================\n");
     printf("\t===============   Cadastrar Funcionarios   ==============\n");
     printf("\t=========================================================\n");
+    
     do{
         printf("\t === Insira o CPF:    ");
         scanf("%s",Funcionario.cpf);
@@ -48,55 +49,61 @@ void tela_cadastrar_funcionario(void){
 }
 
 void tela_pesquisar_funcionario(){
-    char voltar;
-    char cpf_funcionario[14];
+
+    system ("cls||clear");
+    printf("\t=========================================================\n");
+    printf("\t===============   Pesquisar Funcionarios   ==============\n");
+    printf("\t=========================================================\n\n");
+    
     do{
-        system ("cls||clear");
-        printf("\t=========================================================\n");
-        printf("\t===============   Pesquisar Funcionarios   ==============\n");
-        printf("\t=========================================================\n\n");
-        printf("\t === Digite o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_funcionario);
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para voltar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+    printf("\t === Insira o CPF:    ");
+    scanf("%s",Funcionario.cpf);
+    getchar();
+    }while(!validarCPF(Funcionario.cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
+    
 }
 
 void tela_alterar_funcionario(){
-    char voltar;
-    char cpf_funcionario[14];
+
+    system ("cls||clear");
+    printf("\t=========================================================\n");
+    printf("\t================   Alterar Funcionarios   ===============\n");
+    printf("\t=========================================================\n\n");
+    
     do{
-        system ("cls||clear");
-        printf("\t=========================================================\n");
-        printf("\t================   Alterar Funcionarios   ===============\n");
-        printf("\t=========================================================\n\n");
-        printf("\t === Digite o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_funcionario);
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+    printf("\t === Insira o CPF:    ");
+    scanf("%s",Funcionario.cpf);
+    getchar();
+    }while(!validarCPF(Funcionario.cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
+
 }
 
 void tela_excluir_funcionario(){
-    char voltar;
-    char cpf_funcionario[14];
+
+    system ("cls||clear");
+    printf("\t=========================================================\n");
+    printf("\t================   Excluir Funcionarios   ===============\n");
+   
+    printf("\t=========================================================\n\n");
     do{
-        system ("cls||clear");
-        printf("\t=========================================================\n");
-        printf("\t================   Excluir Funcionarios   ===============\n");
-        printf("\t=========================================================\n\n");
-        printf("\t === Digite o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_funcionario);
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar a exclusao\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+    printf("\t === Insira o CPF:    ");
+    scanf("%s",Funcionario.cpf);
+    getchar();
+    }while(!validarCPF(Funcionario.cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
+
 }
