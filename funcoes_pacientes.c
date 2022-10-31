@@ -1,96 +1,115 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "validar.h"
+#include "structs.h"
+
+Dados_Paciente Paciente;
+
 void tela_cadastrar_paciente(){
-    char voltar;
-    char cpf_paciente[14];
-    char nome_paciente[51];
-    char idade_paciente[3];
-    char endereco_paciente[51];
-    char email_paciente[51];
-    char numero_paciente[12];
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t===============   Cadastrar Paciente   ============\n");
-        printf("\t===================================================\n\n");
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t===============   Cadastrar Paciente   ============\n");
+    printf("\t===================================================\n\n");
+    
+    do
+    {
         printf("\t === Insira o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_paciente);
+        scanf("%s", Paciente.cpf);
         getchar();
+        
+    } while (!validarCPF(Paciente.cpf));
+    
+    do{
         printf("\t === Insira o nome:   ");
-        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_paciente);
+        scanf("%s", Paciente.nome);
         getchar();
-        printf("\t === Insira a idade:  ");
-        scanf("%s", idade_paciente);
-        getchar();
-        printf("\t === Insira o endereço:   ");
-        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ 0-9 -- .]", endereco_paciente);
-        getchar();
-        printf("\t === Insira o e-mail: ");
-        scanf("%[A-Za-z0-9@._]", email_paciente);
-        getchar();
-        printf("\t === Insira o numero telefonico:  ");
-        scanf("%[0-9]", numero_paciente);
-        getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');         
+        
+    }while(!lerLetras(Paciente.nome));
+
+    printf("\t === Insira a idade:  ");
+    fgets(Paciente.idade,3,stdin);
+    
+
+    printf("\t === Insira o endereço:   ");
+    fgets(Paciente.endereco,51,stdin);
+    
+
+    printf("\t === Insira o e-mail: ");
+    fgets(Paciente.email,51,stdin);
+    
+
+    printf("\t === Insira o numero telefonico:  ");
+    fgets(Paciente.numero,12,stdin);
+    
+
+    printf("\t==================================================\n\n");
+    system("\tPause");
+    system("cls | clear");
+
 }
 void tela_pesquisar_paciente(){
-    char voltar;
-    char cpf_paciente[14];
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t===============   Pesquisar Paciente   ============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_paciente);
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t===============   Pesquisar Paciente   ============\n");
+    printf("\t===================================================\n\n");
+    
+    do
+    {
+        printf("\t === Insira o CPF:    ");
+        scanf("%s", Paciente.cpf);
         getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para voltar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+        
+    } while (!validarCPF(Paciente.cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
+
 }
 
 void tela_alterar_paciente(){
-    char voltar;
-    char cpf_paciente[14];
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t================   Alterar Paciente   =============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_paciente);
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t================   Alterar Paciente   =============\n");
+    
+    printf("\t===================================================\n\n");
+    do
+    {
+        printf("\t === Insira o CPF:    ");
+        scanf("%s", Paciente.cpf);
         getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+        
+    } while (!validarCPF(Paciente.cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
+
 }
 
 void tela_excluir_paciente(){
-    char voltar;
-    char cpf_paciente[14];
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t==============   Pesquisar Paciente   =============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o CPF:    ");
-        scanf("%[0-9 .-/]", cpf_paciente);
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t==============   Pesquisar Paciente   =============\n");
+    printf("\t===================================================\n\n");
+   
+    do
+    {
+        printf("\t === Insira o CPF:    ");
+        scanf("%s", Paciente.cpf);
         getchar();
-        printf("\t==================================================\n\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+        
+    } while (!validarCPF(Paciente.cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
 }
