@@ -36,21 +36,21 @@ void tela_progr_odont(){
     do
     {
         system("cls||clear");
-        printf("\n\t====================================================\n");
+        printf("\n\t=======================================================\n");
         printf("\t=========   Projeto Sistema SIG-Dentistry      ========\n"); 
         printf("\t=========   Discentes:                         ========\n");
         printf("\t=========   Gabriel Wallace Canuto dos Santos  ========\n");
         printf("\t=========   Gedson Fernandes de Araújo        ========\n");
-        printf("\t====================================================\n");
-        printf("\t=========   Sistema Clinica Odontologica   =========\n");
-        printf("\t====================================================\n");
+        printf("\t=======================================================\n");
+        printf("\t=========   Sistema Clinica Odontologica   ============\n");
+        printf("\t=======================================================\n");
         printf("\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Serviços\n");
         printf("\t === 3- Modulo Funcionarios\n");
         printf("\t === 4- Modulo Agendamento\n");
         printf("\t === 5- Modulo Pagamento\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n");
+        printf("\t=====================================================\n");
         printf("\t=> ");
         scanf("%c", &opcao_navegacao);
         getchar();

@@ -1,92 +1,90 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "structs.h"
+
+Dados_Servico Servico;
+
 void tela_cadastrar_servico(){
-    char voltar;
-    char codigo_servico[6];
-    char nome_servico[51];
-    char custo_servico[7];
-    char tempo_servico[6];
-    char disposto_servico[13];
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t==============   Cadastrar Serviços   =============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o codigo do serviço:\n");
-        scanf("%[0-9A-Z]", codigo_servico);
-        getchar();
-        printf("\t === Digite o nome do serviço:\n");
-        scanf("%[A-ZÁÉÍÓÚÂÊÔÇÀÃÕ a-záéíóúâêôçàãõ]", nome_servico);
-        getchar();
-        printf("\t === Digite o custo do serviço:\n");
-        scanf("%[0-9]", custo_servico);
-        getchar();
-        printf("\t === Digite o tempo do procedimento(hh/mm):\n");
-        scanf("%[0-9 :]", tempo_servico);
-        printf("\t === Digite a disponibilidade:\n");
-        scanf("%[disponivel indisponivel]", disposto_servico);
-        getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');         
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t==============   Cadastrar Serviços   =============\n");
+    printf("\t===================================================\n\n");
+   
+    printf("\t === Digite o codigo do serviço:\n");
+    fgets(Servico.codigo,6,stdin);
+    
+    
+    printf("\t === Digite o nome do serviço:\n");
+    fgets(Servico.nome,51,stdin);
+    
+    
+    printf("\t === Digite o custo do serviço:\n");
+    fgets(Servico.custo,7,stdin);
+    
+    
+    printf("\t === Digite o tempo do procedimento(hh/mm):\n");
+    fgets(Servico.tempo,6,stdin);
+    
+    
+    printf("\t === Digite a disponibilidade:\n");
+    fgets(Servico.disposto,13,stdin);
+    
+    
+    printf("\t==================================================\n\n");
+
+    system("\tPause");
+    system("cls | clear");         
 }
 
 void tela_pesquisar_servico(){
-    char codigo_servico[6];
-    char voltar;
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t==============   Pesquisar Serviços   =============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o código:\n");
-        scanf("%[0-9A-Z]", codigo_servico);
-        getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para voltar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t==============   Pesquisar Serviços   =============\n");
+    printf("\t===================================================\n\n");
+    
+    printf("\t === Digite o código:\n");
+    fgets(Servico.codigo,6,stdin);
+    
+    
+    printf("\t==================================================\n\n");
+
+    system("\tPause");
+    system("cls | clear");
 }
 
 void tela_alterar_servico(){
-    char codigo_servico[6];
-    char voltar;
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t===============   Alterar Serviços   ==============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o código:\n");
-        scanf("%[0-9A-Z]", codigo_servico);
-        getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t===============   Alterar Serviços   ==============\n");
+    printf("\t===================================================\n\n");
+    
+    printf("\t === Digite o código:\n");
+    fgets(Servico.codigo,6,stdin);
+    
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
 }
 
 void tela_excluir_servico(){
-    char codigo_servico[6];
-    char voltar;
-    do{
-        system ("cls||clear");
-        printf("\t===================================================\n");
-        printf("\t===============   Excluir Serviços   ==============\n");
-        printf("\t===================================================\n\n");
-        printf("\t === Digite o código:\n");
-        scanf("%[0-9A-Z]", codigo_servico);
-        getchar();
-        printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar a exclusão\n");
-        printf("\t=>");
-        scanf("%c", &voltar);
-        getchar();
-    }while(voltar!='0');
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t===============   Excluir Serviços   ==============\n");
+    printf("\t===================================================\n\n");
+   
+    printf("\t === Digite o código:\n");
+    fgets(Servico.codigo,6,stdin);
+    
+   
+    printf("\t==================================================\n\n");
+   
+    system("\tPause");
+    system("cls | clear");
 }
