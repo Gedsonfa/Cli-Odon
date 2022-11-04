@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "funcoes_paciente.h"
 #include "funcoes_servico.h"
 #include "funcoes_funcionarios.h"
 #include "funcoes_pagamento.h"
 #include "structs.h"
+
+void tela_pesquisar_paciente();
+void tela_alterar_paciente();
+void tela_excluir_paciente();
+void grava_paciente(Dados_Paciente* pac);
+Dados_Paciente* tela_cadastrar_paciente();
 
 void tela_pacientes();
 void tela_servicos();
