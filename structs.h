@@ -3,6 +3,7 @@ typedef struct Dados_Servico Dados_Servico;
 typedef struct Dados_Paciente Dados_Paciente;
 typedef struct Dados_Funcionario Dados_Funcionario;
 
+
 struct Dados_Pagamento{
     char id[6];
     char valor[6];
@@ -28,6 +29,7 @@ char idade[3];
 char endereco[51];
 char email[51];
 char numero[12];
+char status;
 };
 
 struct Dados_Funcionario{
@@ -38,4 +40,6 @@ char endereco[31];
 char email[31];
 char telefone[12];
 };
+
+
     
