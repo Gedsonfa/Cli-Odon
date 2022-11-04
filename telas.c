@@ -31,6 +31,13 @@ void tela_pesquisar_pagamento();
 void tela_alterar_pagamento();
 void tela_excluir_pagamento();
 
+//Funções Agendamentos
+Dados_Agendamento* tela_cadastrar_agendamento();
+void grava_agendamento(Dados_Agendamento* age);
+void tela_pesquisar_agendamento();
+void tela_alterar_agendamento();
+void tela_excluir_agendamento();
+
 //Funções telas
 void tela_pacientes();
 void tela_servicos();
@@ -252,6 +259,7 @@ void tela_pagamento(){
 }
 
 void tela_agend(){
+    Dados_Agendamento* agendamento;
     char opcao_agend;
     do{
         system ("cls||clear");
@@ -270,15 +278,20 @@ void tela_agend(){
         switch (opcao_agend)
         {
         case '1':
+            agendamento = tela_cadastrar_agendamento();
+            grava_agendamento(agendamento);
             tela_agend();
             break;
         case '2':
+            tela_pesquisar_agendamento();
             tela_agend();
             break;
         case '3':
+            tela_alterar_agendamento();
             tela_agend();
             break;
         case '4':
+            tela_excluir_agendamento(); 
             tela_agend();
             break;
         }

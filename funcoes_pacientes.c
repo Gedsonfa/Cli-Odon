@@ -13,7 +13,14 @@ Dados_Paciente* tela_cadastrar_paciente(){
     printf("\t===================================================\n");
     printf("\t===============   Cadastrar Paciente   ============\n");
     printf("\t===================================================\n\n");
-    
+    /*struct Dados_Agendamento{
+    char cpf_paciente[15];
+    char codigo_servico[6];
+    char cpf_funcionario[15];
+    char data[11];
+    char hora[6];
+    char status;
+};*/
     do
     {
         printf("\t === Insira o CPF:    ");

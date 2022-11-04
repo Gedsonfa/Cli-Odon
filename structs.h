@@ -2,7 +2,7 @@ typedef struct Dados_Pagamento Dados_Pagamento;
 typedef struct Dados_Servico Dados_Servico;
 typedef struct Dados_Paciente Dados_Paciente;
 typedef struct Dados_Funcionario Dados_Funcionario;
-
+typedef struct Dados_Agendamento Dados_Agendamento;
 
 struct Dados_Pagamento{
 char cpf[15];
@@ -43,5 +43,13 @@ char telefone[12];
 char status;
 };
 
+struct Dados_Agendamento{
+    char cpf_paciente[15];
+    char codigo_servico[6];
+    char cpf_funcionario[15];
+    char data[11];
+    char hora[6];
+    char status;
+};
 
     
