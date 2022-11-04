@@ -5,13 +5,13 @@ typedef struct Dados_Funcionario Dados_Funcionario;
 
 
 struct Dados_Pagamento{
-    char id[6];
-    char valor[6];
-    char data_criacao[11];
-    char data_captura[11];
-    char meio_pagamento[30];
-    char numero_cartao[17];
-    char banco[30];
+char cpf[15];
+char valor[6];
+char data_criacao[11];
+char data_captura[11];
+char meio_pagamento[30];
+char banco[30];
+char status;
 };
 
 struct Dados_Servico{
@@ -20,6 +20,7 @@ char nome[51];
 char custo[7];
 char tempo[6];
 char disposto[13];
+char status;
 };
 
 struct Dados_Paciente{
@@ -39,6 +40,7 @@ char idade[3];
 char endereco[31];
 char email[31];
 char telefone[12];
+char status;
 };
 
 
