@@ -23,33 +23,36 @@ Dados_Paciente* tela_cadastrar_paciente(){
 };*/
     do
     {
-        printf("\t === Insira o CPF:    ");
-        scanf("%14[^\n]", pac->cpf);
+        printf("\t === Insira o CPF So Numeros]:     ");
+        scanf(" %14[^\n]", pac->cpf);
         getchar();
         
     } while (!validarCPF(pac->cpf));
     
     do{
         printf("\t === Insira o nome:   ");
-        scanf("%51[^\n]", pac->nome);
+        scanf(" %51[^\n]", pac->nome);
         getchar();
         
     }while(!lerLetras(pac->nome));
 
     printf("\t === Insira a idade:  ");
-    fgets(pac->idade,3,stdin);
+    scanf(" %20[^\n]", pac->idade);
+    getchar();
     
 
-    printf("\t === Insira o endereço:   ");
-    fgets(pac->endereco,51,stdin);
+    printf("\t === Insira o endereco:   ");
+    scanf( "%51[^\n]",pac->endereco);
+    getchar();
     
 
     printf("\t === Insira o e-mail: ");
-    fgets(pac->email,51,stdin);
-    
+    scanf( "%51[^\n]", pac->email);
+    getchar();
 
     printf("\t === Insira o numero telefonico:  ");
-    fgets(pac->numero,12,stdin);
+    scanf("%[0-9]", pac->numero);
+    getchar();
 
     pac->status = 'm';
     return pac;
@@ -76,22 +79,32 @@ void tela_pesquisar_paciente(){
 
     Dados_Paciente* pac;
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
-
+    
+    char situacao [20];
+    
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Pesquisar Paciente   ============\n");
     printf("\t===================================================\n\n");
     
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", pac->cpf);
-        getchar();
-        
-    } while (!validarCPF(pac->cpf));
+    if((pac == NULL) || (pac->status == 'x')) {
+        printf("Usuário inexistente");
+    } else {
+    printf(" | Nome: %s\n", pac-> nome);    
+    printf(" | Idade : %s\n", pac-> idade);
+    printf(" | CPF: %s\n", pac-> cpf); 
+    printf(" | E-mail: %s\n", pac-> email); 
+    printf(" | Endereco: %s\n", pac-> endereco); 
+    printf(" | Numero de celular: %s\n", pac-> numero);
+
+
+
+    printf("Situação do usuário: %s\n", situacao);
+
+
     
     printf("\t==================================================\n\n");
-    
+    }
     system("\tPause");
     system("cls | clear");
 
@@ -129,7 +142,7 @@ void tela_excluir_paciente(){
 
     system ("cls||clear");
     printf("\t===================================================\n");
-    printf("\t==============   Pesquisar Paciente   =============\n");
+    printf("\t==============   Excluir Paciente   ===============\n");
     printf("\t===================================================\n\n");
    
     do
