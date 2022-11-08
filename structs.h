@@ -33,6 +33,7 @@ char numero[12];
 char status;
 };
 
+
 struct Dados_Funcionario{
 char cpf[15];
 char nome[30];
@@ -53,3 +54,10 @@ struct Dados_Agendamento{
 };
 
     
+
+
+void grava_paciente(Dados_Paciente* pac);
+
+void tela_pesquisar_paciente(Dados_Paciente* pac);
+void tela_alterar_paciente();
+void tela_excluir_paciente();
