@@ -3,8 +3,9 @@
 #include <locale.h>
 #include "structs.h"
 
+
 //Funções pacientes
-void tela_pesquisar_paciente();
+Dados_Paciente* tela_pesquisar_paciente( );
 void tela_alterar_paciente();
 void tela_excluir_paciente();
 void grava_paciente(Dados_Paciente* pac);
@@ -116,6 +117,7 @@ void tela_pacientes(){
             paciente = tela_cadastrar_paciente();
             grava_paciente(paciente);
             tela_pacientes();
+            free(paciente);
             break;
         case '2':
             tela_pesquisar_paciente();
@@ -131,7 +133,8 @@ void tela_pacientes(){
             break;
 
         }
-    }while(opcao_paci!='0');    
+    }while(opcao_paci!='0');   
+    free(paciente); 
 }
 
 void tela_servicos(){  

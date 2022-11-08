@@ -3,6 +3,7 @@
 #include <string.h>
 #include "validar.h"
 #include "structs.h"
+#include "telas.h"
 
 Dados_Paciente* tela_cadastrar_paciente(){
 
@@ -75,40 +76,38 @@ void grava_paciente(Dados_Paciente* pac){
     fclose(fp);
 }
 
-void tela_pesquisar_paciente(){
-
+Dados_Paciente* tela_pesquisar_paciente(){
+    FILE* fp;
     Dados_Paciente* pac;
-    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+    char cad[14];
     
-    char situacao [20];
-    
+    pac = (Dados_Paciente*) malloc (sizeof(Dados_Paciente));
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Pesquisar Paciente   ============\n");
     printf("\t===================================================\n\n");
     
-    if((pac == NULL) || (pac->status == 'x')) {
-        printf("Usuário inexistente");
-    } else {
-    printf(" | Nome: %s\n", pac-> nome);    
-    printf(" | Idade : %s\n", pac-> idade);
-    printf(" | CPF: %s\n", pac-> cpf); 
-    printf(" | E-mail: %s\n", pac-> email); 
-    printf(" | Endereco: %s\n", pac-> endereco); 
-    printf(" | Numero de celular: %s\n", pac-> numero);
-
-
-
-    printf("Situação do usuário: %s\n", situacao);
-
-
     
-    printf("\t==================================================\n\n");
+    scanf("%s", cad);
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+    fp = fopen("pacientes.dat", "rb");
+    if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+    while(!feof(fp)) {
+    fread(pac, sizeof(Dados_Paciente), 1, fp);
+    if ((pac->cpf == cad) && (pac->status != 'x')) {
+      fclose(fp);
+      return pac;
     }
-    system("\tPause");
-    system("cls | clear");
-
+  }
+  fclose(fp);
+  return NULL;
 }
+
+
 
 void tela_alterar_paciente(){
 
