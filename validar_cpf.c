@@ -1,6 +1,8 @@
 //Autor:https://gist.github.com/eduardoedson
 //Retorno: [1] - Se for válido | [0] - Se for inválido
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "structs.h"
 
 
@@ -68,3 +70,35 @@ int lerLetras(char nome[])
       }
       return 1;    
   }
+
+//baseado em: https://rafaelomarques.wordpress.com/2010/08/28/validacao-de-data-em-cc/
+int validarData(int *dia,int *mes,int *ano){
+  if((32>*dia && *dia>0) && (13>*mes && *mes>0) && (*ano>1900))
+  {
+    if(*mes==2 && *ano%4==1){
+      if(*dia==29){
+        return 1;
+      } 
+    }
+    if(*mes>7 && *mes%2==1){
+      if(*dia==31){
+        return 1;
+      }
+    }
+    if(*mes<=6 && *mes%2==0){
+      if(*dia==31){
+        return 1;
+      }
+    }
+  }else{
+    return 1;
+    }
+  return 0;
+}
+
+// baseado em : https://www.clubedohardware.com.br/profile/941265-lucca-rodrigues/
+int validarTelefone(int *DDD,int *celular){
+  if((*celular < 900000000 || *celular > 999999999) && (*DDD<100 || *DDD>10)){
+    return 1;
+  }else{return 0;}
+}

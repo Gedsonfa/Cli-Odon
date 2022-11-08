@@ -4,74 +4,116 @@
 #include "validar.h"
 #include "structs.h"
 
-Dados_Paciente Paciente;
+Dados_Paciente* tela_cadastrar_paciente(){
 
-void tela_cadastrar_paciente(){
+    Dados_Paciente* pac;
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
 
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Cadastrar Paciente   ============\n");
     printf("\t===================================================\n\n");
-    
+    /*struct Dados_Agendamento{
+    char cpf_paciente[15];
+    char codigo_servico[6];
+    char cpf_funcionario[15];
+    char data[11];
+    char hora[6];
+    char status;
+};*/
     do
     {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", Paciente.cpf);
+        printf("\t === Insira o CPF So Numeros]:     ");
+        scanf(" %14[^\n]", pac->cpf);
         getchar();
         
-    } while (!validarCPF(Paciente.cpf));
+    } while (!validarCPF(pac->cpf));
     
     do{
         printf("\t === Insira o nome:   ");
-        scanf("%s", Paciente.nome);
+        scanf(" %51[^\n]", pac->nome);
         getchar();
         
-    }while(!lerLetras(Paciente.nome));
+    }while(!lerLetras(pac->nome));
 
     printf("\t === Insira a idade:  ");
-    fgets(Paciente.idade,3,stdin);
+    scanf(" %20[^\n]", pac->idade);
+    getchar();
     
 
-    printf("\t === Insira o endereço:   ");
-    fgets(Paciente.endereco,51,stdin);
+    printf("\t === Insira o endereco:   ");
+    scanf( "%51[^\n]",pac->endereco);
+    getchar();
     
 
     printf("\t === Insira o e-mail: ");
-    fgets(Paciente.email,51,stdin);
-    
+    scanf( "%51[^\n]", pac->email);
+    getchar();
 
     printf("\t === Insira o numero telefonico:  ");
-    fgets(Paciente.numero,12,stdin);
-    
+    scanf("%[0-9]", pac->numero);
+    getchar();
+
+    pac->status = 'm';
+    return pac;
 
     printf("\t==================================================\n\n");
     system("\tPause");
     system("cls | clear");
 
 }
+
+void grava_paciente(Dados_Paciente* pac){
+    FILE* fp;
+    fp = fopen("pacientes.dat", "ab");
+    if(fp==NULL){
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possivel continuar esse programa...\n");
+        exit(1);
+    }
+    fwrite(pac, sizeof(Dados_Paciente),1,fp);
+    fclose(fp);
+}
+
 void tela_pesquisar_paciente(){
 
+    Dados_Paciente* pac;
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+    
+    char situacao [20];
+    
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Pesquisar Paciente   ============\n");
     printf("\t===================================================\n\n");
     
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", Paciente.cpf);
-        getchar();
-        
-    } while (!validarCPF(Paciente.cpf));
+    if((pac == NULL) || (pac->status == 'x')) {
+        printf("Usuário inexistente");
+    } else {
+    printf(" | Nome: %s\n", pac-> nome);    
+    printf(" | Idade : %s\n", pac-> idade);
+    printf(" | CPF: %s\n", pac-> cpf); 
+    printf(" | E-mail: %s\n", pac-> email); 
+    printf(" | Endereco: %s\n", pac-> endereco); 
+    printf(" | Numero de celular: %s\n", pac-> numero);
+
+
+
+    printf("Situação do usuário: %s\n", situacao);
+
+
     
     printf("\t==================================================\n\n");
-    
+    }
     system("\tPause");
     system("cls | clear");
 
 }
 
 void tela_alterar_paciente(){
+
+    Dados_Paciente* pac;
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
 
     system ("cls||clear");
     printf("\t===================================================\n");
@@ -81,10 +123,10 @@ void tela_alterar_paciente(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s", Paciente.cpf);
+        scanf("%s", pac->cpf);
         getchar();
         
-    } while (!validarCPF(Paciente.cpf));
+    } while (!validarCPF(pac->cpf));
     
     printf("\t==================================================\n\n");
     
@@ -95,18 +137,21 @@ void tela_alterar_paciente(){
 
 void tela_excluir_paciente(){
 
+    Dados_Paciente* pac;
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+
     system ("cls||clear");
     printf("\t===================================================\n");
-    printf("\t==============   Pesquisar Paciente   =============\n");
+    printf("\t==============   Excluir Paciente   ===============\n");
     printf("\t===================================================\n\n");
    
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s", Paciente.cpf);
+        scanf("%s", pac->cpf);
         getchar();
         
-    } while (!validarCPF(Paciente.cpf));
+    } while (!validarCPF(pac->cpf));
     
     printf("\t==================================================\n\n");
     
