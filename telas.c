@@ -5,7 +5,7 @@
 
 
 //Funções pacientes
-Dados_Paciente* tela_pesquisar_paciente( );
+void tela_pesquisar_paciente(Dados_Paciente* pac);
 void tela_alterar_paciente();
 void tela_excluir_paciente();
 void grava_paciente(Dados_Paciente* pac);
@@ -116,12 +116,13 @@ void tela_pacientes(){
         case '1':
             paciente = tela_cadastrar_paciente();
             grava_paciente(paciente);
-            tela_pacientes();
+    
             free(paciente);
             break;
         case '2':
-            tela_pesquisar_paciente();
-            tela_pacientes();
+            tela_pesquisar_paciente(paciente);
+        
+            free(paciente);
             break;
         case '3':
             tela_alterar_paciente();
