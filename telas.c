@@ -1,12 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "funcoes_paciente.h"
-#include "funcoes_servico.h"
-#include "funcoes_funcionarios.h"
-#include "funcoes_pagamento.h"
 #include "structs.h"
 
+//Funções pacientes
+void tela_pesquisar_paciente();
+void tela_alterar_paciente();
+void tela_excluir_paciente();
+void grava_paciente(Dados_Paciente* pac);
+Dados_Paciente* tela_cadastrar_paciente();
+
+//Funções Funcionarios
+Dados_Funcionario* tela_cadastrar_funcionario();
+void grava_funcionario(Dados_Funcionario* fun);
+void tela_pesquisar_funcionario();
+void tela_alterar_funcionario();
+void tela_excluir_funcionario();
+
+//Funções Serviço
+Dados_Servico* tela_cadastrar_servico();
+void grava_servico(Dados_Servico* ser);
+void tela_pesquisar_servico();
+void tela_alterar_servico();
+void tela_excluir_servico();
+
+//Funções Pagamentos
+Dados_Pagamento* tela_cadastrar_pagamento();
+void grava_pagamento(Dados_Pagamento* pag);
+void tela_pesquisar_pagamento();
+void tela_alterar_pagamento();
+void tela_excluir_pagamento();
+
+//Funções Agendamentos
+Dados_Agendamento* tela_cadastrar_agendamento();
+void grava_agendamento(Dados_Agendamento* age);
+void tela_pesquisar_agendamento();
+void tela_alterar_agendamento();
+void tela_excluir_agendamento();
+
+//Funções telas
 void tela_pacientes();
 void tela_servicos();
 void tela_funcionarios();
@@ -103,6 +135,7 @@ void tela_pacientes(){
 }
 
 void tela_servicos(){  
+    Dados_Servico* servico;
     char opcao_serv;
     do
     {
@@ -122,7 +155,8 @@ void tela_servicos(){
         getchar();
         switch(opcao_serv){
             case '1':
-                tela_cadastrar_servico();
+                servico = tela_cadastrar_servico();
+                grava_servico(servico);
                 tela_servicos();
                 break;
             case '2':
@@ -143,6 +177,7 @@ void tela_servicos(){
 }
 
 void tela_funcionarios(){  
+    Dados_Funcionario* funcionario;
     char opcao_funci;
     do
     {
@@ -162,7 +197,8 @@ void tela_funcionarios(){
         getchar();
         switch(opcao_funci){
             case '1':
-                tela_cadastrar_funcionario();
+                funcionario = tela_cadastrar_funcionario();
+                grava_funcionario(funcionario);
                 tela_funcionarios();
                 break;
             case '2':
@@ -183,7 +219,8 @@ void tela_funcionarios(){
 }
 
 void tela_pagamento(){
-    char opcao_compra;
+    Dados_Pagamento* pagamento;
+    char opcao_pagamento;
     do{
         system ("cls||clear");
         printf("\t===================================================\n");
@@ -196,12 +233,13 @@ void tela_pagamento(){
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
-        scanf("%c", &opcao_compra);
+        scanf("%c", &opcao_pagamento);
         getchar();
-        switch (opcao_compra)
+        switch (opcao_pagamento)
         {
         case '1':
-            tela_cadastrar_pagamento();
+            pagamento = tela_cadastrar_pagamento();
+            grava_pagamento(pagamento);
             tela_pagamento();            
             break;       
         case '2':
@@ -217,10 +255,11 @@ void tela_pagamento(){
             tela_pagamento();   
             break;
         }
-    }while(opcao_compra!='0');         
+    }while(opcao_pagamento!='0');         
 }
 
 void tela_agend(){
+    Dados_Agendamento* agendamento;
     char opcao_agend;
     do{
         system ("cls||clear");
@@ -239,15 +278,20 @@ void tela_agend(){
         switch (opcao_agend)
         {
         case '1':
+            agendamento = tela_cadastrar_agendamento();
+            grava_agendamento(agendamento);
             tela_agend();
             break;
         case '2':
+            tela_pesquisar_agendamento();
             tela_agend();
             break;
         case '3':
+            tela_alterar_agendamento();
             tela_agend();
             break;
         case '4':
+            tela_excluir_agendamento(); 
             tela_agend();
             break;
         }
