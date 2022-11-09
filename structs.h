@@ -29,7 +29,7 @@ char nome[51];
 char idade[20];
 char endereco[51];
 char email[51];
-char numero[12];
+char numero[15];
 char status;
 };
 

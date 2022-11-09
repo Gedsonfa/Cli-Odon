@@ -6,6 +6,7 @@
 
 //Funções pacientes
 void tela_pesquisar_paciente(Dados_Paciente* pac);
+//Dados_Paciente* buscarPaciente();
 void tela_alterar_paciente();
 void tela_excluir_paciente();
 void grava_paciente(Dados_Paciente* pac);
@@ -45,6 +46,7 @@ void tela_servicos();
 void tela_funcionarios();
 void tela_pagamento();
 void tela_agend();
+
 
 void tela_progr_odont(){  
     char opcao_navegacao;
@@ -120,6 +122,7 @@ void tela_pacientes(){
             free(paciente);
             break;
         case '2':
+            //paciente = buscarPaciente();
             tela_pesquisar_paciente(paciente);
         
             free(paciente);
@@ -206,7 +209,7 @@ void tela_funcionarios(){
                 tela_funcionarios();
                 break;
             case '2':
-                tela_pesquisar_funcionario();
+                tela_pesquisar_funcionario(funcionario);
                 tela_funcionarios();
                 break;
             case '3':
