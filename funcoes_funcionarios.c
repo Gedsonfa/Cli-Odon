@@ -37,27 +37,28 @@ char status;
     }while(!lerLetras(fun->nome));
 
     printf("\t === Insira a idade:  ");
-    fgets(fun->idade,3,stdin);
+    scanf("%20[^\n]",fun->idade);
     
 
     printf("\t === Insira o endereco:   ");
-    fgets(fun->endereco,31,stdin);
+    scanf("%31[^\n]",fun->endereco);
+    getchar();
     
 
     printf("\t === Insira o e-mail: ");
-    fgets(fun->email,31,stdin);
-    
+    scanf("%31[^\n]",fun->email);
+    getchar();
 
     printf("\t === Insira o numero telefonico:  ");
-    fgets(fun->endereco,12,stdin);
+    scanf("%21[^\n]",fun->telefone);
+    getchar();
     
     fun->status = 'm';
-    return fun;
-
+    
     printf("\t==================================================\n\n");
     system("\tPause");
     system("cls | clear");
-    
+    return fun;
         
 }
 
@@ -73,28 +74,33 @@ void grava_funcionario(Dados_Funcionario* fun){
     fclose(fp);
 }
 
-void tela_pesquisar_funcionario(){
+void tela_pesquisar_funcionario(Dados_Funcionario* fun){
 
-    Dados_Funcionario* fun;
-    fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
+    /*fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));*/
+    char dm[14];
     
     system ("cls||clear");
     printf("\t=========================================================\n");
     printf("\t===============   Pesquisar Funcionarios   ==============\n");
     printf("\t=========================================================\n\n");
     
-    do{
-    printf("\t === Insira o CPF:    ");
-    scanf("%s",fun->cpf);
-    getchar();
-    
-    }while(!validarCPF(fun->cpf));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
-    
+    if((fun == NULL) || (fun->status == 'x')){
+        printf("Paciente nao encontrado");
+    }else{
+        printf(" | ============== Paciente encontrado =============\n");
+        printf(" | Nome: %s\n", fun->nome);
+        printf(" | Idade: %s\n", fun->idade);
+        printf(" | Email: %s\n", fun->email);
+        printf(" | Endereco: %s\n", fun->endereco);
+        printf(" | Numero: %s\n", fun->telefone);
+        printf(" | ================================================\n");
+        system("Pause");
+        system(" cls| clear");
+
+    }
+
+    printf("Situacao do paciente: %s\n", dm);
+
 }
 
 void tela_alterar_funcionario(){

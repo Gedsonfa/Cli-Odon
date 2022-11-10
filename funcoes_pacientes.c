@@ -32,28 +32,23 @@ Dados_Paciente* tela_cadastrar_paciente(){
     
     do{
         printf("\t === Insira o nome:   ");
-        scanf(" %[A-Z a-z]", pac->nome);
-        getchar();
+        fgets( pac->nome, 51, stdin);
         
     }while(!lerLetras(pac->nome));
 
     printf("\t === Insira a idade:  ");
-    scanf(" %[0-9]", pac->idade);
-    getchar();
+    fgets( pac->idade, 20,stdin);
     
 
     printf("\t === Insira o endereco:   ");
-    scanf( "%[A-Z a-z 0-9]",pac->endereco);
-    getchar();
+    fgets( pac->endereco, 51, stdin);
     
 
     printf("\t === Insira o e-mail: ");
-    scanf( "%s", pac->email);
-    getchar();
+    fgets(pac->email, 51, stdin);
 
     printf("\t === Insira o numero telefonico:  ");
-    scanf("%[0-9]", pac->numero);
-    getchar();
+    fgets( pac->numero, 15, stdin);
 
     pac->status = 'm';
   
@@ -80,7 +75,7 @@ void grava_paciente(Dados_Paciente* pac){
 
 void tela_pesquisar_paciente(Dados_Paciente* pac)
 {
-   
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     char cad[14];
     
     system ("cls||clear");
@@ -98,15 +93,43 @@ void tela_pesquisar_paciente(Dados_Paciente* pac)
         printf(" | Email: %s\n", pac->email);
         printf(" | Endereco: %s\n", pac->endereco);
         printf(" | Numero: %s\n", pac->numero);
+        printf("Situacao do paciente: %s\n", cad);
         printf(" | ================================================\n");
+        //getchar();
+        
+
         system("Pause");
         system(" cls| clear");
 
     }
 
-    printf("Situacao do paciente: %s\n", cad);
-
+    
 }
+
+/*Dados_Paciente* buscarPaciente(){
+  FILE* fp;
+  Dados_Paciente* pac;
+  char cad[14];
+  printf("\n = Busca paciente = \n"); 
+  printf("Informe matrícula: "); 
+  scanf("%s", cad);
+  pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+  fp = fopen("Pacientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(pac, sizeof(Dados_Paciente), 1, fp);
+    if ((pac->cpf == cad) && (pac->status != 'x')) {
+      fclose(fp);
+      return pac;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}*/
 
 
 void tela_alterar_paciente(){
