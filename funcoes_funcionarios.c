@@ -37,28 +37,27 @@ char status;
     }while(!lerLetras(fun->nome));
 
     printf("\t === Insira a idade:  ");
-    scanf("%20[^\n]",fun->idade);
+    fgets(fun->idade,3,stdin);
     
 
     printf("\t === Insira o endereco:   ");
-    scanf("%31[^\n]",fun->endereco);
-    getchar();
+    fgets(fun->endereco,31,stdin);
     
 
     printf("\t === Insira o e-mail: ");
-    scanf("%31[^\n]",fun->email);
-    getchar();
+    fgets(fun->email,31,stdin);
+    
 
     printf("\t === Insira o numero telefonico:  ");
-    scanf("%21[^\n]",fun->telefone);
-    getchar();
+    fgets(fun->endereco,12,stdin);
     
     fun->status = 'm';
-    
+    return fun;
+
     printf("\t==================================================\n\n");
     system("\tPause");
     system("cls | clear");
-    return fun;
+    
         
 }
 
@@ -74,33 +73,28 @@ void grava_funcionario(Dados_Funcionario* fun){
     fclose(fp);
 }
 
-void tela_pesquisar_funcionario(Dados_Funcionario* fun){
+void tela_pesquisar_funcionario(){
 
-    /*fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));*/
-    char dm[14];
+    Dados_Funcionario* fun;
+    fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
     
     system ("cls||clear");
     printf("\t=========================================================\n");
     printf("\t===============   Pesquisar Funcionarios   ==============\n");
     printf("\t=========================================================\n\n");
     
-    if((fun == NULL) || (fun->status == 'x')){
-        printf("Paciente nao encontrado");
-    }else{
-        printf(" | ============== Paciente encontrado =============\n");
-        printf(" | Nome: %s\n", fun->nome);
-        printf(" | Idade: %s\n", fun->idade);
-        printf(" | Email: %s\n", fun->email);
-        printf(" | Endereco: %s\n", fun->endereco);
-        printf(" | Numero: %s\n", fun->telefone);
-        printf(" | ================================================\n");
-        system("Pause");
-        system(" cls| clear");
-
-    }
-
-    printf("Situacao do paciente: %s\n", dm);
-
+    do{
+    printf("\t === Insira o CPF:    ");
+    scanf("%s",fun->cpf);
+    getchar();
+    
+    }while(!validarCPF(fun->cpf));
+    
+    printf("\t==================================================\n\n");
+    
+    system("\tPause");
+    system("cls | clear");
+    
 }
 
 void tela_alterar_funcionario(){
@@ -151,3 +145,4 @@ void tela_excluir_funcionario(){
 }
 
 //update
+
