@@ -6,7 +6,7 @@
 #include "structs.h"
 
 
-int validarCPF(char cpf[])
+int validarCPF(char cpf[15])
 {
     int i, j, digito1 = 0, digito2 = 0;
     if(strlen(cpf) != 11)
