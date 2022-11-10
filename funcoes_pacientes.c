@@ -25,30 +25,35 @@ Dados_Paciente* tela_cadastrar_paciente(){
     do
     {
         printf("\t === Insira o CPF So Numeros]:     ");
-        scanf("%s", pac->cpf);
+        scanf("%15[^\n]", pac->cpf);
         getchar();
         
     } while (!validarCPF(pac->cpf));
     
     do{
         printf("\t === Insira o nome:   ");
-        fgets( pac->nome, 51, stdin);
+        scanf(" %51[^\n]", pac->nome);
+        getchar();
         
     }while(!lerLetras(pac->nome));
 
     printf("\t === Insira a idade:  ");
-    fgets( pac->idade, 20,stdin);
+    scanf(" %20[^\n]", pac->idade);
+    getchar();
     
 
     printf("\t === Insira o endereco:   ");
-    fgets( pac->endereco, 51, stdin);
+    scanf( "%51[^\n]",pac->endereco);
+    getchar();
     
 
     printf("\t === Insira o e-mail: ");
-    fgets(pac->email, 51, stdin);
+    scanf( "%51[^\n]", pac->email);
+    getchar();
 
     printf("\t === Insira o numero telefonico:  ");
-    fgets( pac->numero, 15, stdin);
+    scanf("%20[^\n]", pac->numero);
+    getchar();
 
     pac->status = 'm';
   
@@ -73,11 +78,35 @@ void grava_paciente(Dados_Paciente* pac){
     fclose(fp);
 }
 
-void tela_pesquisar_paciente(Dados_Paciente* pac)
-{
-    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
-    char cad[14];
+Dados_Paciente* buscaPaciente(void){
+    FILE* fp;
+    Dados_Paciente* pac;
+    char pes[15];
+
+    printf("\n ===== Buscar Paciente ======");
+    printf("\n Informe seu CPF: ");
+    scanf("%s", pes);
     
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+    fp = fopen("Paciente.dat", "rb");
+    if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar este programa...\n");
+      exit(1);
+    }
+    while(!feof(fp)){
+        fread(pac, sizeof(Dados_Paciente), 1, fp);
+        if (strcmp(pac -> cpf, pes) == 0 &&(pac->status != 'x')){
+            fclose(fp);
+            return pac;
+        }
+    }
+fclose(fp);
+return NULL;
+}
+
+void tela_pesquisar_paciente(Dados_Paciente* pac)
+{ 
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Pesquisar Paciente   ============\n");
@@ -93,43 +122,15 @@ void tela_pesquisar_paciente(Dados_Paciente* pac)
         printf(" | Email: %s\n", pac->email);
         printf(" | Endereco: %s\n", pac->endereco);
         printf(" | Numero: %s\n", pac->numero);
-        printf("Situacao do paciente: %s\n", cad);
         printf(" | ================================================\n");
-        //getchar();
-        
-
         system("Pause");
         system(" cls| clear");
 
     }
 
     
-}
 
-/*Dados_Paciente* buscarPaciente(){
-  FILE* fp;
-  Dados_Paciente* pac;
-  char cad[14];
-  printf("\n = Busca paciente = \n"); 
-  printf("Informe matrícula: "); 
-  scanf("%s", cad);
-  pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
-  fp = fopen("Pacientes.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  while(!feof(fp)) {
-    fread(pac, sizeof(Dados_Paciente), 1, fp);
-    if ((pac->cpf == cad) && (pac->status != 'x')) {
-      fclose(fp);
-      return pac;
-    }
-  }
-  fclose(fp);
-  return NULL;
-}*/
+}
 
 
 void tela_alterar_paciente(){
@@ -180,3 +181,5 @@ void tela_excluir_paciente(){
     system("\tPause");
     system("cls | clear");
 }
+
+
