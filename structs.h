@@ -24,12 +24,12 @@ char status;
 };
 
 struct Dados_Paciente{
-char cpf[14];
+char cpf[15];
 char nome[51];
 char idade[20];
 char endereco[51];
 char email[51];
-char numero[15];
+char numero[20];
 char status;
 };
 
