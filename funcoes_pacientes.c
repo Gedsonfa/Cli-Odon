@@ -70,7 +70,7 @@ void grava_paciente(Dados_Paciente* pac){
     FILE* fp;
     fp = fopen("pacientes.dat", "ab");
     if(fp==NULL){
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Ops! Ocorreu  ka um erro na abertura do arquivo!\n");
         printf("Não é possivel continuar esse programa...\n");
         exit(1);
     }
@@ -86,11 +86,12 @@ Dados_Paciente* buscaPaciente(void){
     printf("\n ===== Buscar Paciente ======");
     printf("\n Informe seu CPF: ");
     scanf("%s", pes);
+    getchar();
     
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
-    fp = fopen("Paciente.dat", "rb");
+    fp = fopen("pacientes.dat", "rb");
     if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Ops! Ocorreu  ko um erro na abertura do arquivo!\n");
       printf("Não é possível continuar este programa...\n");
       exit(1);
     }
@@ -123,7 +124,8 @@ void tela_pesquisar_paciente(Dados_Paciente* pac)
         printf(" | Endereco: %s\n", pac->endereco);
         printf(" | Numero: %s\n", pac->numero);
         printf(" | ================================================\n");
-        system("Pause");
+        printf(" | aperte ENTER para continuar");
+        getchar();
         system(" cls| clear");
 
     }
