@@ -137,7 +137,7 @@ void tela_pacientes(){
 
         }
     }while(opcao_paci!='0');   
-    free(paciente); 
+     
 }
 
 void tela_servicos(){  
