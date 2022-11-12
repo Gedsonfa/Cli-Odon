@@ -91,13 +91,13 @@ Dados_Paciente* buscaPaciente(void){
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     fp = fopen("pacientes.dat", "rb");
     if (fp == NULL) {
-      printf("Ops! Ocorreu  ko um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar este programa...\n");
-      exit(1);
+        printf("Ops! Ocorreu  ko um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar este programa...\n");
+        exit(1);
     }
     while(!feof(fp)){
         fread(pac, sizeof(Dados_Paciente), 1, fp);
-        if (strcmp(pac -> cpf, pes) == 0 &&(pac->status != 'x')){
+        if ((strcmp(pac -> cpf, pes) == 0) &&(pac->status != 'x')){
             fclose(fp);
             return pac;
         }
