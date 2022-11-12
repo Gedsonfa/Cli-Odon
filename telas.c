@@ -3,57 +3,61 @@
 #include <locale.h>
 #include "structs.h"
 
-
-//Funções pacientes
-void tela_pesquisar_paciente(Dados_Paciente* pac);
+// Funções pacientes
+void tela_pesquisar_paciente(Dados_Paciente *pac);
 Dados_Paciente* buscaPaciente();
 void tela_alterar_paciente();
 void tela_excluir_paciente();
-void grava_paciente(Dados_Paciente* pac);
-Dados_Paciente* tela_cadastrar_paciente();
+void grava_paciente(Dados_Paciente *pac);
+Dados_Paciente *tela_cadastrar_paciente();
 
-//Funções Funcionarios
-Dados_Funcionario* tela_cadastrar_funcionario();
-void grava_funcionario(Dados_Funcionario* fun);
-void tela_pesquisar_funcionario();
+// Funções Funcionarios
+Dados_Funcionario *tela_cadastrar_funcionario();
+void grava_funcionario(Dados_Funcionario *fun);
+Dados_Funcionario *buscar_funcionario();
+void tela_pesquisar_funcionario(Dados_Funcionario *fun);
 void tela_alterar_funcionario();
 void tela_excluir_funcionario();
 
-//Funções Serviço
-Dados_Servico* tela_cadastrar_servico();
-void grava_servico(Dados_Servico* ser);
-void tela_pesquisar_servico();
+// Funções Serviço
+Dados_Servico *tela_cadastrar_servico();
+void grava_servico(Dados_Servico *ser);
+Dados_Servico *buscar_servico();
+void tela_pesquisar_servico(Dados_Servico *ser);
 void tela_alterar_servico();
 void tela_excluir_servico();
 
-//Funções Pagamentos
-Dados_Pagamento* tela_cadastrar_pagamento();
-void grava_pagamento(Dados_Pagamento* pag);
-void tela_pesquisar_pagamento();
+// Funções Pagamentos
+Dados_Pagamento *tela_cadastrar_pagamento();
+void grava_pagamento(Dados_Pagamento *pag);
+Dados_Pagamento *buscar_pagamento();
+void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 void tela_alterar_pagamento();
 void tela_excluir_pagamento();
 
-//Funções Agendamentos
+// Funções Agendamentos
 Dados_Agendamento* tela_cadastrar_agendamento();
-void grava_agendamento(Dados_Agendamento* age);
-void tela_pesquisar_agendamento();
+void grava_agendamento(Dados_Agendamento *age);
+Dados_Agendamento* buscar_agendamento();
+void tela_pesquisar_agendamento(Dados_Agendamento* age);
 void tela_alterar_agendamento();
 void tela_excluir_agendamento();
 
-//Funções telas
+// Funções telas
 void tela_pacientes();
 void tela_servicos();
 void tela_funcionarios();
 void tela_pagamento();
 void tela_agend();
 
-void tela_progr_odont(){  
+void tela_progr_odont()
+{
     char opcao_navegacao;
     do
     {
         system("cls||clear");
         printf("\n\t=======================================================\n");
-        printf("\t=========   Projeto Sistema SIG-Dentistry      ========\n"); 
+        printf("\t=========   Projeto Sistema SIG-Dentistry      ========\n");
         printf("\t=========   Discentes:                         ========\n");
         printf("\t=========   Gabriel Wallace Canuto dos Santos  ========\n");
         printf("\t=========   Gedson Fernandes de Araújo        ========\n");
@@ -74,31 +78,32 @@ void tela_progr_odont(){
         {
         case '1':
             tela_pacientes();
-            break;    
+            break;
         case '2':
             tela_servicos();
-            break;  
+            break;
         case '3':
             tela_funcionarios();
             break;
         case '4':
             tela_agend();
-            break; 
+            break;
         case '5':
             tela_pagamento();
             break;
-        }             
-    }while(opcao_navegacao!='0');    
+        }
+    } while (opcao_navegacao != '0');
     printf("\tSaindo do programa...\n");
     system("cls||clear");
 }
 
-void tela_pacientes(){  
-    Dados_Paciente* paciente;
+void tela_pacientes()
+{
+    Dados_Paciente *paciente;
     char opcao_paci;
     do
     {
-        
+
         system("cls||clear");
 
         printf("\t===================================================\n");
@@ -113,35 +118,35 @@ void tela_pacientes(){
         printf("\t=> ");
         scanf("%c", &opcao_paci);
         getchar();
-        switch (opcao_paci){
+        switch (opcao_paci)
+        {
         case '1':
             paciente = tela_cadastrar_paciente();
             grava_paciente(paciente);
-    
+
             free(paciente);
             break;
         case '2':
             paciente = buscaPaciente();
             tela_pesquisar_paciente(paciente);
-        
+
             free(paciente);
             break;
         case '3':
             tela_alterar_paciente();
-            tela_pacientes();
+
             break;
         case '4':
             tela_excluir_paciente();
-            tela_pacientes();
-            break;
 
+            break;
         }
-    }while(opcao_paci!='0');   
-     
+    } while (opcao_paci != '0');
 }
 
-void tela_servicos(){  
-    Dados_Servico* servico;
+void tela_servicos()
+{
+    Dados_Servico *servico;
     char opcao_serv;
     do
     {
@@ -159,31 +164,35 @@ void tela_servicos(){
         printf("\t=> ");
         scanf("%c", &opcao_serv);
         getchar();
-        switch(opcao_serv){
-            case '1':
-                servico = tela_cadastrar_servico();
-                grava_servico(servico);
-                tela_servicos();
-                break;
-            case '2':
-                tela_pesquisar_servico();
-                tela_servicos();
-                break;
-            case '3':
-                tela_alterar_servico();
-                tela_servicos();
-                break;
-            case '4':
-                tela_excluir_servico();
-                tela_servicos();
-                break;
+        switch (opcao_serv)
+        {
+        case '1':
+            servico = tela_cadastrar_servico();
+            grava_servico(servico);
 
+            free(servico);
+            break;
+        case '2':
+            servico = buscar_servico();
+            tela_pesquisar_servico(servico);
+
+            free(servico);
+            break;
+        case '3':
+            tela_alterar_servico();
+
+            break;
+        case '4':
+            tela_excluir_servico();
+
+            break;
         }
-    }while(opcao_serv!='0'); 
+    } while (opcao_serv != '0');
 }
 
-void tela_funcionarios(){  
-    Dados_Funcionario* funcionario;
+void tela_funcionarios()
+{
+    Dados_Funcionario *funcionario;
     char opcao_funci;
     do
     {
@@ -201,34 +210,39 @@ void tela_funcionarios(){
         printf("\t=> ");
         scanf("%c", &opcao_funci);
         getchar();
-        switch(opcao_funci){
-            case '1':
-                funcionario = tela_cadastrar_funcionario();
-                grava_funcionario(funcionario);
-                tela_funcionarios();
-                break;
-            case '2':
-                tela_pesquisar_funcionario();
-                tela_funcionarios();
-                break;
-            case '3':
-                tela_alterar_funcionario();
-                tela_funcionarios();
-                break;
-            case '4':
-                tela_excluir_funcionario();
-                tela_funcionarios();
-                break;
+        switch (opcao_funci)
+        {
+        case '1':
+            funcionario = tela_cadastrar_funcionario();
+            grava_funcionario(funcionario);
 
+            free(funcionario);
+            break;
+        case '2':
+            funcionario = buscar_funcionario();
+            tela_pesquisar_funcionario(funcionario);
+
+            free(funcionario);
+            break;
+        case '3':
+            tela_alterar_funcionario();
+
+            break;
+        case '4':
+            tela_excluir_funcionario();
+
+            break;
         }
-    }while(opcao_funci!='0');  
+    } while (opcao_funci != '0');
 }
 
-void tela_pagamento(){
-    Dados_Pagamento* pagamento;
+void tela_pagamento()
+{
+    Dados_Pagamento *pagamento;
     char opcao_pagamento;
-    do{
-        system ("cls||clear");
+    do
+    {
+        system("cls||clear");
         printf("\t===================================================\n");
         printf("\t===============   Tela Pagamento   =============\n");
         printf("\t===================================================\n\n");
@@ -246,33 +260,38 @@ void tela_pagamento(){
         case '1':
             pagamento = tela_cadastrar_pagamento();
             grava_pagamento(pagamento);
-            tela_pagamento();            
-            break;       
+
+            free(pagamento);
+            break;
         case '2':
-            tela_pesquisar_pagamento();
-            tela_pagamento();   
+            pagamento = buscar_pagamento();
+            tela_pesquisar_pagamento(pagamento);
+
+            free(pagamento);
             break;
         case '3':
             tela_alterar_pagamento();
-            tela_pagamento();   
+
             break;
         case '4':
             tela_excluir_pagamento();
-            tela_pagamento();   
+
             break;
         }
-    }while(opcao_pagamento!='0');         
+    } while (opcao_pagamento != '0');
 }
 
-void tela_agend(){
-    Dados_Agendamento* agendamento;
+void tela_agend()
+{
+    Dados_Agendamento *agendamento;
     char opcao_agend;
-    do{
-        system ("cls||clear");
+    do
+    {
+        system("cls||clear");
         printf("\t===================================================\n");
         printf("\t===============   Tela Agendamento   ==============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Novo agendamento\n");
+        printf("\t === 1- cadastrar agendamento\n");
         printf("\t === 2- Exibir agendamento\n");
         printf("\t === 3- Alterar agendamento\n");
         printf("\t === 4- Desagendamento\n");
@@ -286,21 +305,23 @@ void tela_agend(){
         case '1':
             agendamento = tela_cadastrar_agendamento();
             grava_agendamento(agendamento);
-            tela_agend();
+
+            free(agendamento);
             break;
         case '2':
-            tela_pesquisar_agendamento();
-            tela_agend();
+            agendamento = buscar_agendamento();
+            tela_pesquisar_agendamento(agendamento);
+
+            free(agendamento);
             break;
         case '3':
             tela_alterar_agendamento();
-            tela_agend();
+
             break;
         case '4':
-            tela_excluir_agendamento(); 
-            tela_agend();
+            tela_excluir_agendamento();
+
             break;
         }
-    }while(opcao_agend!='0');         
+    } while (opcao_agend != '0');
 }
-
