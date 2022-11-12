@@ -16,25 +16,21 @@ Dados_Agendamento* tela_cadastrar_agendamento(){
     
     do{
         printf("\t === Insira o CPF do paciente:    ");
-        scanf("%15[^\n]", age->cpf_paciente);
+        scanf("%15[^\n]", age->cpf);
         getchar();
-    }while(!validarCPF(age->cpf_paciente));
+    }while(!validarCPF(age->cpf));
 
     printf("\t === Insira o codigo do servico:  ");
-    scanf("%6[^\n]", age->codigo_servico);
+    scanf("%10[^\n]", age->codigo_servico);
     getchar();
 
-    do{
-        printf("\t === Insira o CPF do funcionario: ");
-        scanf("%15[^\n]", age->cpf_funcionario);
-        getchar();
-    }while(!validarCPF(age->cpf_funcionario));
-
     printf("\t === Insira a data:   ");
-    fgets(age->data,11,stdin);
+    scanf("%15[^\n]", age->data);
+    getchar();
 
     printf("\t === Insira o horario:   ");
-    fgets(age->hora,6,stdin);
+    scanf("%15[^\n]", age->hora);
+    getchar();
 
     age->status = 'm';
     return age;
@@ -56,28 +52,54 @@ void grava_agendamento(Dados_Agendamento* age){
     fclose(fp);
 }
 
-void tela_pesquisar_agendamento(){
-
+Dados_Agendamento* buscar_agendamento(){
+    FILE* fp;
     Dados_Agendamento* age;
+    char men[15];
+
+    printf("\n ===== Buscar Agendamento ======");
+    printf("\n Informe o codigo de servico: ");
+    scanf("%s", men);
+    getchar();
+    
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
+    fp = fopen("agendamentos.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Ocorreu  ko um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)){
+        fread(age, sizeof(Dados_Agendamento), 1, fp);
+        if ((strcmp(age -> codigo_servico, men) == 0) &&(age->status != 'x')){
+            fclose(fp);
+            return age;
+        }
+    }
+fclose(fp);
+return NULL;
+}
+
+void tela_pesquisar_agendamento(Dados_Agendamento* age){
 
     system ("cls||clear");
     printf("\t===================================================\n");
-    printf("\t===============   Pesquisar Agendamento   ============\n");
+    printf("\t============   Pesquisar Agendamento   ============\n");
     printf("\t===================================================\n\n");
-    
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", age->cpf_paciente);
+    if((age == NULL) || (age->status == 'x')){
+        printf("Agendamento nao encontrado");
+    }else{
+        printf(" | ============== Agendamento encontrado ========\n");
+        printf(" | CPF : %s\n", age->cpf);
+        printf(" | Codigo do agendamento: %s\n", age->codigo_servico);
+        printf(" | Data do agendamento: %s\n", age->data);
+        printf(" | Horario: %s\n", age->hora);
+        printf(" | ==============================================\n");
+        printf(" | aperte ENTER para continuar");
         getchar();
-        
-    } while (!validarCPF(age->cpf_paciente));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
+        system(" cls| clear");
+    }
 
 }
 
@@ -94,10 +116,10 @@ void tela_alterar_agendamento(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s", age->cpf_paciente);
+        scanf("%s", age->cpf);
         getchar();
         
-    } while (!validarCPF(age->cpf_paciente));
+    } while (!validarCPF(age->cpf));
     
     printf("\t==================================================\n\n");
     
@@ -119,10 +141,10 @@ void tela_excluir_agendamento(){
     do
     {
         printf("\t === Insira o CPF:    ");
-        scanf("%s", age->cpf_paciente);
+        scanf("%s", age->cpf);
         getchar();
         
-    } while (!validarCPF(age->cpf_paciente));
+    } while (!validarCPF(age->cpf));
     
     printf("\t==================================================\n\n");
     
