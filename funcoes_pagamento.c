@@ -14,25 +14,30 @@ Dados_Pagamento* tela_cadastrar_pagamento(){
     printf("\t===============   Cadastrar Pagamento   ============\n");
     printf("\t===================================================\n\n");
     do{
-        printf("\t === CPF do funcionário:  ");
+        printf("\t === CPF do funcionário ou cliente:  ");
         scanf("%15[^\n]", pag->cpf);
         getchar();
     }while(!validarCPF(pag->cpf));
 
     printf("\t === Insira o valor:  ");
-    fgets(pag->valor,6,stdin);
+    scanf("%15[^\n]", pag->valor);
+    getchar();
 
     printf("\t === Insira a data de criacao:    ");
-    fgets(pag->data_criacao,11,stdin);
+    scanf("%15[^\n]", pag->data_criacao);
+    getchar();
 
     printf("\t === Insira a data de captura:    ");
-    fgets(pag->data_captura,11,stdin);
+    scanf("%15[^\n]", pag->data_captura);
+    getchar();
 
     printf("\t === Insira o meio de pagamento:  ");
-    fgets(pag->meio_pagamento,30,stdin);
+    scanf("%15[^\n]", pag->meio_pagamento);
+    getchar();
 
     printf("\t === Insira o banco:  ");
-    fgets(pag->banco,30,stdin);
+    scanf("%15[^\n]", pag->banco);
+    getchar();
 
     pag->status = 'm';
     return pag;   
@@ -55,24 +60,56 @@ void grava_pagamento(Dados_Pagamento* pag){
     fclose(fp);
 }
 
-void tela_pesquisar_pagamento(){
-
+Dados_Pagamento* buscar_pagamento(){
+    FILE* fp;
     Dados_Pagamento* pag;
-    pag = (Dados_Pagamento*) malloc(sizeof(Dados_Paciente));
+    char pog[15];
+
+    printf("\n ===== Buscar Pagamento ======");
+    printf("\n Informe seu CPF: ");
+    scanf("%s", pog);
+    getchar();
+
+    pag = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
+    fp = fopen("pagamentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu  ko um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)){
+        fread(pag, sizeof(Dados_Pagamento), 1, fp);
+        if ((strcmp(pag -> cpf, pog) == 0) &&(pag->status != 'x')){
+            fclose(fp);
+            return pag;
+        }
+    }
+fclose(fp);
+return NULL;
+}
+
+void tela_pesquisar_pagamento(Dados_Pagamento* pag){
 
     system("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Pesquisar Pagamento   ============\n");
     printf("\t===================================================\n\n");
-    do{
-        printf("\t === CPF do funcionário:  ");
-        scanf("%15[^\n]", pag->cpf);
+
+    if((pag == NULL) || (pag->status == 'x')){
+        printf("Pagamento nao encontrado");
+    }else{
+        printf(" | ============== Pagamento encontrado =============\n");
+        printf(" | CPF : %s\n", pag->cpf);
+        printf(" | Valor do pagamento: %s\n", pag->valor);
+        printf(" | Data de criação: %s\n", pag->data_criacao);
+        printf(" | Data de captura: %s\n", pag->data_captura);
+        printf(" | Meio de Pagamento: %s\n", pag->meio_pagamento);
+        printf(" | Banco: %s\n", pag->banco);
+        printf(" | ================================================\n");
+        printf(" | aperte ENTER para continuar");
         getchar();
-    }while(!validarCPF(pag->cpf));
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
+        system(" cls| clear");
+    }
 
 }
 
