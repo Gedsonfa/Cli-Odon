@@ -31,26 +31,27 @@ char status;
 };*/
     do{
     printf("\t === Insira o nome:   ");
-    scanf("%30[^\n]",fun->nome);
+    scanf("%51[^\n]",fun->nome);
     getchar();
     
     }while(!lerLetras(fun->nome));
 
     printf("\t === Insira a idade:  ");
-    fgets(fun->idade,3,stdin);
-    
+    scanf("%20[^\n]",fun->idade);
+    getchar();
 
     printf("\t === Insira o endereco:   ");
-    fgets(fun->endereco,31,stdin);
-    
+    scanf("%51[^\n]",fun->endereco);
+    getchar();
 
     printf("\t === Insira o e-mail: ");
-    fgets(fun->email,31,stdin);
-    
+    scanf("%51[^\n]",fun->email);
+    getchar();
 
     printf("\t === Insira o numero telefonico:  ");
-    fgets(fun->endereco,12,stdin);
-    
+    scanf("%15[^\n]",fun->telefone);
+    getchar();
+
     fun->status = 'm';
     return fun;
 
@@ -73,6 +74,34 @@ void grava_funcionario(Dados_Funcionario* fun){
     fclose(fp);
 }
 
+Dados_Funcionario* buscar_funcionario() {
+    FILE* fp;
+    Dados_Funcionario* fun;
+    char fon[15];
+
+    printf("\n ===== Buscar Paciente ======");
+    printf("\n Informe seu CPF: ");
+    scanf("%s", fon);
+    getchar();
+    
+    fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu  ko um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar este programa...\n");
+        exit(1);
+    }
+    while(!feof(fp)){
+        fread(fun, sizeof(Dados_Funcionario), 1, fp);
+        if ((strcmp(fun -> cpf, fon) == 0) &&(fun->status != 'x')){
+            fclose(fp);
+            return fun;
+        }
+    }
+fclose(fp);
+return NULL;
+
+}
 void tela_pesquisar_funcionario(){
 
     Dados_Funcionario* fun;
@@ -83,17 +112,20 @@ void tela_pesquisar_funcionario(){
     printf("\t===============   Pesquisar Funcionarios   ==============\n");
     printf("\t=========================================================\n\n");
     
-    do{
-    printf("\t === Insira o CPF:    ");
-    scanf("%s",fun->cpf);
-    getchar();
-    
-    }while(!validarCPF(fun->cpf));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
+    if((fun == NULL) || (fun->status == 'x')){
+        printf("Funcionario nao encontrado");
+    }else{
+        printf(" | ============== Funcionario encontrado =============\n");
+        printf(" | Nome: %s\n", fun->nome);
+        printf(" | Idade: %s\n", fun->idade);
+        printf(" | Email: %s\n", fun->email);
+        printf(" | Endereco: %s\n", fun->endereco);
+        printf(" | Numero: %s\n", fun->telefone);
+        printf(" | ================================================\n");
+        printf(" | aperte ENTER para continuar");
+        getchar();
+        system(" cls| clear");
+    }
     
 }
 
