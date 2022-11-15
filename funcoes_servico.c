@@ -75,7 +75,6 @@ Dados_Servico* buscar_servico(){
     }
     while(!feof(fp)){
         fread(ser, sizeof(Dados_Servico), 1, fp);
-        getchar();
         if ((strcmp(ser -> codigo, sor) == 0) &&(ser->status != 'x')){
             fclose(fp);
             return ser;
@@ -134,24 +133,71 @@ void tela_alterar_servico(){
     system("cls | clear");
 }
 
+void exibe_servicos(Dados_Servico* ser) {
+
+    printf("CPF: %s\n", ser->codigo);
+    printf("Nome: %s\n", ser->nome);
+    printf("Idade: %s\n", ser->tempo);
+    printf("E-mail de contato: %s\n", ser->custo);
+    printf("Endereco: %s\n", ser->disponi);
+    printf("Status: %c\n", ser->status);
+    printf("\n");
+
+}
+
 void tela_excluir_servico(){
 
+    FILE* fp;
     Dados_Servico* ser;
-    ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
-
+    int achou;
+    char resp;
+    char procurado[15];
+    fp = fopen("servicos.dat", "r+b");
+    if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+    }
+    printf("\n\n");
     system ("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t===============   Excluir Serviços   ==============\n");
-    printf("\t===================================================\n\n");
-   
-    printf("\t === Digite o código:\n");
-    fgets(ser->codigo,6,stdin);
-    
-   
-    printf("\t==================================================\n\n");
-   
-    system("\tPause");
-    system("cls | clear");
+    printf("=========================================\n");
+    printf("============= Apagar servico ============\n");
+    printf("========================================= \n");
+    printf("Informe o codigo do Servico: ");
+    scanf(" %14[^\n]", procurado);
+    ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
+    achou = 0;
+    while((!achou) && (fread(ser, sizeof(Dados_Servico), 1, fp))) {
+    if ((strcmp(ser->codigo, procurado) == 0) && (ser->status == 'm')) {
+        achou = 1;
+    }
+    }
+
+    if (achou) {
+    exibe_servicos(ser);
+    getchar();
+    printf("Deseja realmente apagar este servico (s/n)? ");
+    scanf("%c", &resp);
+    getchar();
+    if (resp == 's' || resp == 'S') {
+        ser->status = 'x';
+        fseek(fp, -1*sizeof(Dados_Servico), SEEK_CUR);
+        fwrite(ser, sizeof(Dados_Servico), 1, fp);
+        printf("\nServico excluído com sucesso!!!\n");
+        printf("Aperte ENTER para continuar...");
+        getchar();
+        } else {
+        printf("\nOk, os dados não foram alterados\n");
+        printf("Aperte ENTER para continuar...");
+        getchar();
+        }
+    } else {
+    printf("O Servico %s não foi encontrado...\n", procurado);
+    printf("Aperte ENTER para continuar...");
+    getchar();
+    }
+    fclose(fp);
+    free(ser);
 }
 //update
 

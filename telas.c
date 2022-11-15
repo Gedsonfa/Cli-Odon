@@ -6,6 +6,7 @@
 // Funções pacientes
 void tela_pesquisar_paciente(Dados_Paciente *pac);
 Dados_Paciente* buscaPaciente();
+void exibe_pacientes();
 void tela_alterar_paciente();
 void tela_excluir_paciente();
 void grava_paciente(Dados_Paciente *pac);
@@ -16,6 +17,7 @@ Dados_Funcionario *tela_cadastrar_funcionario();
 void grava_funcionario(Dados_Funcionario *fun);
 Dados_Funcionario *buscar_funcionario();
 void tela_pesquisar_funcionario(Dados_Funcionario *fun);
+void exibe_funcionarios();
 void tela_alterar_funcionario();
 void tela_excluir_funcionario();
 
@@ -23,6 +25,7 @@ void tela_excluir_funcionario();
 Dados_Servico *tela_cadastrar_servico();
 void grava_servico(Dados_Servico *ser);
 Dados_Servico *buscar_servico();
+void exibe_servicos();
 void tela_pesquisar_servico(Dados_Servico *ser);
 void tela_alterar_servico();
 void tela_excluir_servico();
@@ -31,6 +34,7 @@ void tela_excluir_servico();
 Dados_Pagamento *tela_cadastrar_pagamento();
 void grava_pagamento(Dados_Pagamento *pag);
 Dados_Pagamento *buscar_pagamento();
+void exibe_pagamento();
 void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 void tela_alterar_pagamento();
 void tela_excluir_pagamento();
@@ -40,6 +44,7 @@ Dados_Agendamento* tela_cadastrar_agendamento();
 void grava_agendamento(Dados_Agendamento *age);
 Dados_Agendamento* buscar_agendamento();
 void tela_pesquisar_agendamento(Dados_Agendamento* age);
+void exibe_agendamento();
 void tela_alterar_agendamento();
 void tela_excluir_agendamento();
 
@@ -319,8 +324,10 @@ void tela_agend()
 
             break;
         case '4':
+            //agendamento = buscar_agendamento();
             tela_excluir_agendamento();
 
+            //free(agendamento);
             break;
         }
     } while (opcao_agend != '0');

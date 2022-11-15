@@ -160,28 +160,72 @@ void tela_alterar_paciente(){
 
 }
 
+void exibe_pacientes(Dados_Paciente* pac) {
+
+    printf("CPF: %s\n", pac->cpf);
+    printf("Nome: %s\n", pac->nome);
+    printf("Idade: %s\n", pac->idade);
+    printf("E-mail de contato: %s\n", pac->email);
+    printf("Endereco: %s\n", pac->endereco);
+    printf("Numero de contato: %s\n", pac->numero);
+    printf("Status: %c\n", pac->status);
+    printf("\n");
+
+}
+
 void tela_excluir_paciente(){
 
+    FILE* fp;
     Dados_Paciente* pac;
-    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
-
+    int achou;
+    char resp;
+    char procurado[15];
+    fp = fopen("pacientes.dat", "r+b");
+    if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+    }
+    printf("\n\n");
     system ("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t==============   Excluir Paciente   ===============\n");
-    printf("\t===================================================\n\n");
-   
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", pac->cpf);
+    printf("=========================================\n");
+    printf("====== Apagar Cadastro de Paciente ======\n");
+    printf("========================================= \n");
+    printf("Informe o CPF do Funcionario: ");
+    scanf(" %14[^\n]", procurado);
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+    achou = 0;
+    while((!achou) && (fread(pac, sizeof(Dados_Paciente), 1, fp))) {
+    if ((strcmp(pac->cpf, procurado) == 0) && (pac->status == 'm')) {
+        achou = 1;
+    }
+    }
+
+    if (achou) {
+    exibe_pacientes(pac);
+    getchar();
+    printf("Deseja realmente apagar este Paciente (s/n)? ");
+    scanf("%c", &resp);
+    getchar();
+    if (resp == 's' || resp == 'S') {
+        pac->status = 'x';
+        fseek(fp, -1*sizeof(Dados_Paciente), SEEK_CUR);
+        fwrite(pac, sizeof(Dados_Paciente), 1, fp);
+        printf("\nPaciente excluído com sucesso!!!\n");
+        printf("Aperte ENTER para continuar...");
         getchar();
-        
-    } while (!validarCPF(pac->cpf));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
+        } else {
+        printf("\nOk, os dados não foram alterados\n");
+        printf("Aperte ENTER para continuar...");
+        getchar();
+        }
+    } else {
+    printf("O Paciente %s não foi encontrado...\n", procurado);
+    printf("Aperte ENTER para continuar...");
+    getchar();
+    }
+    fclose(fp);
+    free(pac);
 }
 
 

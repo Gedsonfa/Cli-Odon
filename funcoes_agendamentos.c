@@ -24,7 +24,7 @@ Dados_Agendamento* tela_cadastrar_agendamento(){
     scanf("%10[^\n]", age->codigo_servico);
     getchar();
 
-    printf("\t === Insira a data:   ");
+    printf("\t === Insira a data de agendamento:   ");
     scanf("%15[^\n]", age->data);
     getchar();
 
@@ -103,54 +103,142 @@ void tela_pesquisar_agendamento(Dados_Agendamento* age){
 
 }
 
-void tela_alterar_agendamento(){
+void exibe_agendamento(Dados_Agendamento* age) {
+    printf("Codigo do Agendamento: %s\n", age->codigo_servico);
+    printf("CPF: %s\n", age->cpf);
+    printf("Data do Agendamento: %s\n", age->data);
+    printf("Horario do Agendamento: %s\n", age->hora);
+    printf("Status: %c\n", age->status);
+    printf("\n");
 
-    Dados_Agendamento* age;
-    age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
+}
+
+void tela_alterar_agendamento(){
+//    FILE* fp;
+//    Dados_Agendamento* age;
+//    int achou;
+//    char resp;
+    char procurando[20];
+//    age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
+//    achou = 0;
+//
+//    fp = fopen("agendamento.dat", "r+b");
+//    if (fp == NULL) {
+//        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+//        printf("Não é possível continuar o programa...\n");
+//        exit(1);
+//  }
 
     system ("cls||clear");
     printf("\t===================================================\n");
-    printf("\t===============   Alterar Agendamento   ============\n");
-    printf("\t===================================================\n\n");
+    printf("\t===============   Alterar Agendamento   ===========\n");
+    printf("\t===================================================\n");
+    printf("\t Digite o CPF do Cliente: \n");
+    scanf("%s", procurando);
+    getchar();
     
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", age->cpf);
-        getchar();
-        
-    } while (!validarCPF(age->cpf));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
-
+//    while((!achou) && (fread(age, sizeof(Dados_Agendamento), 1, fp))) {
+//    if ((strcmp(age->cpf, procurando) == 0) && (age->status == '1')) {
+//     achou = 1;
+//   }if (achou) {
+//        exibe_agendamento(age);
+//        printf(" Deseja realmente editar este usuario? [s/n] ");
+//        scanf("%c", &resp);
+//        getchar();
+//        if (resp == 's' || resp == 'S') {
+//    
+//
+//        printf(" | Informe o novo nome: ");
+//        scanf("%10[^\n]", age->codigo_servico);
+//        getchar();
+//
+//
+//        printf(" | Informe o nova data 00/00/0000: ");
+//        scanf("%15[^\n]",&age->data);
+//        getchar();
+//
+//        printf(" | Escolha seu novo Horário: ");
+//        scanf("%15[^\n]", age->hora);
+//        getchar();
+//
+//
+//        age->status = '1';
+//        fseek(fp, (-1)*sizeof(Dados_Agendamento), SEEK_CUR);
+//        fwrite(age, sizeof(Dados_Agendamento), 1, fp);
+//        printf("\nUsuario editado com sucesso!!!\n");
+//        grava_agendamento(age);
+//        printf(" Pressione qualquer tecla para sair... ");
+//        getchar();
+//
+//    } else {
+//        printf("Tudo bem, os dados não foram alterados!");
+//    }
+//  
+//   } 
+//  
+//}
+//free(age);
+//fclose(fp);
+//
 }
 
 void tela_excluir_agendamento(){
 
+    
+    FILE* fp;
     Dados_Agendamento* age;
-    age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
-
+    int achou;
+    char resp;
+    char procurado[15];
+    fp = fopen("agendamentos.dat", "r+b");
+    if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+    }
+    printf("\n\n");
     system ("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t===============   Excluir Agendamento   ============\n");
-    printf("\t===================================================\n\n");
-    
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", age->cpf);
-        getchar();
-        
-    } while (!validarCPF(age->cpf));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
+    printf("=============================\n");
+    printf("==== Apagar Agendamento =====\n");
+    printf("============================= \n");
+    printf("Informe o agendamento a ser apagado: ");
+    scanf(" %14[^\n]", procurado);
+    age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
+    achou = 0;
+    while((!achou) && (fread(age, sizeof(Dados_Agendamento), 1, fp))) {
+    if ((strcmp(age->codigo_servico, procurado) == 0) && (age->status == 'm')) {
+        achou = 1;
+    }
+    }
 
+    if (achou) {
+    exibe_agendamento(age);
+    getchar();
+    printf("Deseja realmente apagar este Agendamento (s/n)? ");
+    scanf("%c", &resp);
+    getchar();
+    if (resp == 's' || resp == 'S') {
+        age->status = 'x';
+        fseek(fp, -1*sizeof(Dados_Agendamento), SEEK_CUR);
+        fwrite(age, sizeof(Dados_Agendamento), 1, fp);
+        printf("\nAgendamento excluído com sucesso!!!\n");
+        printf("Aperte ENTER para continuar...");
+        getchar();
+        } else {
+        printf("\nOk, os dados não foram alterados\n");
+        printf("Aperte ENTER para continuar...");
+        getchar();
+        }
+    } else {
+    printf("O animal %s não foi encontrado...\n", procurado);
+    printf("Aperte ENTER para continuar...");
+    getchar();
+    }
+    fclose(fp);
+    free(age);
 }
+
+
+
 //update
 
