@@ -6,7 +6,7 @@ typedef struct Dados_Agendamento Dados_Agendamento;
 
 struct Dados_Pagamento{
 char cpf[15];
-char valor[6];
+char valor[30];
 char data_criacao[11];
 char data_captura[11];
 char meio_pagamento[30];
@@ -15,41 +15,40 @@ char status;
 };
 
 struct Dados_Servico{
-char codigo[6];
-char nome[51];
-char custo[7];
-char tempo[6];
-char disposto[13];
+char codigo[11];
+char nome[31];
+char custo[21];
+char tempo[7];
+char disponi[11];
 char status;
 };
 
 struct Dados_Paciente{
-char cpf[14];
+char cpf[15];
 char nome[51];
 char idade[20];
 char endereco[51];
 char email[51];
-char numero[12];
+char numero[20];
 char status;
 };
 
 
 struct Dados_Funcionario{
 char cpf[15];
-char nome[30];
-char idade[3];
-char endereco[31];
-char email[31];
-char telefone[12];
+char nome[51];
+char idade[20];
+char endereco[51];
+char email[51];
+char telefone[15];
 char status;
 };
 
 struct Dados_Agendamento{
-    char cpf_paciente[15];
-    char codigo_servico[6];
-    char cpf_funcionario[15];
+    char cpf[15];
+    char codigo_servico[16];
     char data[11];
-    char hora[6];
+    char hora[11];
     char status;
 };
 
