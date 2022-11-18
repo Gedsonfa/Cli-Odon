@@ -44,8 +44,9 @@ char status;
 };
 
 struct Dados_Agendamento{
+    char codigo_agendamento[7];
     char cpf_paciente[15];
-    char codigo_servico[6];
+    char codigo_servico[7];
     char cpf_funcionario[15];
     char data[11];
     char hora[6];
