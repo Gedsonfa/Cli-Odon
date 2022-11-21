@@ -40,7 +40,7 @@ void tela_alterar_pagamento();
 void tela_excluir_pagamento();
 
 // Funções Agendamentos
-Dados_Agendamento* tela_cadastrar_agendamento();
+Dados_Agendamento* tela_cadastrar_agendamento(void);
 void grava_agendamento(Dados_Agendamento *age);
 Dados_Agendamento* buscar_agendamento();
 void tela_pesquisar_agendamento(Dados_Agendamento* age);
