@@ -130,34 +130,6 @@ void tela_pesquisar_paciente(Dados_Paciente* pac)
 
     }
 
-    
-
-}
-
-
-void tela_alterar_paciente(){
-
-    Dados_Paciente* pac;
-    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
-
-    system ("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t================   Alterar Paciente   =============\n");
-    
-    printf("\t===================================================\n\n");
-    do
-    {
-        printf("\t === Insira o CPF:    ");
-        scanf("%s", pac->cpf);
-        getchar();
-        
-    } while (!validarCPF(pac->cpf));
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
-
 }
 
 void exibe_pacientes(Dados_Paciente* pac) {
@@ -170,6 +142,141 @@ void exibe_pacientes(Dados_Paciente* pac) {
     printf("Numero de contato: %s\n", pac->numero);
     printf("Status: %c\n", pac->status);
     printf("\n");
+
+}
+
+
+void tela_alterar_paciente(){
+    FILE* fp;
+    Dados_Paciente* pac;
+    int achou;
+    char esc;
+    char resp;
+    char procurando[20];
+
+
+    fp = fopen("pacientes.dat", "r+b");
+     if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar o programa...\n");
+      exit(1);
+ }
+    pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t================   Alterar Paciente   =============\n");
+    printf("\t===================================================\n\n");
+    printf("\t === Insira o CPF:    ");
+    scanf("%s", procurando);
+    getchar();
+    achou = 0;
+
+    while((!achou) && (fread(pac, sizeof(Dados_Paciente), 1, fp))) {
+    if ((strcmp(pac->cpf, procurando) == 0) && (pac->status == 'm')) {
+    achou = 1;
+    }if (achou) {
+       exibe_pacientes(pac);
+       printf(" Deseja realmente editar este paciente? [s/n] ");
+       scanf("%c", &resp);
+       getchar();
+       if (resp == 's' || resp == 'S') {
+        
+        esc = escAtualizarPaciente();
+
+        if (esc == '1'){
+
+                printf(" | Informe novo nome: ");
+                scanf("%[A-Z a-z]", pac->nome);
+                getchar();
+
+
+                printf(" | Informe a nova idade: ");
+                scanf("%20[^\n]",pac->idade);
+                getchar();
+
+                printf(" | Informe o novo email: ");
+                scanf("%s", pac->email);
+                getchar();
+
+                printf(" | Informe o novo endereço: ");
+                scanf("%[A-Z a-z 0-9]", pac->endereco);
+                getchar();
+
+                printf(" | Informe o novo numero: ");
+                scanf("%20[^\n]", pac->numero);
+                getchar();
+
+
+     } else if (esc == '2'){
+                
+                printf(" | Informe novo nome: ");
+                scanf("%[A-Z a-z]", pac->nome);
+                getchar();
+
+     } else if (esc == '3'){
+
+                printf(" | Informe a nova idade: ");
+                scanf("%20[^\n]",pac->idade);
+                getchar();
+
+     } else if (esc == '4'){
+
+                printf(" | Informe o novo email: ");
+                scanf("%s", pac->email);
+                getchar();
+     } else if (esc == '5'){
+                printf(" | Informe o novo endereço: ");
+                scanf("%[A-Z a-z 0-9]", pac->endereco);
+                getchar();
+
+     } else if (esc == '6') {
+                printf(" | Informe o novo numero: ");
+                scanf("%20[^\n]", pac->numero);
+                getchar();
+     }
+    pac->status = 'm';
+    fseek(fp, (-1)*sizeof(Dados_Paciente), SEEK_CUR);
+    fwrite(pac, sizeof(Dados_Paciente), 1, fp);
+    printf("\nUsuario editado com sucesso!!!\n");
+    grava_paciente(pac);
+    free(pac);
+   
+
+
+    } else {
+        printf("Tudo bem, os dados não foram alterados!");
+    }
+    
+    } 
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    free(pac);
+    fclose(fp);
+
+}
+
+char escAtualizarPaciente(void)
+{    
+    char op;
+    system(" cls || clear");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ------------------- Atualizar Paciente ------------------ | \n");
+    printf(" |                                                           | \n");
+    printf(" |                 1- Editar tudo                            | \n");
+    printf(" |                 2- Editar nome                            | \n");
+    printf(" |                 3- Editar idade                           | \n");
+    printf(" |                 4- Editar email                           | \n");
+    printf(" |                 5- Editar endereço                        | \n");  
+    printf(" |                 6- Editar telefone                        | \n");    
+    printf(" |                                                           | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | Selecione uma opção do que você deseja editar: ");
+    scanf("%c", &op);
+    getchar();
+
+    return op;
 
 }
 
