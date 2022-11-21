@@ -26,10 +26,10 @@ Dados_Servico* tela_cadastrar_servico(){
     getchar();
     
     printf("\t === Digite o tempo do procedimento(hh/mm): ");
-    scanf("%6[^\n]",ser->tempo);
+    scanf("%20[^\n]",ser->tempo);
     getchar();
     
-    printf("\t === Digite a disponibilidade: ");
+    printf("\t === Digite a disponibilidade(M/T/N): ");
     scanf("%10[^\n]",ser->disponi);
     getchar();
 
@@ -106,31 +106,7 @@ void tela_pesquisar_servico(Dados_Servico* ser){
         getchar();
         system(" cls| clear");
     
-    printf("\t==================================================\n\n");
-
-    system("\tPause");
-    system("cls | clear");
     }
-}
-
-void tela_alterar_servico(){
-
-    Dados_Servico* ser;
-    ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
-
-    system ("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t===============   Alterar Serviços   ==============\n");
-    printf("\t===================================================\n\n");
-    
-    printf("\t === Digite o código:\n");
-    fgets(ser->codigo,6,stdin);
-    
-    
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
 }
 
 void exibe_servicos(Dados_Servico* ser) {
@@ -142,6 +118,132 @@ void exibe_servicos(Dados_Servico* ser) {
     printf("Endereco: %s\n", ser->disponi);
     printf("Status: %c\n", ser->status);
     printf("\n");
+
+}
+
+void tela_alterar_servico(){
+    FILE* fp;
+    Dados_Servico* ser;
+    int achou;
+    char esc;
+    char resp;
+    char procurando[20];
+
+    fp = fopen("servicos.dat", "r+b");
+     if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar o programa...\n");
+      exit(1);
+ }
+    ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
+
+    system ("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t===============   Alterar Servicos   ==============\n");
+    printf("\t===================================================\n\n");
+    printf("\t === Digite o código:");
+    scanf("%s",procurando);
+    getchar();
+    achou = 0;
+
+    while((!achou) && (fread(ser, sizeof(Dados_Servico), 1, fp))) {
+    if ((strcmp(ser->codigo, procurando) == 0) && (ser->status == 'm')) {
+    achou = 1;
+    }if (achou) {
+       exibe_servicos(ser);
+       printf(" Deseja realmente editar este Servico? [s/n] ");
+       scanf("%c", &resp);
+       getchar();
+       if (resp == 's' || resp == 'S') {
+        
+        esc = escAtualizarServico();
+
+        if (esc == '1'){
+
+                printf(" | Informe o novo Nome: ");
+                scanf("%30[^\n]", ser->nome);
+                getchar();
+
+
+                printf(" | Informe a novo Custo: ");
+                scanf("%20[^\n]",ser->custo);
+                getchar();
+
+                printf(" | Informe o nova duracao do Servico: ");
+                scanf("%20[^\n]", ser->tempo);
+                getchar();
+
+                printf(" | Informe a nova disponibilidade para o Servico: ");
+                scanf("%[A-Z a-z]", ser->disponi);
+                getchar();
+
+
+     } else if (esc == '2'){
+                
+                printf(" | Informe o novo Nome: ");
+                scanf("%30[^\n]", ser->nome);
+                getchar();
+
+     } else if (esc == '3'){
+
+                printf(" | Informe o novo Custo: ");
+                scanf("%20[^\n]",ser->custo);
+                getchar();
+
+     } else if (esc == '4'){
+
+                printf(" | Informe a nova duracao do Servico: ");
+                scanf("%20[^\n]", ser-> tempo);
+                getchar();
+     } else if (esc == '5'){
+                printf(" | Informe a nova disponibilidade para o Servico: ");
+                scanf("%[A-Z a-z]", ser->disponi);
+                getchar();
+
+     } 
+    ser->status = 'm';
+    fseek(fp, (-1)*sizeof(Dados_Servico), SEEK_CUR);
+    fwrite(ser, sizeof(Dados_Servico), 1, fp);
+    printf("\nservico editado com sucesso!!!\n");
+    grava_servico(ser);
+    free(ser);
+   
+
+
+    } else {
+        printf("Tudo bem, os dados não foram alterados!");
+    }
+    
+    } 
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    free(ser);
+    fclose(fp);
+
+}
+
+
+char escAtualizarServico(void)
+{    
+    char op;
+    system(" cls || clear");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | -------------------- Atualizar Servico ------------------ | \n");
+    printf(" |                                                           | \n");
+    printf(" |                 1- Editar tudo                            | \n");
+    printf(" |                 2- Editar o Nome                          | \n");
+    printf(" |                 3- Editar o Custo                         | \n");
+    printf(" |                 4- Editar a duracao do Servico            | \n");
+    printf(" |                 5- Editar disponibilidade de servico      | \n");      
+    printf(" |                                                           | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | Selecione uma opção do que você deseja editar: ");
+    scanf("%c", &op);
+    getchar();
+
+    return op;
 
 }
 
