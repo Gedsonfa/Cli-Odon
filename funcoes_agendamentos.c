@@ -42,6 +42,8 @@ Dados_Agendamento* tela_cadastrar_agendamento(void){
 
 }
 
+
+
 void grava_agendamento(Dados_Agendamento* age){
     FILE* fp;
     fp = fopen("agendamentos.dat", "ab");
@@ -83,6 +85,7 @@ fclose(fp);
 return NULL;
 }
 
+
 void tela_pesquisar_agendamento(Dados_Agendamento* age){
 
     system ("cls||clear");
@@ -112,8 +115,34 @@ void exibe_agendamento(Dados_Agendamento* age) {
     printf("Horario do Agendamento: %s\n", age->hora);
     printf("Status: %c\n", age->status);
     printf("\n");
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
 
 }
+int listarAgendamentos(void)
+{
+    FILE* fp;
+    Dados_Agendamento* age;
+    fp = fopen("agendamentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
+    while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ===================== Lista item ======================== | \n");
+        printf(" |                                                           | \n");
+        exibe_agendamento(age);
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    fclose(fp);
+    free(age);
+    return 0;
+
+}
+
 
 void tela_alterar_agendamento(){
   FILE* fp;
