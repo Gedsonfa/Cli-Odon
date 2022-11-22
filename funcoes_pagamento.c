@@ -113,26 +113,6 @@ void tela_pesquisar_pagamento(Dados_Pagamento* pag){
 
 }
 
-void tela_alterar_pagamento(){
-
-    Dados_Pagamento* pag;
-    pag = (Dados_Pagamento*) malloc(sizeof(Dados_Paciente));
-
-    system("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t===============   Alterar Pagamento   ============\n");
-    printf("\t===================================================\n\n");
-    do{
-        printf("\t === CPF do funcionário:  ");
-        scanf("%15[^\n]", pag->cpf);
-        getchar();
-    }while(!validarCPF(pag->cpf));
-    printf("\t==================================================\n\n");
-    
-    system("\tPause");
-    system("cls | clear");
-
-}
 
 void exibe_pagamento(Dados_Pagamento* pag) {
 
@@ -144,8 +124,147 @@ void exibe_pagamento(Dados_Pagamento* pag) {
     printf("Banco: %s\n", pag->banco);
     printf("Status: %c\n", pag->status);
     printf("\n");
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
 
 }
+
+
+void tela_alterar_pagamento(){
+
+    FILE* fp;
+    Dados_Pagamento* pag;
+    int achou;
+    char esc;
+    char resp;
+    char procurando[20];
+
+    fp = fopen("pagamentos.dat", "r+b");
+     if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar o programa...\n");
+      exit(1);
+ }
+    pag = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
+    system("cls||clear");
+    printf("\t===================================================\n");
+    printf("\t===============   Alterar Pagamento   ============\n");
+    printf("\t===================================================\n\n");
+    printf("\t === CPF do funcionário:  ");
+    scanf("%s", procurando);
+    getchar();
+
+    achou = 0;
+
+    while((!achou) && (fread(pag, sizeof(Dados_Pagamento), 1, fp))) {
+    if ((strcmp(pag->cpf, procurando) == 0) && (pag->status == 'm')) {
+    achou = 1;
+    }if (achou) {
+       exibe_pagamento(pag);
+       printf(" Deseja realmente editar este pagamento? [s/n] ");
+       scanf("%c", &resp);
+       getchar();
+       if (resp == 's' || resp == 'S') {
+        
+        esc = escAtualizarPagamento();
+
+        if (esc == '1'){
+
+                printf(" | Informe o novo Valor: ");
+                scanf("%30[^\n]", pag->valor);
+                getchar();
+
+
+                printf(" | Informe a nova data de Criacao: ");
+                scanf("%20[^\n]",pag->data_criacao);
+                getchar();
+
+                printf(" | Informe o nova data de Captura: ");
+                scanf("%20[^\n]", pag->data_captura);
+                getchar();
+
+                printf(" | Informe o novo meio de Pagamento: ");
+                scanf("%[A-Z a-z]", pag->meio_pagamento);
+                getchar();
+
+                printf(" | Informe o novo Banco: ");
+                scanf("%15[^\n]", pag->banco);
+                getchar();
+
+
+     } else if (esc == '2'){
+                
+                printf(" | Informe o novo Valor: ");
+                scanf("%30[^\n]", pag->valor);
+                getchar();
+
+     } else if (esc == '3'){
+
+                printf(" | Informe a nova data de Criacao: ");
+                scanf("%20[^\n]",pag->data_criacao);
+                getchar();
+
+     } else if (esc == '4'){
+
+                printf(" | Informe o nova data de Captura: ");
+                scanf("%20[^\n]", pag-> data_captura);
+                getchar();
+     } else if (esc == '5'){
+                printf(" | Informe o novo meio de Pagamento: ");
+                scanf("%[A-Z a-z]", pag->meio_pagamento);
+                getchar();
+
+     } else if (esc == '6') {
+                printf(" | Informe o novo Banco: ");
+                scanf("%30[^\n]", pag->banco);
+                getchar();
+     }
+    pag->status = 'm';
+    fseek(fp, (-1)*sizeof(Dados_Pagamento), SEEK_CUR);
+    fwrite(pag, sizeof(Dados_Pagamento), 1, fp);
+    printf("\nPagamento editado com sucesso!!!\n");
+    grava_pagamento(pag);
+    free(pag);
+   
+
+
+    } else {
+        printf("Tudo bem, os dados não foram alterados!");
+    }
+    
+    } 
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    free(pag);
+    fclose(fp);
+
+}
+
+char escAtualizarPagamento(void)
+{    
+    char op;
+    system(" cls || clear");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ------------------- Atualizar Pagamento ----------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" |                 1- Editar tudo                            | \n");
+    printf(" |                 2- Editar Valor                           | \n");
+    printf(" |                 3- Editar data de criação                 | \n");
+    printf(" |                 4- Editar data de captura                 | \n");
+    printf(" |                 5- Editar meio de pagamento               | \n");  
+    printf(" |                 6- Editar numero do banco                 | \n");    
+    printf(" |                                                           | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | Selecione uma opção do que você deseja editar: ");
+    scanf("%c", &op);
+    getchar();
+
+    return op;
+
+}
+
 
 void tela_excluir_pagamento(){
 
@@ -204,4 +323,30 @@ void tela_excluir_pagamento(){
 
 }
 //update
+
+
+int listarPagamentos(void)
+{
+    FILE* fp;
+    Dados_Pagamento* pag;
+    fp = fopen("pagamentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    pag = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
+    while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ===================== Listar Pagamentos ======================== | \n");
+        printf(" |                                                                  | \n");
+        exibe_pagamento(pag); 
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    fclose(fp);
+    free(pag);
+    return 0;
+
+}
+
 

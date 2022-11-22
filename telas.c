@@ -40,7 +40,7 @@ void tela_alterar_pagamento();
 void tela_excluir_pagamento();
 
 // Funções Agendamentos
-Dados_Agendamento* tela_cadastrar_agendamento();
+Dados_Agendamento* tela_cadastrar_agendamento(void);
 void grava_agendamento(Dados_Agendamento *age);
 Dados_Agendamento* buscar_agendamento();
 void tela_pesquisar_agendamento(Dados_Agendamento* age);
@@ -118,6 +118,7 @@ void tela_pacientes()
         printf("\t === 2- Pesquisar Paciente\n");
         printf("\t === 3- Alterar Paciente\n");
         printf("\t === 4- Excluir Paciente\n");
+        printf("\t === 5- Listar Paciente\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
@@ -145,6 +146,12 @@ void tela_pacientes()
             tela_excluir_paciente();
 
             break;
+        case '5':
+            listarPacientes();
+            break;
+        default:
+            printf("Opção inválida");
+            break;
         }
     } while (opcao_paci != '0');
 }
@@ -164,6 +171,7 @@ void tela_servicos()
         printf("\t === 2- Pesquisar serviço\n");
         printf("\t === 3- Editar serviço\n");
         printf("\t === 4- Excluir serviço\n");
+        printf("\t === 5- Listar Serviço\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
@@ -191,6 +199,12 @@ void tela_servicos()
             tela_excluir_servico();
 
             break;
+        case '5':
+            listarServico();
+            break;
+        default:
+            printf("Opção inválida!");
+            break;
         }
     } while (opcao_serv != '0');
 }
@@ -210,6 +224,7 @@ void tela_funcionarios()
         printf("\t === 2- Pesquisar funcionário\n");
         printf("\t === 3- Alterar funcionário\n");
         printf("\t === 4- Excluir funcionáio\n");
+        printf("\t === 5- Listar Funcionários\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t======================================================\n\n");
         printf("\t=> ");
@@ -237,6 +252,12 @@ void tela_funcionarios()
             tela_excluir_funcionario();
 
             break;
+        case '5':
+            listarFuncionarios();
+            break;
+        default:
+            printf("Opção inválida!");
+            break;
         }
     } while (opcao_funci != '0');
 }
@@ -255,6 +276,7 @@ void tela_pagamento()
         printf("\t === 2- Consultar pagamento\n");
         printf("\t === 3- Editar pagamento\n");
         printf("\t === 4- Excluir pagamento\n");
+        printf("\t === 5- Listar Pagamentos\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -282,7 +304,14 @@ void tela_pagamento()
             tela_excluir_pagamento();
 
             break;
+        case '5':
+            listarPagamentos();
+            break;
+        default:
+            printf("Opção inválida!");
+            break;
         }
+        
     } while (opcao_pagamento != '0');
 }
 
@@ -296,10 +325,11 @@ void tela_agend()
         printf("\t===================================================\n");
         printf("\t===============   Tela Agendamento   ==============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- cadastrar agendamento\n");
-        printf("\t === 2- Exibir agendamento\n");
-        printf("\t === 3- Alterar agendamento\n");
+        printf("\t === 1- cadastrar Agendamento\n");
+        printf("\t === 2- Exibir Agendamento\n");
+        printf("\t === 3- Alterar Agendamento\n");
         printf("\t === 4- Desagendamento\n");
+        printf("\t === 5- Listar Agendamentos\n");
         printf("\t==================================================\n\n");
         printf("\t === Digite 0 para confirmar\n");
         printf("\t=>");
@@ -329,6 +359,13 @@ void tela_agend()
 
             //free(agendamento);
             break;
+        case '5':
+            listarAgendamentos();
+            break;
+        default:
+            printf("Opção inválida!");
+            break;
         }
+        
     } while (opcao_agend != '0');
 }
