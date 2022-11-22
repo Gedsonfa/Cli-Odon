@@ -66,3 +66,8 @@ char escAtualizarFuncionario(void);
 char escAtualizarPaciente(void);
 char escAtualizarPagamento(void);
 char escAtualizarServico(void);
+int listarAgendamentos(void);
+int listarFuncionarios(void);
+int listarPacientes(void);
+int listarPagamentos(void);
+int listarServico(void);
