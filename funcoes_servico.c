@@ -118,6 +118,8 @@ void exibe_servicos(Dados_Servico* ser) {
     printf("Endereco: %s\n", ser->disponi);
     printf("Status: %c\n", ser->status);
     printf("\n");
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
 
 }
 
@@ -303,3 +305,26 @@ void tela_excluir_servico(){
 }
 //update
 
+int listarServico(void)
+{
+    FILE* fp;
+    Dados_Servico* ser;
+    fp = fopen("servicos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ===================== Listar Serviços ========================== | \n");
+        printf(" |                                                                  | \n");
+        exibe_servicos(ser); 
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    fclose(fp);
+    free(ser);
+    return 0;
+
+}
