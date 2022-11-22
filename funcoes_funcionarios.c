@@ -137,6 +137,8 @@ void exibe_funcionarios(Dados_Funcionario* fun) {
     printf("Numero de contato: %s\n", fun->telefone);
     printf("Status: %c\n", fun->status);
     printf("\n");
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
 
 }
 
@@ -337,4 +339,30 @@ void tela_excluir_funcionario(){
 }
 
 //update
+
+
+int listarFuncionarios(void)
+{
+    FILE* fp;
+    Dados_Funcionario* fun;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ===================== Listar Funcionarios ======================== | \n");
+        printf(" |                                                                    | \n");
+        exibe_funcionarios(fun);
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    fclose(fp);
+    free(fun);
+    return 0;
+
+}
+
 
