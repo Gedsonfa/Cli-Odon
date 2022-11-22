@@ -142,6 +142,8 @@ void exibe_pacientes(Dados_Paciente* pac) {
     printf("Numero de contato: %s\n", pac->numero);
     printf("Status: %c\n", pac->status);
     printf("\n");
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
 
 }
 
@@ -335,4 +337,28 @@ void tela_excluir_paciente(){
     free(pac);
 }
 
+
+int listarPacientes(void)
+{
+    FILE* fp;
+    Dados_Paciente* pac;
+    fp = fopen("pacientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+    while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ===================== Listar Pacientes ======================== | \n");
+        printf(" |                                                                 | \n");
+        exibe_pacientes(pac); 
+    }
+    printf(" | Pressione qualquer tecla para sair...");
+    getchar();
+    fclose(fp);
+    free(pac);
+    return 0;
+
+}
 
