@@ -8,7 +8,7 @@ struct Dados_Pagamento{
 char cpf[15];
 char valor[30];
 char data_criacao[20];
-char data_captura[20];
+char nome_desp[20];
 char meio_pagamento[30];
 char banco[30];
 char status;

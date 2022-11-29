@@ -11,13 +11,13 @@ Dados_Pagamento* tela_cadastrar_pagamento(){
 
     system("cls||clear");
     printf("\t===================================================\n");
-    printf("\t===============   Cadastrar Pagamento   ============\n");
+    printf("\t===============   Cadastrar Despesas   ============\n");
     printf("\t===================================================\n\n");
-    do{
-        printf("\t === CPF do funcionário ou cliente:  ");
+    
+        printf("\t === ID da Despesa:  ");
         scanf("%15[^\n]", pag->cpf);
         getchar();
-    }while(!validarCPF(pag->cpf));
+
 
     printf("\t === Insira o valor:  ");
     scanf("%15[^\n]", pag->valor);
@@ -27,8 +27,8 @@ Dados_Pagamento* tela_cadastrar_pagamento(){
     scanf("%15[^\n]", pag->data_criacao);
     getchar();
 
-    printf("\t === Insira a data de captura:    ");
-    scanf("%15[^\n]", pag->data_captura);
+    printf("\t === Insira o nome da despesa:    ");
+    scanf("%15[^\n]", pag->nome_desp);
     getchar();
 
     printf("\t === Insira o meio de pagamento:  ");
@@ -65,8 +65,8 @@ Dados_Pagamento* buscar_pagamento(){
     Dados_Pagamento* pag;
     char pog[15];
 
-    printf("\n ===== Buscar Pagamento ======");
-    printf("\n Informe seu CPF: ");
+    printf("\n ===== Buscar Despesa ======");
+    printf("\n Informe o ID: ");
     scanf("%s", pog);
     getchar();
 
@@ -92,17 +92,17 @@ void tela_pesquisar_pagamento(Dados_Pagamento* pag){
 
     system("cls||clear");
     printf("\t===================================================\n");
-    printf("\t===============   Pesquisar Pagamento   ============\n");
+    printf("\t================   Pesquisar Despesa   ============\n");
     printf("\t===================================================\n\n");
 
     if((pag == NULL) || (pag->status == 'x')){
-        printf("Pagamento nao encontrado");
+        printf("\n Pagamento nao encontrado");
     }else{
         printf(" | ============== Pagamento encontrado =============\n");
-        printf(" | CPF : %s\n", pag->cpf);
+        printf(" | ID da despesa : %s\n", pag->cpf);
+        printf(" | Nome da despesa: %s\n ", pag ->nome_desp);
         printf(" | Valor do pagamento: %s\n", pag->valor);
         printf(" | Data de criação: %s\n", pag->data_criacao);
-        printf(" | Data de captura: %s\n", pag->data_captura);
         printf(" | Meio de Pagamento: %s\n", pag->meio_pagamento);
         printf(" | Banco: %s\n", pag->banco);
         printf(" | ================================================\n");
@@ -116,16 +116,13 @@ void tela_pesquisar_pagamento(Dados_Pagamento* pag){
 
 void exibe_pagamento(Dados_Pagamento* pag) {
 
-    printf("CPF: %s\n", pag->cpf);
-    printf("Valor do pagamento: %s\n", pag->valor);
-    printf("Data de criacao: %s\n", pag->data_criacao);
-    printf("Data de captura: %s\n", pag->data_captura);
-    printf("Meio de pagamento: %s\n", pag->meio_pagamento);
-    printf("Banco: %s\n", pag->banco);
-    printf("Status: %c\n", pag->status);
+    printf(" | ID da despesa: %s\n", pag->cpf);
+    printf(" | Nome da despesa: %s\n ", pag ->nome_desp);
+    printf(" | Valor do pagamento: %s\n", pag->valor);
+    printf(" | Data de criacao: %s\n", pag->data_criacao);
+    printf(" | Meio de pagamento: %s\n", pag->meio_pagamento);
+    printf(" | Status: %c\n", pag->status);
     printf("\n");
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
 
 }
 
@@ -140,17 +137,17 @@ void tela_alterar_pagamento(){
     char procurando[20];
 
     fp = fopen("pagamentos.dat", "r+b");
-     if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar o programa...\n");
-      exit(1);
- }
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+}
     pag = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
     system("cls||clear");
     printf("\t===================================================\n");
-    printf("\t===============   Alterar Pagamento   ============\n");
+    printf("\t================   Alterar Despesa   ==============\n");
     printf("\t===================================================\n\n");
-    printf("\t === CPF do funcionário:  ");
+    printf("\t === ID da Despesa:  ");
     scanf("%s", procurando);
     getchar();
 
@@ -160,11 +157,11 @@ void tela_alterar_pagamento(){
     if ((strcmp(pag->cpf, procurando) == 0) && (pag->status == 'm')) {
     achou = 1;
     }if (achou) {
-       exibe_pagamento(pag);
-       printf(" Deseja realmente editar este pagamento? [s/n] ");
-       scanf("%c", &resp);
-       getchar();
-       if (resp == 's' || resp == 'S') {
+        exibe_pagamento(pag);
+        printf(" Deseja realmente editar esta Despesa? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
         
         esc = escAtualizarPagamento();
 
@@ -179,8 +176,8 @@ void tela_alterar_pagamento(){
                 scanf("%20[^\n]",pag->data_criacao);
                 getchar();
 
-                printf(" | Informe o nova data de Captura: ");
-                scanf("%20[^\n]", pag->data_captura);
+                printf(" | Informe o novo nome da despesa: ");
+                scanf("%20[^\n]", pag->nome_desp);
                 getchar();
 
                 printf(" | Informe o novo meio de Pagamento: ");
@@ -192,49 +189,49 @@ void tela_alterar_pagamento(){
                 getchar();
 
 
-     } else if (esc == '2'){
+        } else if (esc == '2'){
                 
                 printf(" | Informe o novo Valor: ");
                 scanf("%30[^\n]", pag->valor);
                 getchar();
 
-     } else if (esc == '3'){
+        } else if (esc == '3'){
 
                 printf(" | Informe a nova data de Criacao: ");
                 scanf("%20[^\n]",pag->data_criacao);
                 getchar();
 
-     } else if (esc == '4'){
+        } else if (esc == '4'){
 
-                printf(" | Informe o nova data de Captura: ");
-                scanf("%20[^\n]", pag-> data_captura);
+                printf(" | Informe o novo nome da despesa: ");
+                scanf("%20[^\n]", pag-> nome_desp);
                 getchar();
-     } else if (esc == '5'){
+        } else if (esc == '5'){
                 printf(" | Informe o novo meio de Pagamento: ");
                 scanf("%[A-Z a-z]", pag->meio_pagamento);
                 getchar();
 
-     } else if (esc == '6') {
+        } else if (esc == '6') {
                 printf(" | Informe o novo Banco: ");
                 scanf("%30[^\n]", pag->banco);
                 getchar();
-     }
+        }
     pag->status = 'm';
     fseek(fp, (-1)*sizeof(Dados_Pagamento), SEEK_CUR);
     fwrite(pag, sizeof(Dados_Pagamento), 1, fp);
-    printf("\nPagamento editado com sucesso!!!\n");
-    grava_pagamento(pag);
-    free(pag);
-   
+    printf("\nDespesa editado com sucesso!!!\n");
+    //grava_pagamento(pag);
+    //free(pag);
+
 
 
     } else {
-        printf("Tudo bem, os dados não foram alterados!");
+        printf("\n | Tudo bem, os dados não foram alterados!");
     }
     
     } 
     }
-    printf(" | Pressione qualquer tecla para sair...");
+    printf("\n | Pressione qualquer tecla para sair...");
     getchar();
     free(pag);
     fclose(fp);
@@ -247,14 +244,14 @@ char escAtualizarPagamento(void)
     system(" cls || clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Atualizar Pagamento ----------------- | \n");
+    printf(" | -------------------- Atualizar Despesa ------------------ | \n");
     printf(" |                                                           | \n");
-    printf(" |                 1- Editar tudo                            | \n");
+    printf(" |                 1- Editar Tudo                            | \n");
     printf(" |                 2- Editar Valor                           | \n");
-    printf(" |                 3- Editar data de criação                 | \n");
-    printf(" |                 4- Editar data de captura                 | \n");
-    printf(" |                 5- Editar meio de pagamento               | \n");  
-    printf(" |                 6- Editar numero do banco                 | \n");    
+    printf(" |                 3- Editar Data de criação                 | \n");
+    printf(" |                 4- Editar Nome da despesa                 | \n");
+    printf(" |                 5- Editar Meio de pagamento               | \n");  
+    printf(" |                 6- Editar Numero do banco                 | \n");    
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | Selecione uma opção do que você deseja editar: ");
@@ -274,6 +271,8 @@ void tela_excluir_pagamento(){
     int achou;
     char resp;
     char procurado[15];
+
+
     fp = fopen("pagamentos.dat", "r+b");
     if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
@@ -283,9 +282,9 @@ void tela_excluir_pagamento(){
     printf("\n\n");
     system ("cls||clear");
     printf("==========================================\n");
-    printf("====== Apagar registro de pagamento ======\n");
+    printf("====== Apagar registro de despesas =======\n");
     printf("========================================== \n");
-    printf("Informe o CPF: ");
+    printf("Informe o ID: ");
     scanf(" %14[^\n]", procurado);
     pag = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
     achou = 0;
@@ -298,14 +297,14 @@ void tela_excluir_pagamento(){
     if (achou) {
     exibe_pagamento(pag);
     getchar();
-    printf("Deseja realmente apagar este Pagamento (s/n)? ");
+    printf("Deseja realmente apagar esta Despesa (s/n)? ");
     scanf("%c", &resp);
     getchar();
     if (resp == 's' || resp == 'S') {
         pag->status = 'x';
         fseek(fp, -1*sizeof(Dados_Pagamento), SEEK_CUR);
         fwrite(pag, sizeof(Dados_Pagamento), 1, fp);
-        printf("\nPagamento excluído com sucesso!!!\n");
+        printf("\nDespesa excluída com sucesso!!!\n");
         printf("Aperte ENTER para continuar...");
         getchar();
         } else {
@@ -314,7 +313,7 @@ void tela_excluir_pagamento(){
         getchar();
         }
     } else {
-    printf("O Paciente %s não foi encontrado...\n", procurado);
+    printf("A Despesa %s não foi encontrado...\n", procurado);
     printf("Aperte ENTER para continuar...");
     getchar();
     }
@@ -337,12 +336,14 @@ int listarPagamentos(void)
     pag = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
     while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) {
         system(" cls || clear");
-        printf(" | ===================== Listar Pagamentos ======================== | \n");
+        printf(" | ====================== Listar Despesas ========================= | \n");
         printf(" |                                                                  | \n");
-        exibe_pagamento(pag); 
+        exibe_pagamento(pag);         
+        printf(" | Pressione qualquer tecla para sair...");
+        getchar();
+
     }
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
     fclose(fp);
     free(pag);
     return 0;

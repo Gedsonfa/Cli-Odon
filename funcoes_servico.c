@@ -111,15 +111,14 @@ void tela_pesquisar_servico(Dados_Servico* ser){
 
 void exibe_servicos(Dados_Servico* ser) {
 
-    printf("CPF: %s\n", ser->codigo);
+    printf("Código do Servico: %s\n", ser->codigo);
     printf("Nome: %s\n", ser->nome);
-    printf("Idade: %s\n", ser->tempo);
-    printf("E-mail de contato: %s\n", ser->custo);
-    printf("Endereco: %s\n", ser->disponi);
+    printf("Duração: %s\n", ser->tempo);
+    printf("Preco: %s\n", ser->custo);
+    printf("disponibilidade: %s\n", ser->disponi);
     printf("Status: %c\n", ser->status);
     printf("\n");
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
 
 }
 
@@ -132,11 +131,11 @@ void tela_alterar_servico(){
     char procurando[20];
 
     fp = fopen("servicos.dat", "r+b");
-     if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar o programa...\n");
-      exit(1);
- }
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+}
     ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
 
     system ("cls||clear");
@@ -152,11 +151,11 @@ void tela_alterar_servico(){
     if ((strcmp(ser->codigo, procurando) == 0) && (ser->status == 'm')) {
     achou = 1;
     }if (achou) {
-       exibe_servicos(ser);
-       printf(" Deseja realmente editar este Servico? [s/n] ");
-       scanf("%c", &resp);
-       getchar();
-       if (resp == 's' || resp == 'S') {
+        exibe_servicos(ser);
+        printf(" Deseja realmente editar este Servico? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
         
         esc = escAtualizarServico();
 
@@ -180,36 +179,36 @@ void tela_alterar_servico(){
                 getchar();
 
 
-     } else if (esc == '2'){
+    } else if (esc == '2'){
                 
                 printf(" | Informe o novo Nome: ");
                 scanf("%30[^\n]", ser->nome);
                 getchar();
 
-     } else if (esc == '3'){
+    } else if (esc == '3'){
 
                 printf(" | Informe o novo Custo: ");
                 scanf("%20[^\n]",ser->custo);
                 getchar();
 
-     } else if (esc == '4'){
+    } else if (esc == '4'){
 
                 printf(" | Informe a nova duracao do Servico: ");
                 scanf("%20[^\n]", ser-> tempo);
                 getchar();
-     } else if (esc == '5'){
+    } else if (esc == '5'){
                 printf(" | Informe a nova disponibilidade para o Servico: ");
                 scanf("%[A-Z a-z]", ser->disponi);
                 getchar();
 
-     } 
+    } 
     ser->status = 'm';
     fseek(fp, (-1)*sizeof(Dados_Servico), SEEK_CUR);
     fwrite(ser, sizeof(Dados_Servico), 1, fp);
     printf("\nservico editado com sucesso!!!\n");
-    grava_servico(ser);
-    free(ser);
-   
+    //grava_servico(ser);
+    //free(ser);
+
 
 
     } else {
@@ -319,10 +318,11 @@ int listarServico(void)
         system(" cls || clear");
         printf(" | ===================== Listar Serviços ========================== | \n");
         printf(" |                                                                  | \n");
-        exibe_servicos(ser); 
+        exibe_servicos(ser);     
+        printf(" | Pressione qualquer tecla para sair...");
+        getchar();
     }
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
     fclose(fp);
     free(ser);
     return 0;
