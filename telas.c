@@ -5,62 +5,60 @@
 
 // Funções pacientes
 void tela_pesquisar_paciente(Dados_Paciente *pac);
-Dados_Paciente* buscaPaciente();
-void exibe_pacientes();
-void tela_alterar_paciente();
-void tela_excluir_paciente();
 void grava_paciente(Dados_Paciente *pac);
 Dados_Paciente *tela_cadastrar_paciente();
+Dados_Paciente* buscaPaciente();
+void tela_alterar_paciente();
+void tela_excluir_paciente();
+void exibe_pacientes();
 
 // Funções Funcionarios
+void tela_pesquisar_funcionario(Dados_Funcionario *fun);
 Dados_Funcionario *tela_cadastrar_funcionario();
 void grava_funcionario(Dados_Funcionario *fun);
 Dados_Funcionario *buscar_funcionario();
-void tela_pesquisar_funcionario(Dados_Funcionario *fun);
-void exibe_funcionarios();
 void tela_alterar_funcionario();
 void tela_excluir_funcionario();
+void exibe_funcionarios();
 
 // Funções Serviço
+void tela_pesquisar_servico(Dados_Servico *ser);
 Dados_Servico *tela_cadastrar_servico();
 void grava_servico(Dados_Servico *ser);
 Dados_Servico *buscar_servico();
-void exibe_servicos();
-void tela_pesquisar_servico(Dados_Servico *ser);
 void tela_alterar_servico();
 void tela_excluir_servico();
+void exibe_servicos();
 
 // Funções Pagamentos
+void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 Dados_Pagamento *tela_cadastrar_pagamento();
 void grava_pagamento(Dados_Pagamento *pag);
 Dados_Pagamento *buscar_pagamento();
-void exibe_pagamento();
-void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 void tela_alterar_pagamento();
 void tela_excluir_pagamento();
+void exibe_pagamento();
 
 // Funções Agendamentos
+void tela_pesquisar_agendamento(Dados_Agendamento* age);
 Dados_Agendamento* tela_cadastrar_agendamento(void);
 void grava_agendamento(Dados_Agendamento *age);
 Dados_Agendamento* buscar_agendamento();
-void tela_pesquisar_agendamento(Dados_Agendamento* age);
-void exibe_agendamento();
 void tela_alterar_agendamento();
 void tela_excluir_agendamento();
+void exibe_agendamento();
 
 // Funções telas
-void tela_pacientes();
-void tela_servicos();
 void tela_funcionarios();
 void tela_pagamento();
+void tela_pacientes();
+void tela_servicos();
 void tela_agend();
 void sobre(void);
 
-void tela_progr_odont()
-{
+void tela_progr_odont() {
     char opcao_navegacao;
-    do
-    {
+    do {
         system("cls||clear");
         printf("\n\t=======================================================\n");
         printf("\t=========   Projeto Sistema SIG-Dentistry      ========\n");
@@ -81,8 +79,7 @@ void tela_progr_odont()
         printf("\t=> ");
         scanf("%c", &opcao_navegacao);
         getchar();
-        switch (opcao_navegacao)
-        {
+        switch (opcao_navegacao) {
         case '1':
             tela_pacientes();
             break;
@@ -107,12 +104,10 @@ void tela_progr_odont()
     system("cls||clear");
 }
 
-void tela_pacientes()
-{
+void tela_pacientes() {
     Dados_Paciente *paciente;
     int opcao_paci;
-    do
-    {
+    do {
 
         system("cls||clear");
 

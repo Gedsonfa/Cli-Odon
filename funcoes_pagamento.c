@@ -4,7 +4,7 @@
 #include "validar.h"
 #include "structs.h"
 
-Dados_Pagamento* tela_cadastrar_pagamento(){
+Dados_Pagamento* tela_cadastrar_pagamento(void) {
 
     Dados_Pagamento* pag;
     pag = (Dados_Pagamento*) malloc(sizeof(Dados_Paciente));
@@ -14,9 +14,9 @@ Dados_Pagamento* tela_cadastrar_pagamento(){
     printf("\t===============   Cadastrar Despesas   ============\n");
     printf("\t===================================================\n\n");
     
-        printf("\t === ID da Despesa:  ");
-        scanf("%15[^\n]", pag->cpf);
-        getchar();
+    printf("\t === ID da Despesa:  ");
+    scanf("%15[^\n]", pag->cpf);
+    getchar();
 
 
     printf("\t === Insira o valor:  ");
@@ -60,7 +60,7 @@ void grava_pagamento(Dados_Pagamento* pag){
     fclose(fp);
 }
 
-Dados_Pagamento* buscar_pagamento(){
+Dados_Pagamento* buscar_pagamento(void) {
     FILE* fp;
     Dados_Pagamento* pag;
     char pog[15];
@@ -127,7 +127,7 @@ void exibe_pagamento(Dados_Pagamento* pag) {
 }
 
 
-void tela_alterar_pagamento(){
+void tela_alterar_pagamento(void) {
 
     FILE* fp;
     Dados_Pagamento* pag;
@@ -238,8 +238,7 @@ void tela_alterar_pagamento(){
 
 }
 
-char escAtualizarPagamento(void)
-{    
+char escAtualizarPagamento(void) {    
     char op;
     system(" cls || clear");
     printf(" | ========================================================= | \n");
@@ -257,22 +256,16 @@ char escAtualizarPagamento(void)
     printf(" | Selecione uma opção do que você deseja editar: ");
     scanf("%c", &op);
     getchar();
-
     return op;
-
 }
 
 
-void tela_excluir_pagamento(){
-
-
+void tela_excluir_pagamento(void) {
     FILE* fp;
     Dados_Pagamento* pag;
     int achou;
     char resp;
     char procurado[15];
-
-
     fp = fopen("pagamentos.dat", "r+b");
     if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
@@ -324,8 +317,7 @@ void tela_excluir_pagamento(){
 //update
 
 
-int listarPagamentos(void)
-{
+int listarPagamentos(void) {
     FILE* fp;
     Dados_Pagamento* pag;
     fp = fopen("pagamentos.dat", "rb");
