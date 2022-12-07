@@ -105,7 +105,7 @@ void tela_progr_odont()
 void tela_pacientes()
 {
     Dados_Paciente *paciente;
-    char opcao_paci;
+    int opcao_paci;
     do
     {
 
@@ -122,38 +122,38 @@ void tela_pacientes()
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
-        scanf("%c", &opcao_paci);
+        scanf("%d", &opcao_paci);
         getchar();
         switch (opcao_paci)
         {
-        case '1':
+        case 1:
             paciente = tela_cadastrar_paciente();
             grava_paciente(paciente);
 
             free(paciente);
             break;
-        case '2':
+        case 2:
             paciente = buscaPaciente();
             tela_pesquisar_paciente(paciente);
 
             free(paciente);
             break;
-        case '3':
+        case 3:
             tela_alterar_paciente();
 
             break;
-        case '4':
+        case 4:
             tela_excluir_paciente();
 
             break;
-        case '5':
+        case 5:
             listarPacientes();
             break;
         default:
             printf("Opção inválida");
             break;
         }
-    } while (opcao_paci != '0');
+    } while (opcao_paci);
 }
 
 void tela_servicos()

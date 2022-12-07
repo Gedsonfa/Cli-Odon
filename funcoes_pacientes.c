@@ -14,14 +14,6 @@ Dados_Paciente* tela_cadastrar_paciente(){
     printf("\t===================================================\n");
     printf("\t===============   Cadastrar Paciente   ============\n");
     printf("\t===================================================\n\n");
-    /*struct Dados_Agendamento{
-    char cpf_paciente[15];
-    char codigo_servico[6];
-    char cpf_funcionario[15];
-    char data[11];
-    char hora[6];
-    char status;
-};*/
     do
     {
         printf("\t === Insira o CPF So Numeros]:     ");
@@ -134,13 +126,13 @@ void tela_pesquisar_paciente(Dados_Paciente* pac)
 
 void exibe_pacientes(Dados_Paciente* pac) {
 
-    printf("CPF: %s\n", pac->cpf);
-    printf("Nome: %s\n", pac->nome);
-    printf("Idade: %s\n", pac->idade);
-    printf("E-mail de contato: %s\n", pac->email);
-    printf("Endereco: %s\n", pac->endereco);
-    printf("Numero de contato: %s\n", pac->numero);
-    printf("Status: %c\n", pac->status);
+    printf(" | CPF: %s\n", pac->cpf);
+    printf(" | Nome: %s\n", pac->nome);
+    printf(" | Idade: %s\n", pac->idade);
+    printf(" | E-mail de contato: %s\n", pac->email);
+    printf(" | Endereco: %s\n", pac->endereco);
+    printf(" | Numero de contato: %s\n", pac->numero);
+    printf(" | Status: %c\n", pac->status);
     printf("\n");
 }
 

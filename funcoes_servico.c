@@ -111,12 +111,12 @@ void tela_pesquisar_servico(Dados_Servico* ser){
 
 void exibe_servicos(Dados_Servico* ser) {
 
-    printf("Código do Servico: %s\n", ser->codigo);
-    printf("Nome: %s\n", ser->nome);
-    printf("Duração: %s\n", ser->tempo);
-    printf("Preco: %s\n", ser->custo);
-    printf("disponibilidade: %s\n", ser->disponi);
-    printf("Status: %c\n", ser->status);
+    printf(" | Código do Servico: %s\n", ser->codigo);
+    printf(" | Nome: %s\n", ser->nome);
+    printf(" | Duração: %s\n", ser->tempo);
+    printf(" | Preco: %s\n", ser->custo);
+    printf(" | Disponibilidade: %s\n", ser->disponi);
+    printf(" | Status: %c\n", ser->status);
     printf("\n");
 
 

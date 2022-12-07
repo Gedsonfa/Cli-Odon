@@ -109,11 +109,11 @@ void tela_pesquisar_agendamento(Dados_Agendamento* age){
 }
 
 void exibe_agendamento(Dados_Agendamento* age) {
-    printf("Codigo do Agendamento: %s\n", age->codigo_servico);
-    printf("CPF: %s\n", age->cpf);
-    printf("Data do Agendamento: %s\n", age->data);
-    printf("Horario do Agendamento: %s\n", age->hora);
-    printf("Status: %c\n", age->status);
+    printf(" | Codigo do Agendamento: %s\n", age->codigo_servico);
+    printf(" | CPF: %s\n", age->cpf);
+    printf(" | Data do Agendamento: %s\n", age->data);
+    printf(" | Horario do Agendamento: %s\n", age->hora);
+    printf(" | Status: %c\n", age->status);
     printf("\n");
 
 

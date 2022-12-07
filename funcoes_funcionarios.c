@@ -121,13 +121,13 @@ void tela_pesquisar_funcionario(Dados_Funcionario* fun){
 
 void exibe_funcionarios(Dados_Funcionario* fun) {
 
-    printf("CPF: %s\n", fun->cpf);
-    printf("Nome: %s\n", fun->nome);
-    printf("Idade: %s\n", fun->idade);
-    printf("E-mail de contato: %s\n", fun->email);
-    printf("Endereco: %s\n", fun->endereco);
-    printf("Numero de contato: %s\n", fun->telefone);
-    printf("Status: %c\n", fun->status);
+    printf(" | CPF: %s\n", fun->cpf);
+    printf(" | Nome: %s\n", fun->nome);
+    printf(" | Idade: %s\n", fun->idade);
+    printf(" | E-mail de contato: %s\n", fun->email);
+    printf(" | Endereco: %s\n", fun->endereco);
+    printf(" | Numero de contato: %s\n", fun->telefone);
+    printf(" | Status: %c\n", fun->status);
     printf("\n");
 
 
