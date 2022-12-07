@@ -54,6 +54,7 @@ void tela_servicos();
 void tela_funcionarios();
 void tela_pagamento();
 void tela_agend();
+void sobre(void);
 
 void tela_progr_odont()
 {
@@ -74,6 +75,7 @@ void tela_progr_odont()
         printf("\t === 3- Modulo Funcionarios\n");
         printf("\t === 4- Modulo Agendamento\n");
         printf("\t === 5- Modulo Despesas\n");
+        printf("\t === 6- Tela Sobre\n");
         printf("\t === 0- Voltar\n");
         printf("\t=====================================================\n");
         printf("\t=> ");
@@ -95,6 +97,9 @@ void tela_progr_odont()
             break;
         case '5':
             tela_pagamento();
+            break;
+        case '6':
+            sobre();
             break;
         }
     } while (opcao_navegacao != '0');
@@ -368,4 +373,31 @@ void tela_agend()
         }
         
     } while (opcao_agend != '0');
+}
+
+void sobre(void) {
+    system("cls||clear");
+    printf("\t ===================================================== \n ");
+    printf("\t ==== Sistema de Gestão de Clínica Odontológica ==== \n ");
+    printf("\t Este projeto foi desenvolvido por: \n ");
+    printf("\t Discente: Gedson Fernandes \n ");
+    printf("\t E-mail: gedsonfda@gmail.com \n ");
+    printf("\t Redes Sociais: @gedsonfa \n ");
+    printf("\t Git : https://github.com/Gedsonfa \n");
+    printf("\t ===================================================== \n");
+    printf("\t Discente: Gabriel Wallace  \n ");
+    printf("\t E-mail: gcanutosantos@gmail.com \n ");
+    printf("\t Redes Sociais: @gabriel_wallace_17 \n ");
+    printf("\t Git : https://github.com/Japagabriel \n ");
+    printf("\t ===================================================== \n ");
+    printf("\t Programa ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao, com o objetivo de servir a uma clinica odontologica fictícia, NÃO NOS RESPONSABILIZAMOS POR QUAISQUER TRANSTORNOS SOFRIDOS POR USO NÃO AUTORIZADO DE TERCEIROS de partes ou de todo o codigo.\n " );
+    printf("\t ======================================================== \n");
+    printf("\t Agradecemos a todos que contribuiram com o projeto direta ou indiretamente: \n");
+    printf("\t https://github.com/italo-mauricio \n");
+    printf("\t https://github.com/FlaviusGorgonio \n");
+    printf("\t https://github.com/DayXL \n");
+    printf("\t Perdão caso tenhamos esquecido sua menção\n");
+    printf("\t ======================================================== \n");
+    printf("\tTecle ENTER para prosseguir...\n");
+    getchar();
 }
