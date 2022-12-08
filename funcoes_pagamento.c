@@ -378,7 +378,7 @@ int listarPagamentosCad(void) {
     }
     pag = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
     while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) {
-        if (pag->status == 'm') {
+        if (pag->status != 'x') {
             system(" cls || clear");
             printf(" | ====================== Listar Despesas ========================= | \n");
             printf(" |                                                                  | \n");

@@ -364,7 +364,7 @@ int listarServicoCad(void) {
     }
     ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
     while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
-        if (ser->status == 'm') {
+        if (ser->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Serviços ========================== | \n");
             printf(" |                                                                  | \n");

@@ -393,7 +393,7 @@ int listarFuncionariosCad(void)
     }
     fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
     while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
-        if (fun->status == 'm') {
+        if (fun->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Funcionarios ======================== | \n");
             printf(" |                                                                    | \n");

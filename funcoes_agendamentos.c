@@ -181,7 +181,7 @@ int listarAgendamentosCad(void)
     }
     age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
     while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
-        if (age->status == 'm') {
+        if (age->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Lista item ======================== | \n");
             printf(" |                                                           | \n");
