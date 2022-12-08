@@ -355,4 +355,70 @@ int listarFuncionarios(void)
 
 }
 
+int listarFuncionariosExc(void)
+{
+    FILE* fp;
+    Dados_Funcionario* fun;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+        if (fun->status == 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Funcionarios ======================== | \n");
+            printf(" |                                                                    | \n");
+            exibe_funcionarios(fun);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } else {
+            printf(" | Nenhum funcionário excluido...\n");
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+            fclose(fp);
+            free(fun);
+            return 0;
+        }
+    }
 
+    fclose(fp);
+    free(fun);
+    return 0;
+
+}
+
+int listarFuncionariosCad(void)
+{
+    FILE* fp;
+    Dados_Funcionario* fun;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+        if (fun->status == 'm') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Funcionarios ======================== | \n");
+            printf(" |                                                                    | \n");
+            exibe_funcionarios(fun);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } else {
+            printf(" | Nenhum funcionário ativo...\n");
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+            fclose(fp);
+            free(fun);
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    free(fun);
+    return 0;
+
+}

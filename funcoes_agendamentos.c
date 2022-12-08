@@ -144,6 +144,72 @@ int listarAgendamentos(void)
 
 }
 
+int listarAgendamentosExc(void)
+{
+    FILE* fp;
+    Dados_Agendamento* age;
+    fp = fopen("agendamentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
+    while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
+        if (age->status == 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Lista item ======================== | \n");
+            printf(" |                                                           | \n");
+            exibe_agendamento(age);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } else {
+            printf(" | Nenhum agendamento excluido...\n");
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+            fclose(fp);
+            free(age);
+            return 0;
+        }
+    } 
+    fclose(fp);
+    free(age);
+    return 0;
+
+}
+
+int listarAgendamentosCad(void)
+{
+    FILE* fp;
+    Dados_Agendamento* age;
+    fp = fopen("agendamentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
+    while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
+        if (age->status == 'm') {
+            system(" cls || clear");
+            printf(" | ===================== Lista item ======================== | \n");
+            printf(" |                                                           | \n");
+            exibe_agendamento(age);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } else {
+            printf(" | Nenhum agendamento ativo...\n");
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+            fclose(fp);
+            free(age);
+            return 0;
+        }
+    }
+
+    fclose(fp);
+    free(age);
+    return 0;
+
+}
 
 void tela_alterar_agendamento(){
     FILE* fp;

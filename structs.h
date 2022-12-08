@@ -66,10 +66,21 @@ char escAtualizarFuncionario(void);
 char escAtualizarPaciente(void);
 char escAtualizarPagamento(void);
 char escAtualizarServico(void);
+
+// Agendamentos
 int listarAgendamentos(void);
+int listarAgendamentosExc(void);
+int listarAgendamentosCad(void);
+
+// Funcionários
 int listarFuncionarios(void);
+int listarFuncionariosExc(void);
+int listarFuncionariosCad(void);
+
+// Pacientes
 int listarPacientes(void);
 int listarPacientesExc(void);
+int listarPacientesCad(void);
 
 // Despesas
 int listarPagamentos(void);

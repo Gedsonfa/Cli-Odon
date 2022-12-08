@@ -414,6 +414,7 @@ void relatorio_paciente() {
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os pacientes\n");
         printf("\t === 2- Pacientes excluidos\n");
+        printf("\t === 3- Pacientes ativos\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -426,6 +427,9 @@ void relatorio_paciente() {
             break;
         case '2':
             listarPacientesExc();
+            break;
+        case '3':
+            listarPacientesCad();
             break;
         default:
             break;
@@ -441,6 +445,8 @@ void relatorio_funcionario() {
         printf("\t============ Relatórios de Funcionários ===========\n");
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os funcionários\n");
+        printf("\t === 2- Funcionários excluidos\n");
+        printf("\t === 3- Funcionários ativos\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -449,6 +455,12 @@ void relatorio_funcionario() {
         switch (opcao) {
             case '1':
                 listarFuncionarios();
+                break;
+            case '2':
+                listarFuncionariosExc();
+                break;
+            case '3':
+                listarFuncionariosCad();
                 break;
             default:
                 break;
@@ -525,6 +537,8 @@ void relatorio_agendamentos() {
         printf("\t============== Relatórios de Agendamentos =============\n");
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os agendamentos\n");
+        printf("\t === 2- Agendamentos excluidos\n");
+        printf("\t === 3- Agendamentos ativos\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -533,6 +547,12 @@ void relatorio_agendamentos() {
         switch (opcao) {
             case '1':
                 listarAgendamentos();
+                break;
+            case '2':
+                listarAgendamentosExc();
+                break;
+            case '3':
+                listarAgendamentosCad();
                 break;
             default:
                 break;
