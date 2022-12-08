@@ -304,8 +304,7 @@ void tela_excluir_servico(){
 }
 //update
 
-int listarServico(void)
-{
+int listarServico(void) {
     FILE* fp;
     Dados_Servico* ser;
     fp = fopen("servicos.dat", "rb");
@@ -321,6 +320,58 @@ int listarServico(void)
         exibe_servicos(ser);     
         printf(" | Pressione qualquer tecla para sair...");
         getchar();
+    }
+
+    fclose(fp);
+    free(ser);
+    return 0;
+
+}
+
+int listarServicoExc(void) {
+    FILE* fp;
+    Dados_Servico* ser;
+    fp = fopen("servicos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+        if (ser->status == 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Serviços ========================== | \n");
+            printf(" |                                                                  | \n");
+            exibe_servicos(ser);     
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        }
+    }
+
+    fclose(fp);
+    free(ser);
+    return 0;
+
+}
+
+int listarServicoCad(void) {
+    FILE* fp;
+    Dados_Servico* ser;
+    fp = fopen("servicos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+        if (ser->status == 'm') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Serviços ========================== | \n");
+            printf(" |                                                                  | \n");
+            exibe_servicos(ser);     
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        }
     }
 
     fclose(fp);

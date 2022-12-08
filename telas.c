@@ -413,6 +413,7 @@ void relatorio_paciente() {
         printf("\t=============== Relatórios de Pacientes ===========\n");
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os pacientes\n");
+        printf("\t === 2- Pacientes excluidos\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -423,7 +424,9 @@ void relatorio_paciente() {
         case '1':
             listarPacientes();
             break;
-        
+        case '2':
+            listarPacientesExc();
+            break;
         default:
             break;
         }
@@ -460,6 +463,8 @@ void relatorio_servicos() {
         printf("\t============== Relatórios de Serviços =============\n");
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os serviços\n");
+        printf("\t === 2- Serviços excluidos\n");
+        printf("\t === 3- Serviços ativos\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -468,6 +473,12 @@ void relatorio_servicos() {
         switch (opcao) {
             case '1':
                 listarServico();
+                break;
+            case '2':
+                listarServicoExc();
+                break;
+            case '3':
+                listarServicoCad();
                 break;
             default:
                 break;
@@ -483,6 +494,8 @@ void relatorio_despesas() {
         printf("\t============== Relatórios de Despesas =============\n");
         printf("\t===================================================\n\n");
         printf("\t === 1- Todas as despesas\n");
+        printf("\t === 2- Despesas excluidas\n");
+        printf("\t === 3- Despesas ativas\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -491,6 +504,12 @@ void relatorio_despesas() {
         switch (opcao) {
             case '1':
                 listarPagamentos();
+                break;
+            case '2':
+                listarPagamentosExc();
+                break;
+            case '3':
+                listarPagamentosCad();
                 break;
             default:
                 break;

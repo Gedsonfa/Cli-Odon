@@ -69,5 +69,14 @@ char escAtualizarServico(void);
 int listarAgendamentos(void);
 int listarFuncionarios(void);
 int listarPacientes(void);
+int listarPacientesExc(void);
+
+// Despesas
 int listarPagamentos(void);
+int listarPagamentosExc(void);
+int listarPagamentosCad(void);
+
+// Serviços
 int listarServico(void);
+int listarServicoExc(void);
+int listarServicoCad(void);
