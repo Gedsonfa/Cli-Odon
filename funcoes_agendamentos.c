@@ -162,13 +162,6 @@ int listarAgendamentosExc(void)
             exibe_agendamento(age);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhum agendamento excluido...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(age);
-            return 0;
         }
     } 
     fclose(fp);
@@ -195,14 +188,7 @@ int listarAgendamentosCad(void)
             exibe_agendamento(age);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhum agendamento ativo...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(age);
-            return 0;
-        }
+        } 
     }
 
     fclose(fp);

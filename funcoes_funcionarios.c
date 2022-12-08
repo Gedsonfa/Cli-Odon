@@ -373,13 +373,6 @@ int listarFuncionariosExc(void)
             exibe_funcionarios(fun);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhum funcionário excluido...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(fun);
-            return 0;
         }
     }
 
@@ -407,13 +400,6 @@ int listarFuncionariosCad(void)
             exibe_funcionarios(fun);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhum funcionário ativo...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(fun);
-            return 0;
         }
     }
 

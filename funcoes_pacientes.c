@@ -366,13 +366,6 @@ int listarPacientesExc(void) {
             exibe_pacientes(pac);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar(); 
-        } else {
-            printf(" | Nenhum paciente excluido...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(pac);
-            return 0;
         }
     }
 
@@ -392,20 +385,13 @@ int listarPacientesCad(void) {
     }
     pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
     while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
-        if (pac->status == 'm') {
+        if (pac->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Pacientes ======================== | \n");
             printf(" |                                                                 | \n");
             exibe_pacientes(pac);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar(); 
-        } else {
-            printf(" | Nenhum paciente ativo...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(pac);
-            return 0;
         }
     }
 

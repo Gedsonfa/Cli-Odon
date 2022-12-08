@@ -345,14 +345,7 @@ int listarServicoExc(void) {
             exibe_servicos(ser);     
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhum serviço excluido...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(ser);
-            return 0;
-        }
+        } 
     }
 
     fclose(fp);

@@ -359,13 +359,6 @@ int listarPagamentosExc(void) {
             exibe_pagamento(pag);         
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhuma despesa excluidoa...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(pag);
-            return 0;
         }
     }
 
@@ -392,14 +385,7 @@ int listarPagamentosCad(void) {
             exibe_pagamento(pag);         
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhuma despesa ativa...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(pag);
-            return 0;
-        }
+        } 
     }
 
     fclose(fp);
