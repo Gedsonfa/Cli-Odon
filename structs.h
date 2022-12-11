@@ -71,6 +71,8 @@ char escAtualizarServico(void);
 int listarAgendamentos(void);
 int listarAgendamentosExc(void);
 int listarAgendamentosCad(void);
+char* get_nome_agendamento();
+char* get_nome_full();
 
 // Funcionários
 int listarFuncionarios(void);

@@ -4,11 +4,85 @@
 #include "validar.h"
 #include "structs.h"
 
+
+char* get_nome_agendamento(char* cpf) 
+{
+
+  Dados_Paciente* pac;
+  FILE* fp;
+  char* nome;
+
+  nome = (char*) malloc(81*sizeof(char));
+
+  pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+  fp = fopen("pacientes.dat", "rb");
+
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    while (!feof(fp))
+    { // Busca até o final do arquivo
+        fread(pac, sizeof(Dados_Paciente), 1, fp);
+        if (strcmp(pac->cpf, cpf) == 0 && (pac->status != 'x'))
+        { /*Verifica se o código é igual e o status*/
+            fclose(fp);
+            strcpy(nome, pac->nome);
+            free(pac);
+            return nome;
+        }
+    }
+
+    fclose(fp);
+    free(pac);
+    return NULL;
+
+}
+
+char* get_nome_full(char* cpf) 
+{
+  Dados_Paciente* pac;
+  FILE* fp;
+  char* nome;
+
+  nome = (char*) malloc(81*sizeof(char));
+
+  pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+  fp = fopen("pacientes.dat", "rb");
+
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    while (!feof(fp))
+    { // Busca até o final do arquivo
+        fread(pac, sizeof(Dados_Paciente), 1, fp);
+        if (strcmp(pac->cpf, cpf) == 0)
+        { /*Verifica se o código é igual e o status*/
+            fclose(fp);
+            strcpy(nome, pac->nome);
+            free(pac);
+            return nome;
+        }
+    }
+
+    fclose(fp);
+    free(pac);
+    return NULL;
+
+}
+
+
+
 Dados_Agendamento* tela_cadastrar_agendamento(void){
 
     Dados_Agendamento* age;
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
-
+    char* nome_pac;
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t===============   Cadastrar Agendamento   ============\n");
@@ -20,24 +94,46 @@ Dados_Agendamento* tela_cadastrar_agendamento(void){
         getchar();
     }while(!validarCPF(age->cpf));
 
-    printf("\t === Insira o codigo do servico:  ");
-    scanf("%10[^\n]", age->codigo_servico);
-    getchar();
 
-    printf("\t === Insira a data de agendamento:   ");
-    scanf("%s", age->data);
-    getchar();
+    nome_pac = get_nome_agendamento(age->cpf);
+    if (nome_pac != NULL) 
+    {
+        printf("\t ================================= \n");
+        printf("\t Paciente encontrado com sucesso!\n");
+        printf("\t Nome do Paciente: %s\n", nome_pac);
+        printf("\t ================================= \n");
+        free(nome_pac);
 
-    printf("\t === Insira o horario:   ");
-    scanf("%s", age->hora);
-    getchar();
+        printf("\t === Insira o codigo do servico:  ");
+        scanf("%10[^\n]", age->codigo_servico);
+        getchar();
 
-    age->status = 'm';
-    return age;
+        printf("\t === Insira a data de agendamento:   ");
+        scanf("%s", age->data);
+        getchar();
 
-    printf("\t==================================================\n\n");
-    system("\tPause");
-    system("cls | clear");
+        printf("\t === Insira o horario:   ");
+        scanf("%s", age->hora);
+        getchar();
+
+        age->status = 'm';
+        return age;
+        printf("\t==================================================\n\n");
+        system("\tPause");
+        system("cls | clear");
+        printf(" Aperte ENTER para continuar...");
+        getchar();
+   
+    } else {
+        printf("\t ================================= \n");
+        printf("\t Ops, Paciente não encontrado!\n");
+        printf("\t Verifique se esse cadastro existe ou está ativo!\n");
+        printf("\t ================================= \n\n");
+        printf("\t==================================================\n\n");
+        system("\tPause");
+        system("cls | clear");
+        return NULL;
+    }
 
 
 }
@@ -62,7 +158,7 @@ Dados_Agendamento* buscar_agendamento(){
     char men[15];
 
     printf("\n ===== Buscar Agendamento ======");
-    printf("\n Informe o codigo de servico: ");
+    printf("\n Informe o Codigo do agendamento: ");
     scanf("%s", men);
     getchar();
     
@@ -88,6 +184,7 @@ return NULL;
 
 void tela_pesquisar_agendamento(Dados_Agendamento* age){
 
+    char* nome_pac;
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t============   Pesquisar Agendamento   ============\n");
@@ -95,7 +192,10 @@ void tela_pesquisar_agendamento(Dados_Agendamento* age){
     if((age == NULL) || (age->status == 'x')){
         printf("Agendamento nao encontrado");
     }else{
+        
+        nome_pac = get_nome_full(age->cpf);
         printf(" | ============== Agendamento encontrado ========\n");
+        printf(" | Nome do Paciente: %s\n", nome_pac);
         printf(" | CPF : %s\n", age->cpf);
         printf(" | Codigo do agendamento: %s\n", age->codigo_servico);
         printf(" | Data do agendamento: %s\n", age->data);
@@ -104,11 +204,15 @@ void tela_pesquisar_agendamento(Dados_Agendamento* age){
         printf(" | aperte ENTER para continuar");
         getchar();
         system(" cls| clear");
+        free(nome_pac);
     }
 
 }
 
 void exibe_agendamento(Dados_Agendamento* age) {
+    char* nome_pac;
+    nome_pac = get_nome_full(age->cpf);
+    printf(" | Nome do Paciente: %s\n", nome_pac);
     printf(" | Codigo do Agendamento: %s\n", age->codigo_servico);
     printf(" | CPF: %s\n", age->cpf);
     printf(" | Data do Agendamento: %s\n", age->data);
@@ -319,7 +423,7 @@ void tela_excluir_agendamento(){
     Dados_Agendamento* age;
     int achou;
     char resp;
-    char procurado[15];
+    char procurado[20];
     fp = fopen("agendamentos.dat", "r+b");
     if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
@@ -328,11 +432,11 @@ void tela_excluir_agendamento(){
     }
     printf("\n\n");
     system ("cls||clear");
-    printf("=============================\n");
-    printf("==== Apagar Agendamento =====\n");
-    printf("============================= \n");
-    printf("Informe o agendamento a ser apagado: ");
-    scanf(" %14[^\n]", procurado);
+    printf("==================================================\n");
+    printf("============== Apagar Agendamento ================\n");
+    printf("==================================================\n");
+    printf("Informe o codigo do agendamento a ser apagado: ");
+    scanf(" %19[^\n]", procurado);
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
     achou = 0;
     while((!achou) && (fread(age, sizeof(Dados_Agendamento), 1, fp))) {
