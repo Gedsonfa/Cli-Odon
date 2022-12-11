@@ -20,15 +20,7 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
         getchar();
         
     }while(!validarCPF(fun->cpf));
-/*struct Dados_Pagamento{
-char cpf[15];
-char valor[6];
-char data_criacao[11];
-char data_captura[11];
-char meio_pagamento[30];
-char banco[30];
-char status;
-};*/
+
     do{
     printf("\t === Insira o nome:   ");
     scanf("%51[^\n]",fun->nome);
@@ -129,16 +121,15 @@ void tela_pesquisar_funcionario(Dados_Funcionario* fun){
 
 void exibe_funcionarios(Dados_Funcionario* fun) {
 
-    printf("CPF: %s\n", fun->cpf);
-    printf("Nome: %s\n", fun->nome);
-    printf("Idade: %s\n", fun->idade);
-    printf("E-mail de contato: %s\n", fun->email);
-    printf("Endereco: %s\n", fun->endereco);
-    printf("Numero de contato: %s\n", fun->telefone);
-    printf("Status: %c\n", fun->status);
+    printf(" | CPF: %s\n", fun->cpf);
+    printf(" | Nome: %s\n", fun->nome);
+    printf(" | Idade: %s\n", fun->idade);
+    printf(" | E-mail de contato: %s\n", fun->email);
+    printf(" | Endereco: %s\n", fun->endereco);
+    printf(" | Numero de contato: %s\n", fun->telefone);
+    printf(" | Status: %c\n", fun->status);
     printf("\n");
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
 
 }
 
@@ -153,11 +144,11 @@ void tela_alterar_funcionario(){
 
 
     fp = fopen("funcionarios.dat", "r+b");
-     if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar o programa...\n");
-      exit(1);
- }
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+}
     fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
     system ("cls||clear");
     printf("\t=========================================================\n");
@@ -166,18 +157,18 @@ void tela_alterar_funcionario(){
     printf("\t === Insira o CPF:    ");
     scanf("%s",procurando);
     getchar();
- 
+
     achou = 0;
 
     while((!achou) && (fread(fun, sizeof(Dados_Funcionario), 1, fp))) {
     if ((strcmp(fun->cpf, procurando) == 0) && (fun->status == 'm')) {
     achou = 1;
     }if (achou) {
-       exibe_funcionarios(fun);
-       printf(" Deseja realmente editar este funcionario? [s/n] ");
-       scanf("%c", &resp);
-       getchar();
-       if (resp == 's' || resp == 'S') {
+        exibe_funcionarios(fun);
+        printf(" Deseja realmente editar este funcionario? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
         
         esc = escAtualizarFuncionario();
 
@@ -205,40 +196,38 @@ void tela_alterar_funcionario(){
                 getchar();
 
 
-     } else if (esc == '2'){
+    } else if (esc == '2'){
                 
                 printf(" | Informe novo nome: ");
                 scanf("%[A-Z a-z]", fun->nome);
                 getchar();
 
-     } else if (esc == '3'){
+    } else if (esc == '3'){
 
                 printf(" | Informe a nova idade: ");
                 scanf("%20[^\n]",fun->idade);
                 getchar();
 
-     } else if (esc == '4'){
+    } else if (esc == '4'){
 
                 printf(" | Informe o novo email: ");
                 scanf("%s", fun->email);
                 getchar();
-     } else if (esc == '5'){
+    } else if (esc == '5'){
                 printf(" | Informe o novo endereço: ");
                 scanf("%[A-Z a-z 0-9]", fun->endereco);
                 getchar();
 
-     } else if (esc == '6') {
+    } else if (esc == '6') {
                 printf(" | Informe o novo numero: ");
                 scanf("%20[^\n]", fun->telefone);
                 getchar();
-     }
+    }
     fun->status = 'm';
     fseek(fp, (-1)*sizeof(Dados_Funcionario), SEEK_CUR);
     fwrite(fun, sizeof(Dados_Funcionario), 1, fp);
     printf("\nUsuario editado com sucesso!!!\n");
-    grava_funcionario(fun);
-    free(fun);
-   
+
 
 
     } else {
@@ -355,14 +344,67 @@ int listarFuncionarios(void)
         system(" cls || clear");
         printf(" | ===================== Listar Funcionarios ======================== | \n");
         printf(" |                                                                    | \n");
-        exibe_funcionarios(fun);
+        exibe_funcionarios(fun);    
+        printf(" | Pressione qualquer tecla para sair...");
+        getchar();
     }
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
     fclose(fp);
     free(fun);
     return 0;
 
 }
 
+int listarFuncionariosExc(void)
+{
+    FILE* fp;
+    Dados_Funcionario* fun;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+        if (fun->status == 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Funcionarios ======================== | \n");
+            printf(" |                                                                    | \n");
+            exibe_funcionarios(fun);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        }
+    }
 
+    fclose(fp);
+    free(fun);
+    return 0;
+
+}
+
+int listarFuncionariosCad(void)
+{
+    FILE* fp;
+    Dados_Funcionario* fun;
+    fp = fopen("funcionarios.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+        if (fun->status != 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Funcionarios ======================== | \n");
+            printf(" |                                                                    | \n");
+            exibe_funcionarios(fun);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        }
+    }
+
+    fclose(fp);
+    free(fun);
+    return 0;
+
+}

@@ -14,14 +14,6 @@ Dados_Paciente* tela_cadastrar_paciente(){
     printf("\t===================================================\n");
     printf("\t===============   Cadastrar Paciente   ============\n");
     printf("\t===================================================\n\n");
-    /*struct Dados_Agendamento{
-    char cpf_paciente[15];
-    char codigo_servico[6];
-    char cpf_funcionario[15];
-    char data[11];
-    char hora[6];
-    char status;
-};*/
     do
     {
         printf("\t === Insira o CPF So Numeros]:     ");
@@ -134,17 +126,14 @@ void tela_pesquisar_paciente(Dados_Paciente* pac)
 
 void exibe_pacientes(Dados_Paciente* pac) {
 
-    printf("CPF: %s\n", pac->cpf);
-    printf("Nome: %s\n", pac->nome);
-    printf("Idade: %s\n", pac->idade);
-    printf("E-mail de contato: %s\n", pac->email);
-    printf("Endereco: %s\n", pac->endereco);
-    printf("Numero de contato: %s\n", pac->numero);
-    printf("Status: %c\n", pac->status);
+    printf(" | CPF: %s\n", pac->cpf);
+    printf(" | Nome: %s\n", pac->nome);
+    printf(" | Idade: %s\n", pac->idade);
+    printf(" | E-mail de contato: %s\n", pac->email);
+    printf(" | Endereco: %s\n", pac->endereco);
+    printf(" | Numero de contato: %s\n", pac->numero);
+    printf(" | Status: %c\n", pac->status);
     printf("\n");
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
-
 }
 
 
@@ -158,11 +147,11 @@ void tela_alterar_paciente(){
 
 
     fp = fopen("pacientes.dat", "r+b");
-     if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar o programa...\n");
-      exit(1);
- }
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+}
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     system ("cls||clear");
     printf("\t===================================================\n");
@@ -177,11 +166,11 @@ void tela_alterar_paciente(){
     if ((strcmp(pac->cpf, procurando) == 0) && (pac->status == 'm')) {
     achou = 1;
     }if (achou) {
-       exibe_pacientes(pac);
-       printf(" Deseja realmente editar este paciente? [s/n] ");
-       scanf("%c", &resp);
-       getchar();
-       if (resp == 's' || resp == 'S') {
+        exibe_pacientes(pac);
+        printf(" Deseja realmente editar este paciente? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
         
         esc = escAtualizarPaciente();
 
@@ -209,40 +198,38 @@ void tela_alterar_paciente(){
                 getchar();
 
 
-     } else if (esc == '2'){
+    } else if (esc == '2'){
                 
                 printf(" | Informe novo nome: ");
                 scanf("%[A-Z a-z]", pac->nome);
                 getchar();
 
-     } else if (esc == '3'){
+    } else if (esc == '3'){
 
                 printf(" | Informe a nova idade: ");
                 scanf("%20[^\n]",pac->idade);
                 getchar();
 
-     } else if (esc == '4'){
+    } else if (esc == '4'){
 
                 printf(" | Informe o novo email: ");
                 scanf("%s", pac->email);
                 getchar();
-     } else if (esc == '5'){
+    } else if (esc == '5'){
                 printf(" | Informe o novo endereço: ");
                 scanf("%[A-Z a-z 0-9]", pac->endereco);
                 getchar();
 
-     } else if (esc == '6') {
+    } else if (esc == '6') {
                 printf(" | Informe o novo numero: ");
                 scanf("%20[^\n]", pac->numero);
                 getchar();
-     }
+    }
     pac->status = 'm';
     fseek(fp, (-1)*sizeof(Dados_Paciente), SEEK_CUR);
     fwrite(pac, sizeof(Dados_Paciente), 1, fp);
     printf("\nUsuario editado com sucesso!!!\n");
-    grava_paciente(pac);
-    free(pac);
-   
+
 
 
     } else {
@@ -338,8 +325,7 @@ void tela_excluir_paciente(){
 }
 
 
-int listarPacientes(void)
-{
+int listarPacientes(void) {
     FILE* fp;
     Dados_Paciente* pac;
     fp = fopen("pacientes.dat", "rb");
@@ -352,13 +338,65 @@ int listarPacientes(void)
         system(" cls || clear");
         printf(" | ===================== Listar Pacientes ======================== | \n");
         printf(" |                                                                 | \n");
-        exibe_pacientes(pac); 
+        exibe_pacientes(pac);    
+        printf(" | Pressione qualquer tecla para sair...");
+        getchar(); 
     }
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
     fclose(fp);
     free(pac);
     return 0;
 
 }
 
+int listarPacientesExc(void) {
+    FILE* fp;
+    Dados_Paciente* pac;
+    fp = fopen("pacientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+    while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
+        if (pac->status == 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Pacientes ======================== | \n");
+            printf(" |                                                                 | \n");
+            exibe_pacientes(pac);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar(); 
+        }
+    }
+
+    fclose(fp);
+    free(pac);
+    return 0;
+
+}
+
+int listarPacientesCad(void) {
+    FILE* fp;
+    Dados_Paciente* pac;
+    fp = fopen("pacientes.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+    while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
+        if (pac->status != 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Pacientes ======================== | \n");
+            printf(" |                                                                 | \n");
+            exibe_pacientes(pac);    
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar(); 
+        }
+    }
+
+    fclose(fp);
+    free(pac);
+    return 0;
+
+}

@@ -8,7 +8,7 @@ struct Dados_Pagamento{
 char cpf[15];
 char valor[30];
 char data_criacao[20];
-char data_captura[20];
+char nome_desp[20];
 char meio_pagamento[30];
 char banco[30];
 char status;
@@ -66,8 +66,28 @@ char escAtualizarFuncionario(void);
 char escAtualizarPaciente(void);
 char escAtualizarPagamento(void);
 char escAtualizarServico(void);
+
+// Agendamentos
 int listarAgendamentos(void);
+int listarAgendamentosExc(void);
+int listarAgendamentosCad(void);
+
+// Funcionários
 int listarFuncionarios(void);
+int listarFuncionariosExc(void);
+int listarFuncionariosCad(void);
+
+// Pacientes
 int listarPacientes(void);
+int listarPacientesExc(void);
+int listarPacientesCad(void);
+
+// Despesas
 int listarPagamentos(void);
+int listarPagamentosExc(void);
+int listarPagamentosCad(void);
+
+// Serviços
 int listarServico(void);
+int listarServicoExc(void);
+int listarServicoCad(void);

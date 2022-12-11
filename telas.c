@@ -5,61 +5,68 @@
 
 // Funções pacientes
 void tela_pesquisar_paciente(Dados_Paciente *pac);
-Dados_Paciente* buscaPaciente();
-void exibe_pacientes();
-void tela_alterar_paciente();
-void tela_excluir_paciente();
 void grava_paciente(Dados_Paciente *pac);
 Dados_Paciente *tela_cadastrar_paciente();
+Dados_Paciente* buscaPaciente();
+void tela_alterar_paciente();
+void tela_excluir_paciente();
+void exibe_pacientes();
 
 // Funções Funcionarios
+void tela_pesquisar_funcionario(Dados_Funcionario *fun);
 Dados_Funcionario *tela_cadastrar_funcionario();
 void grava_funcionario(Dados_Funcionario *fun);
 Dados_Funcionario *buscar_funcionario();
-void tela_pesquisar_funcionario(Dados_Funcionario *fun);
-void exibe_funcionarios();
 void tela_alterar_funcionario();
 void tela_excluir_funcionario();
+void exibe_funcionarios();
 
 // Funções Serviço
+void tela_pesquisar_servico(Dados_Servico *ser);
 Dados_Servico *tela_cadastrar_servico();
 void grava_servico(Dados_Servico *ser);
 Dados_Servico *buscar_servico();
-void exibe_servicos();
-void tela_pesquisar_servico(Dados_Servico *ser);
 void tela_alterar_servico();
 void tela_excluir_servico();
+void exibe_servicos();
 
 // Funções Pagamentos
+void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 Dados_Pagamento *tela_cadastrar_pagamento();
 void grava_pagamento(Dados_Pagamento *pag);
 Dados_Pagamento *buscar_pagamento();
-void exibe_pagamento();
-void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 void tela_alterar_pagamento();
 void tela_excluir_pagamento();
+void exibe_pagamento();
 
 // Funções Agendamentos
+void tela_pesquisar_agendamento(Dados_Agendamento* age);
 Dados_Agendamento* tela_cadastrar_agendamento(void);
 void grava_agendamento(Dados_Agendamento *age);
 Dados_Agendamento* buscar_agendamento();
-void tela_pesquisar_agendamento(Dados_Agendamento* age);
-void exibe_agendamento();
 void tela_alterar_agendamento();
 void tela_excluir_agendamento();
+void exibe_agendamento();
+
+// Funções Relatórios
+void relatorio_agendamentos();
+void relatorio_funcionario();
+void relatorio_paciente();
+void relatorio_servicos();
+void relatorio_despesas();
 
 // Funções telas
-void tela_pacientes();
-void tela_servicos();
 void tela_funcionarios();
 void tela_pagamento();
+void tela_pacientes();
+void tela_servicos();
+void tela_relatorios(void);
 void tela_agend();
+void sobre(void);
 
-void tela_progr_odont()
-{
+void tela_progr_odont() {
     char opcao_navegacao;
-    do
-    {
+    do {
         system("cls||clear");
         printf("\n\t=======================================================\n");
         printf("\t=========   Projeto Sistema SIG-Dentistry      ========\n");
@@ -70,17 +77,18 @@ void tela_progr_odont()
         printf("\t=========   Sistema Clinica Odontologica   ============\n");
         printf("\t=======================================================\n");
         printf("\t === 1- Modulo Pacientes\n");
-        printf("\t === 2- Modulo Serviços\n");
+        printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
         printf("\t === 4- Modulo Agendamento\n");
-        printf("\t === 5- Modulo Pagamento\n");
+        printf("\t === 5- Modulo Despesas\n");
+        printf("\t === 6- Modulo Relatórios\n");
+        printf("\t === 7- Tela Sobre\n");
         printf("\t === 0- Voltar\n");
         printf("\t=====================================================\n");
         printf("\t=> ");
         scanf("%c", &opcao_navegacao);
         getchar();
-        switch (opcao_navegacao)
-        {
+        switch (opcao_navegacao) {
         case '1':
             tela_pacientes();
             break;
@@ -96,18 +104,22 @@ void tela_progr_odont()
         case '5':
             tela_pagamento();
             break;
+        case '6':
+            tela_relatorios();
+            break;
+        case '7':
+            sobre();
+            break;
         }
     } while (opcao_navegacao != '0');
     printf("\tSaindo do programa...\n");
     system("cls||clear");
 }
 
-void tela_pacientes()
-{
+void tela_pacientes() {
     Dados_Paciente *paciente;
-    char opcao_paci;
-    do
-    {
+    int opcao_paci;
+    do {
 
         system("cls||clear");
 
@@ -118,42 +130,38 @@ void tela_pacientes()
         printf("\t === 2- Pesquisar Paciente\n");
         printf("\t === 3- Alterar Paciente\n");
         printf("\t === 4- Excluir Paciente\n");
-        printf("\t === 5- Listar Paciente\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
-        scanf("%c", &opcao_paci);
+        scanf("%d", &opcao_paci);
         getchar();
         switch (opcao_paci)
         {
-        case '1':
+        case 1:
             paciente = tela_cadastrar_paciente();
             grava_paciente(paciente);
 
             free(paciente);
             break;
-        case '2':
+        case 2:
             paciente = buscaPaciente();
             tela_pesquisar_paciente(paciente);
 
             free(paciente);
             break;
-        case '3':
+        case 3:
             tela_alterar_paciente();
 
             break;
-        case '4':
+        case 4:
             tela_excluir_paciente();
 
-            break;
-        case '5':
-            listarPacientes();
             break;
         default:
             printf("Opção inválida");
             break;
         }
-    } while (opcao_paci != '0');
+    } while (opcao_paci);
 }
 
 void tela_servicos()
@@ -167,11 +175,10 @@ void tela_servicos()
         printf("\t===================================================\n");
         printf("\t==============   Modulo de Servicos   =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Cadastrar serviço\n");
-        printf("\t === 2- Pesquisar serviço\n");
+        printf("\t === 1- Cadastrar servico\n");
+        printf("\t === 2- Pesquisar servico\n");
         printf("\t === 3- Editar serviço\n");
-        printf("\t === 4- Excluir serviço\n");
-        printf("\t === 5- Listar Serviço\n");
+        printf("\t === 4- Excluir servico\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
@@ -199,9 +206,6 @@ void tela_servicos()
             tela_excluir_servico();
 
             break;
-        case '5':
-            listarServico();
-            break;
         default:
             printf("Opção inválida!");
             break;
@@ -220,11 +224,10 @@ void tela_funcionarios()
         printf("\t=========================================================\n");
         printf("\t===============   Modulo de Funcionários   ==============\n");
         printf("\t=========================================================\n\n");
-        printf("\t === 1- Cadastrar funcionário\n");
-        printf("\t === 2- Pesquisar funcionário\n");
-        printf("\t === 3- Alterar funcionário\n");
-        printf("\t === 4- Excluir funcionáio\n");
-        printf("\t === 5- Listar Funcionários\n");
+        printf("\t === 1- Cadastrar funcionario\n");
+        printf("\t === 2- Pesquisar funcionario\n");
+        printf("\t === 3- Alterar funcionario\n");
+        printf("\t === 4- Excluir funcionaio\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t======================================================\n\n");
         printf("\t=> ");
@@ -252,9 +255,6 @@ void tela_funcionarios()
             tela_excluir_funcionario();
 
             break;
-        case '5':
-            listarFuncionarios();
-            break;
         default:
             printf("Opção inválida!");
             break;
@@ -270,16 +270,15 @@ void tela_pagamento()
     {
         system("cls||clear");
         printf("\t===================================================\n");
-        printf("\t===============   Tela Pagamento   =============\n");
+        printf("\t===============   Tela Despesas   =================\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Efetuar pagamento\n");
-        printf("\t === 2- Consultar pagamento\n");
-        printf("\t === 3- Editar pagamento\n");
-        printf("\t === 4- Excluir pagamento\n");
-        printf("\t === 5- Listar Pagamentos\n");
+        printf("\t === 1- Cadastrar Despesa\n");
+        printf("\t === 2- Consultar Despesa\n");
+        printf("\t === 3- Editar Despesa\n");
+        printf("\t === 4- Excluir Despesa\n");
+        printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
+        printf("\t=> ");
         scanf("%c", &opcao_pagamento);
         getchar();
         switch (opcao_pagamento)
@@ -304,9 +303,6 @@ void tela_pagamento()
             tela_excluir_pagamento();
 
             break;
-        case '5':
-            listarPagamentos();
-            break;
         default:
             printf("Opção inválida!");
             break;
@@ -325,14 +321,14 @@ void tela_agend()
         printf("\t===================================================\n");
         printf("\t===============   Tela Agendamento   ==============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- cadastrar Agendamento\n");
+        printf("\t === 1- Cadastrar Agendamento\n");
         printf("\t === 2- Exibir Agendamento\n");
         printf("\t === 3- Alterar Agendamento\n");
         printf("\t === 4- Desagendamento\n");
         printf("\t === 5- Listar Agendamentos\n");
+        printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
-        printf("\t === Digite 0 para confirmar\n");
-        printf("\t=>");
+        printf("\t=> ");
         scanf("%c", &opcao_agend);
         getchar();
         switch (opcao_agend)
@@ -368,4 +364,225 @@ void tela_agend()
         }
         
     } while (opcao_agend != '0');
+}
+
+void tela_relatorios(void) {
+    char opcao;
+    do {
+        system("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t===============   Tela de Relatórios   ============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Relatório Pacientes\n");
+        printf("\t === 2- Relatório Funcionários\n");
+        printf("\t === 3- Relatório Serviços\n");
+        printf("\t === 4- Relatório Despesas\n");
+        printf("\t === 5- Relatório Agendamentos\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%c", &opcao);
+        getchar();
+        switch (opcao) {
+            case '1':
+                relatorio_paciente();
+                break;
+            case '2':
+                relatorio_funcionario();
+                break;
+            case '3':
+                relatorio_servicos();
+                break;
+            case '4':
+                relatorio_despesas();
+                break;
+            case '5':
+                relatorio_agendamentos();
+                break;
+            default:
+                break;
+        }
+    } while (opcao != '0');
+}
+
+void relatorio_paciente() {
+    char opcao;
+    do {
+        system("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t=============== Relatórios de Pacientes ===========\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Todos os pacientes\n");
+        printf("\t === 2- Pacientes excluidos\n");
+        printf("\t === 3- Pacientes ativos\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%c", &opcao);
+        getchar();
+        switch (opcao)
+        {
+        case '1':
+            listarPacientes();
+            break;
+        case '2':
+            listarPacientesExc();
+            break;
+        case '3':
+            listarPacientesCad();
+            break;
+        default:
+            break;
+        }
+    } while (opcao != '0');
+}
+
+void relatorio_funcionario() {
+    char opcao;
+    do {
+        system("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t============ Relatórios de Funcionários ===========\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Todos os funcionários\n");
+        printf("\t === 2- Funcionários excluidos\n");
+        printf("\t === 3- Funcionários ativos\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%c", &opcao);
+        getchar();
+        switch (opcao) {
+            case '1':
+                listarFuncionarios();
+                break;
+            case '2':
+                listarFuncionariosExc();
+                break;
+            case '3':
+                listarFuncionariosCad();
+                break;
+            default:
+                break;
+        }
+    } while (opcao != '0');
+}
+void relatorio_servicos() {
+    char opcao;
+    do {
+        system("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t============== Relatórios de Serviços =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Todos os serviços\n");
+        printf("\t === 2- Serviços excluidos\n");
+        printf("\t === 3- Serviços ativos\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%c", &opcao);
+        getchar();
+        switch (opcao) {
+            case '1':
+                listarServico();
+                break;
+            case '2':
+                listarServicoExc();
+                break;
+            case '3':
+                listarServicoCad();
+                break;
+            default:
+                break;
+        }
+    } while (opcao != '0');
+}
+
+void relatorio_despesas() {
+    char opcao;
+    do {
+        system("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t============== Relatórios de Despesas =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Todas as despesas\n");
+        printf("\t === 2- Despesas excluidas\n");
+        printf("\t === 3- Despesas ativas\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%c", &opcao);
+        getchar();
+        switch (opcao) {
+            case '1':
+                listarPagamentos();
+                break;
+            case '2':
+                listarPagamentosExc();
+                break;
+            case '3':
+                listarPagamentosCad();
+                break;
+            default:
+                break;
+        }
+    } while (opcao != '0');
+}
+
+void relatorio_agendamentos() {
+    char opcao;
+    do {
+        system("cls||clear");
+        printf("\t===================================================\n");
+        printf("\t============== Relatórios de Agendamentos =============\n");
+        printf("\t===================================================\n\n");
+        printf("\t === 1- Todos os agendamentos\n");
+        printf("\t === 2- Agendamentos excluidos\n");
+        printf("\t === 3- Agendamentos ativos\n");
+        printf("\t === 0- Voltar\n");
+        printf("\t==================================================\n\n");
+        printf("\t=> ");
+        scanf("%c", &opcao);
+        getchar();
+        switch (opcao) {
+            case '1':
+                listarAgendamentos();
+                break;
+            case '2':
+                listarAgendamentosExc();
+                break;
+            case '3':
+                listarAgendamentosCad();
+                break;
+            default:
+                break;
+        }
+    } while (opcao != '0');
+}
+
+void sobre(void) {
+    system("cls||clear");
+    printf("\t ===================================================== \n ");
+    printf("\t ==== Sistema de Gestão de Clínica Odontológica ==== \n ");
+    printf("\t Este projeto foi desenvolvido por: \n ");
+    printf("\t Discente: Gedson Fernandes \n ");
+    printf("\t E-mail: gedsonfda@gmail.com \n ");
+    printf("\t Redes Sociais: @gedsonfa \n ");
+    printf("\t Git : https://github.com/Gedsonfa \n");
+    printf("\t ===================================================== \n");
+    printf("\t Discente: Gabriel Wallace  \n ");
+    printf("\t E-mail: gcanutosantos@gmail.com \n ");
+    printf("\t Redes Sociais: @gabriel_wallace_17 \n ");
+    printf("\t Git : https://github.com/Japagabriel \n ");
+    printf("\t ===================================================== \n ");
+    printf("\t Programa ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao, com o objetivo de servir a uma clinica odontologica fictícia, NÃO NOS RESPONSABILIZAMOS POR QUAISQUER TRANSTORNOS SOFRIDOS POR USO NÃO AUTORIZADO DE TERCEIROS de partes ou de todo o codigo.\n " );
+    printf("\t ======================================================== \n");
+    printf("\t Agradecemos a todos que contribuiram com o projeto direta ou indiretamente: \n");
+    printf("\t https://github.com/italo-mauricio \n");
+    printf("\t https://github.com/FlaviusGorgonio \n");
+    printf("\t https://github.com/DayXL \n");
+    printf("\t Perdão caso tenhamos esquecido sua menção\n");
+    printf("\t ======================================================== \n");
+    printf("\tTecle ENTER para prosseguir...\n");
+    getchar();
 }
