@@ -416,7 +416,7 @@ void relatorio_paciente() {
         printf("\t === 1- Todos os Pacientes\n");
         printf("\t === 2- Pacientes Excluidos\n");
         printf("\t === 3- Pacientes por Idade\n");
-        printf("\t === 4- Pacientes por Ordem\n");
+        printf("\t === 4- Pacientes por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
