@@ -384,22 +384,25 @@ int listarFuncionariosExc(void)
 
 int listarFuncionariosCad(void)
 {
-    int ida;
+    
     FILE* fp;
     Dados_Funcionario* fun;
+    int ida;
     fp = fopen("funcionarios.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     printf("\t========================================================\n");
     printf("\t Digite o limite Máximo de idade (So Numeros!):");
     scanf("%d",&ida);
     getchar();
 
     fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
-    int idade = atoi(fun->idade);
     while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+
+        int idade = atoi(fun->idade);
         if (idade <= ida && fun->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Funcionarios ======================== | \n");

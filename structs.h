@@ -3,6 +3,7 @@ typedef struct Dados_Servico Dados_Servico;
 typedef struct Dados_Paciente Dados_Paciente;
 typedef struct Dados_Funcionario Dados_Funcionario;
 typedef struct Dados_Agendamento Dados_Agendamento;
+typedef struct noPac NoPac;
 
 struct Dados_Pagamento{
 char cpf[15];
@@ -31,8 +32,20 @@ char endereco[51];
 char email[51];
 char numero[20];
 char status;
+int cod;
 };
 
+struct noPac{  //mesma de dados pacientes
+char cpf[15];
+char nome[51];
+char idade[20];
+char endereco[51];
+char email[51];
+char numero[20];
+char status;
+int cod;
+NoPac* prox;
+};
 
 struct Dados_Funcionario{
 char cpf[15];
@@ -80,14 +93,18 @@ int listarFuncionariosExc(void);
 int listarFuncionariosCad(void);
 
 // Pacientes
+void espera();
 int listarPacientes(void);
 int listarPacientesExc(void);
 int listarPacientesCad(void);
+NoPac* listaOrdenadaPac(void);
+void exibeListaPac();
 
 // Despesas
-int listarPagamentos(void);
-int listarPagamentosExc(void);
-int listarPagamentosCad(void);
+int listarDespesa(void);
+int listarDespesaExc(void);
+int listarDespesaCad(void);
+int listarDespesaBank(void);
 
 // Serviços
 int listarServico(void);

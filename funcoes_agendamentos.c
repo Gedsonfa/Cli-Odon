@@ -284,6 +284,7 @@ int listarAgendamentosCad(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    
     printf("\t===================================\n");
     printf("\t Digite a data que procura '00/00/000': ");
     scanf("%s",proc);
@@ -291,6 +292,7 @@ int listarAgendamentosCad(void)
 
     age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));// &&
     while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
+
         if ((strcmp(age -> data, proc) == 0) && (age->status != 'x'))  {
             system(" cls || clear");
             printf(" | ===================== Lista Agendamentos ======================== | \n");

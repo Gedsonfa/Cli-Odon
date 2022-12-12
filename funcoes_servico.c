@@ -370,6 +370,7 @@ int listarServicoCad(void) {
 
     ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
     while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+        
         int custo = atoi(ser->custo);
         if  (custo <= val && ser->status != 'x') {
             system(" cls || clear");

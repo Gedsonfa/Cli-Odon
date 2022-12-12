@@ -318,7 +318,7 @@ void tela_excluir_pagamento(void) {
 //update
 
 
-int listarPagamentos(void) {
+int listarDespesa(void) {
     FILE* fp;
     Dados_Pagamento* pag;
     fp = fopen("pagamentos.dat", "rb");
@@ -343,7 +343,7 @@ int listarPagamentos(void) {
 
 }
 
-int listarPagamentosExc(void) {
+int listarDespesaExc(void) {
     FILE* fp;
     Dados_Pagamento* pag;
     fp = fopen("pagamentos.dat", "rb");
@@ -369,7 +369,7 @@ int listarPagamentosExc(void) {
 
 }
 
-int listarPagamentosCad(void) {
+int listarDespesaCad(void) {
     
     char proc[20];
     FILE* fp;
@@ -385,7 +385,8 @@ int listarPagamentosCad(void) {
     getchar();
 
     pag = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
-    while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) {
+    while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) { 
+
         if ((strcmp(pag -> data_criacao, proc) == 0) && (pag->status != 'x')) {
             system(" cls || clear");
             printf(" | ====================== Listar Despesas ========================= | \n");
@@ -401,5 +402,40 @@ int listarPagamentosCad(void) {
     return 0;
 
 }
+
+int listarDespesaBank(void) {
+    
+    char proc[20];
+    FILE* fp;
+    Dados_Pagamento* pag;
+    fp = fopen("pagamentos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    printf("\t===================================\n");
+    printf("\t Digite o Banco que procura: ");
+    scanf("%s",proc);
+    getchar();
+
+    pag = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
+    while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) { 
+        
+        if ((strcmp(pag -> banco, proc) == 0) && (pag->status != 'x')) {
+            system(" cls || clear");
+            printf(" | ====================== Listar Despesas ========================= | \n");
+            printf(" |                                                                  | \n");
+            exibe_pagamento(pag);         
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } 
+    }
+
+    fclose(fp);
+    free(pag);
+    return 0;
+
+}
+
 
 

@@ -385,6 +385,7 @@ int listarPacientesCad(void) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+
     printf("\t========================================================\n");
     printf("\t Digite o limite Máximo de idade (So Numeros!):");
     scanf("%d",&ida);
@@ -408,4 +409,84 @@ int listarPacientesCad(void) {
     free(pac);
     return 0;
 
+}
+
+void espera(){
+    printf("\nPressione ENTER para continuar...");
+    getchar();
+}
+
+NoPac* listaOrdenadaPac(void) {
+  FILE* fp;
+  Dados_Paciente* pac;
+  NoPac* noPac;
+  NoPac* lista;
+
+  lista = NULL;
+  fp = fopen("pacientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+  while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
+    if (pac->status != 'x') {
+      noPac = (NoPac*) malloc(sizeof(NoPac));
+      
+      noPac->cod = pac->cod;
+
+      strcpy(noPac->nome, pac->nome);
+
+      strcpy(noPac->cpf, pac->cpf);
+
+      strcpy(noPac->idade, pac->idade);
+
+      strcpy(noPac->email, pac->email);
+
+      strcpy(noPac->endereco, pac->endereco);
+
+      strcpy(noPac->numero, pac->numero);
+
+      noPac->status = pac->status;
+
+      if (lista == NULL) {
+        lista = noPac;
+        noPac->prox = NULL;
+      } else if (strcmp(noPac->nome,lista->nome) < 0) {
+        noPac->prox = lista;
+        lista = noPac;
+      } else {
+        NoPac* anter = lista;
+        NoPac* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->nome,noPac->nome) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noPac;
+        noPac->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(pac);
+  return lista;
+}
+
+void exibeListaPac(NoPac* lista){
+    system(" cls || clear");
+    while (lista != NULL) {
+    printf(" | CPF: %s\n", lista->cpf);
+    printf(" | Nome: %s\n", lista->nome);
+    printf(" | Idade: %s\n", lista->idade);
+    printf(" | E-mail de contato: %s\n", lista->email);
+    printf(" | Endereco: %s\n", lista->endereco);
+    printf(" | Numero de contato: %s\n", lista->numero);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
 }

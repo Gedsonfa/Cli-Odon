@@ -407,14 +407,16 @@ void tela_relatorios(void) {
 
 void relatorio_paciente() {
     char opcao;
+    NoPac* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
         printf("\t=============== Relatórios de Pacientes ===========\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Todos os pacientes\n");
-        printf("\t === 2- Pacientes excluidos\n");
+        printf("\t === 1- Todos os Pacientes\n");
+        printf("\t === 2- Pacientes Excluidos\n");
         printf("\t === 3- Pacientes por Idade\n");
+        printf("\t === 4- Pacientes por Ordem\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -430,6 +432,10 @@ void relatorio_paciente() {
             break;
         case '3':
             listarPacientesCad();
+            break;
+        case '4':
+            lista = listaOrdenadaPac();
+            exibeListaPac(lista);
             break;
         default:
             break;
@@ -505,9 +511,10 @@ void relatorio_despesas() {
         printf("\t===================================================\n");
         printf("\t============== Relatórios de Despesas =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Todas as despesas\n");
-        printf("\t === 2- Despesas excluidas\n");
+        printf("\t === 1- Todas as Despesas\n");
+        printf("\t === 2- Despesas Excluidas\n");
         printf("\t === 3- Despesas por Data\n");
+        printf("\t === 4- Despesas por Banco\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -515,13 +522,16 @@ void relatorio_despesas() {
         getchar();
         switch (opcao) {
             case '1':
-                listarPagamentos();
+                listarDespesa();
                 break;
             case '2':
-                listarPagamentosExc();
+                listarDespesaExc();
                 break;
             case '3':
-                listarPagamentosCad();
+                listarDespesaCad();
+                break;
+            case '4':
+                listarDespesaBank();
                 break;
             default:
                 break;
