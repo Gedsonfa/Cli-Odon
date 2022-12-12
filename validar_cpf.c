@@ -45,6 +45,26 @@ int validarCPF(char cpf[15])
     return 1;
 }
 
+int lerNumeros(char numero[]) {
+    int tamanho = strlen(numero);
+    if (tamanho < 1) {
+        return 0;
+    } else {
+        for (int i = 0; i <= (tamanho - 1); i++) {
+            if ((numero[i] == '0') || (numero[i] <= '9')) {
+                if (numero[i] == ' ') {
+                    return 1;
+                } if (numero[i] == '@') {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
+        }
+
+    }
+    return 1;
+}
 
 int lerLetras(char nome[])
 {
