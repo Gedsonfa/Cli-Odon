@@ -16,7 +16,7 @@ Dados_Paciente* tela_cadastrar_paciente(){
     printf("\t===================================================\n\n");
     do
     {
-        printf("\t === Insira o CPF So Numeros]:     ");
+        printf("\t === Insira o CPF (So Numeros):     ");
         scanf("%15[^\n]", pac->cpf);
         getchar();
         
@@ -76,7 +76,7 @@ Dados_Paciente* buscaPaciente(void){
     char pes[15];
 
     printf("\n ===== Buscar Paciente ======");
-    printf("\n Informe seu CPF: ");
+    printf("\n Informe seu CPF (So Numeros): ");
     scanf("%s", pes);
     getchar();
     
@@ -157,7 +157,7 @@ void tela_alterar_paciente(){
     printf("\t===================================================\n");
     printf("\t================   Alterar Paciente   =============\n");
     printf("\t===================================================\n\n");
-    printf("\t === Insira o CPF:    ");
+    printf("\t === Insira o CPF (So Numeros):    ");
     scanf("%s", procurando);
     getchar();
     achou = 0;
@@ -287,7 +287,7 @@ void tela_excluir_paciente(){
     printf("=========================================\n");
     printf("====== Apagar Cadastro de Paciente ======\n");
     printf("========================================= \n");
-    printf("Informe o CPF do Funcionario: ");
+    printf("Informe o CPF do Paciente: ");
     scanf(" %14[^\n]", procurado);
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     achou = 0;
@@ -376,16 +376,25 @@ int listarPacientesExc(void) {
 }
 
 int listarPacientesCad(void) {
+    
     FILE* fp;
     Dados_Paciente* pac;
+    int ida;
     fp = fopen("pacientes.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    printf("\t========================================================\n");
+    printf("\t Digite o limite Máximo de idade (So Numeros!):");
+    scanf("%d",&ida);
+    getchar();
+    
     pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
     while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
-        if (pac->status != 'x') {
+        
+        int idade = atoi(pac->idade);
+        if  (idade <= ida && pac->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Pacientes ======================== | \n");
             printf(" |                                                                 | \n");

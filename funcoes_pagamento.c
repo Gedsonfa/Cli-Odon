@@ -23,7 +23,7 @@ Dados_Pagamento* tela_cadastrar_pagamento(void) {
     scanf("%15[^\n]", pag->valor);
     getchar();
 
-    printf("\t === Insira a data de criacao:    ");
+    printf("\t === Insira a data de criacao '00/00/0000':    ");
     scanf("%15[^\n]", pag->data_criacao);
     getchar();
 
@@ -121,6 +121,7 @@ void exibe_pagamento(Dados_Pagamento* pag) {
     printf(" | Valor do pagamento: %s\n", pag->valor);
     printf(" | Data de criacao: %s\n", pag->data_criacao);
     printf(" | Meio de pagamento: %s\n", pag->meio_pagamento);
+    printf(" | Banco: %s\n", pag->banco);
     printf(" | Status: %c\n", pag->status);
     printf("\n");
 
@@ -369,6 +370,8 @@ int listarPagamentosExc(void) {
 }
 
 int listarPagamentosCad(void) {
+    
+    char proc[20];
     FILE* fp;
     Dados_Pagamento* pag;
     fp = fopen("pagamentos.dat", "rb");
@@ -376,9 +379,14 @@ int listarPagamentosCad(void) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    printf("\t===================================\n");
+    printf("\t Digite a data que procura: ");
+    scanf("%s",proc);
+    getchar();
+
     pag = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
     while(fread(pag, sizeof(Dados_Pagamento), 1, fp)) {
-        if (pag->status != 'x') {
+        if ((strcmp(pag -> data_criacao, proc) == 0) && (pag->status != 'x')) {
             system(" cls || clear");
             printf(" | ====================== Listar Despesas ========================= | \n");
             printf(" |                                                                  | \n");

@@ -355,6 +355,7 @@ int listarServicoExc(void) {
 }
 
 int listarServicoCad(void) {
+    int val;
     FILE* fp;
     Dados_Servico* ser;
     fp = fopen("servicos.dat", "rb");
@@ -362,23 +363,22 @@ int listarServicoCad(void) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    printf("\t========================================================\n");
+    printf("\t Digite o limite Máximo de Custo (So Numeros!):");
+    scanf("%d",&val);
+    getchar();
+
     ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
     while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
-        if (ser->status != 'x') {
+        int custo = atoi(ser->custo);
+        if  (custo <= val && ser->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Serviços ========================== | \n");
             printf(" |                                                                  | \n");
             exibe_servicos(ser);     
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } else {
-            printf(" | Nenhum serviço ativo...\n");
-            printf(" | Pressione qualquer tecla para sair...");
-            getchar();
-            fclose(fp);
-            free(ser);
-            return 0;
-        }
+        } 
     }
 
     fclose(fp);

@@ -15,7 +15,7 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
     printf("\t=========================================================\n");
     
     do{
-        printf("\t === Insira o CPF:    ");
+        printf("\t === Insira o CPF (So Numeros):    ");
         scanf("%15[^\n]",fun->cpf);
         getchar();
         
@@ -154,7 +154,7 @@ void tela_alterar_funcionario(){
     printf("\t=========================================================\n");
     printf("\t================   Alterar Funcionarios   ===============\n");
     printf("\t=========================================================\n\n");
-    printf("\t === Insira o CPF:    ");
+    printf("\t === Insira o CPF (So Numeros):    ");
     scanf("%s",procurando);
     getchar();
 
@@ -384,6 +384,7 @@ int listarFuncionariosExc(void)
 
 int listarFuncionariosCad(void)
 {
+    int ida;
     FILE* fp;
     Dados_Funcionario* fun;
     fp = fopen("funcionarios.dat", "rb");
@@ -391,9 +392,15 @@ int listarFuncionariosCad(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+    printf("\t========================================================\n");
+    printf("\t Digite o limite Máximo de idade (So Numeros!):");
+    scanf("%d",&ida);
+    getchar();
+
     fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    int idade = atoi(fun->idade);
     while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
-        if (fun->status != 'x') {
+        if (idade <= ida && fun->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Funcionarios ======================== | \n");
             printf(" |                                                                    | \n");

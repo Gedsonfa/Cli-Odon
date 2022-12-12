@@ -414,7 +414,7 @@ void relatorio_paciente() {
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os pacientes\n");
         printf("\t === 2- Pacientes excluidos\n");
-        printf("\t === 3- Pacientes ativos\n");
+        printf("\t === 3- Pacientes por Idade\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -446,7 +446,7 @@ void relatorio_funcionario() {
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os funcionários\n");
         printf("\t === 2- Funcionários excluidos\n");
-        printf("\t === 3- Funcionários ativos\n");
+        printf("\t === 3- Funcionários Por Idade\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -476,7 +476,7 @@ void relatorio_servicos() {
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os serviços\n");
         printf("\t === 2- Serviços excluidos\n");
-        printf("\t === 3- Serviços ativos\n");
+        printf("\t === 3- Serviços por Custo\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -507,7 +507,7 @@ void relatorio_despesas() {
         printf("\t===================================================\n\n");
         printf("\t === 1- Todas as despesas\n");
         printf("\t === 2- Despesas excluidas\n");
-        printf("\t === 3- Despesas ativas\n");
+        printf("\t === 3- Despesas por Data\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -533,12 +533,12 @@ void relatorio_agendamentos() {
     char opcao;
     do {
         system("cls||clear");
-        printf("\t===================================================\n");
+        printf("\t=======================================================\n");
         printf("\t============== Relatórios de Agendamentos =============\n");
-        printf("\t===================================================\n\n");
+        printf("\t=======================================================\n\n");
         printf("\t === 1- Todos os agendamentos\n");
         printf("\t === 2- Agendamentos excluidos\n");
-        printf("\t === 3- Agendamentos ativos\n");
+        printf("\t === 3- Agendamentos Por Data\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");

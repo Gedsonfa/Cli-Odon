@@ -84,12 +84,12 @@ Dados_Agendamento* tela_cadastrar_agendamento(void){
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
     char* nome_pac;
     system ("cls||clear");
-    printf("\t===================================================\n");
-    printf("\t===============   Cadastrar Agendamento   ============\n");
-    printf("\t===================================================\n\n");
+    printf("\t=====================================================\n");
+    printf("\t===============   Cadastrar Agendamento   ===========\n");
+    printf("\t=====================================================\n\n");
     
     do{
-        printf("\t === Insira o CPF do paciente:    ");
+        printf("\t === Insira o CPF do paciente (So Numeros):    ");
         scanf("%s", age->cpf);
         getchar();
     }while(!validarCPF(age->cpf));
@@ -104,11 +104,11 @@ Dados_Agendamento* tela_cadastrar_agendamento(void){
         printf("\t ================================= \n");
         free(nome_pac);
 
-        printf("\t === Insira o codigo do servico:  ");
+        printf("\t === Insira o codigo do Agendamento:  ");
         scanf("%10[^\n]", age->codigo_servico);
         getchar();
 
-        printf("\t === Insira a data de agendamento:   ");
+        printf("\t === Insira a data de agendamento '00/00/0000':   ");
         scanf("%s", age->data);
         getchar();
 
@@ -235,8 +235,8 @@ int listarAgendamentos(void)
     age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
     while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
         system(" cls || clear");
-        printf(" | ===================== Lista item ======================== | \n");
-        printf(" |                                                           | \n");
+        printf(" | ===================== Lista Agendamentos ======================== | \n");
+        printf(" |                                                                   | \n");
         exibe_agendamento(age);    
         printf(" | Pressione qualquer tecla para sair...");
         getchar();
@@ -261,8 +261,8 @@ int listarAgendamentosExc(void)
     while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
         if (age->status == 'x') {
             system(" cls || clear");
-            printf(" | ===================== Lista item ======================== | \n");
-            printf(" |                                                           | \n");
+            printf(" | ===================== Lista Agendamentos ======================== | \n");
+            printf(" |                                                                   | \n");
             exibe_agendamento(age);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
@@ -276,6 +276,7 @@ int listarAgendamentosExc(void)
 
 int listarAgendamentosCad(void)
 {
+    char proc [20];
     FILE* fp;
     Dados_Agendamento* age;
     fp = fopen("agendamentos.dat", "rb");
@@ -283,16 +284,21 @@ int listarAgendamentosCad(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-    age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
+    printf("\t===================================\n");
+    printf("\t Digite a data que procura '00/00/000': ");
+    scanf("%s",proc);
+    getchar();
+
+    age = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));// &&
     while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
-        if (age->status != 'x') {
+        if ((strcmp(age -> data, proc) == 0) && (age->status != 'x'))  {
             system(" cls || clear");
-            printf(" | ===================== Lista item ======================== | \n");
-            printf(" |                                                           | \n");
+            printf(" | ===================== Lista Agendamentos ======================== | \n");
+            printf(" |                                                                   | \n");
             exibe_agendamento(age);    
             printf(" | Pressione qualquer tecla para sair...");
             getchar();
-        } 
+        }
     }
 
     fclose(fp);
@@ -341,12 +347,12 @@ void tela_alterar_agendamento(){
 
         if (esc == '1'){
 
-                printf(" | Informe novo CPF: ");
+                printf(" | Informe novo CPF (So Numeros): ");
                 scanf("%[0-9]", age->cpf);
                 getchar();
 
 
-                printf(" | Informe o nova data 00/00/0000: ");
+                printf(" | Informe o nova data '00/00/0000': ");
                 scanf("%20[^\n]",age->data);
                 getchar();
 
@@ -361,7 +367,7 @@ void tela_alterar_agendamento(){
                 printf(" | Novo nome alterado com sucesso!");
                 getchar();
     } else if (esc == '3'){
-                printf(" | Informe o nova data 00/00/0000: ");
+                printf(" | Informe o nova data '00/00/0000': ");
                 scanf("%20[^\n]",age->data);
                 printf(" | Nova data alterada com sucesso!");
                 getchar();
