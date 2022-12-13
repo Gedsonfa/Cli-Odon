@@ -28,9 +28,11 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
     
     }while(!lerLetras(fun->nome));
 
-    printf("\t === Insira a idade:  ");
-    scanf("%20[^\n]",fun->idade);
-    getchar();
+    do {
+        printf("\t === Insira a idade:  ");
+        scanf("%20[^\n]",fun->idade);
+        getchar();
+    } while (!lerNumeros(fun->idade));
 
     printf("\t === Insira o endereco:   ");
     scanf("%51[^\n]",fun->endereco);
@@ -40,10 +42,11 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
     scanf("%51[^\n]",fun->email);
     getchar();
 
-    printf("\t === Insira o numero telefonico:  ");
-    scanf("%15[^\n]",fun->telefone);
-    getchar();
-
+    do {
+        printf("\t === Insira o numero telefonico:  ");
+        scanf("%15[^\n]",fun->telefone);
+        getchar();
+    } while (!lerNumeros(fun->telefone));
     fun->status = 'm';
     return fun;
 
@@ -173,16 +176,17 @@ void tela_alterar_funcionario(){
         esc = escAtualizarFuncionario();
 
         if (esc == '1'){
+                do {
+                    printf(" | Informe novo nome: ");
+                    scanf("%[A-Z a-z]", fun->nome);
+                    getchar();
+                } while (!lerLetras(fun->nome));
 
-                printf(" | Informe novo nome: ");
-                scanf("%[A-Z a-z]", fun->nome);
-                getchar();
-
-
-                printf(" | Informe a nova idade: ");
-                scanf("%20[^\n]",fun->idade);
-                getchar();
-
+                do {
+                    printf(" | Informe a nova idade: ");
+                    scanf("%20[^\n]",fun->idade);
+                    getchar();
+                } while (!lerNumeros(fun->idade));
                 printf(" | Informe o novo email: ");
                 scanf("%s", fun->email);
                 getchar();
@@ -191,23 +195,25 @@ void tela_alterar_funcionario(){
                 scanf("%[A-Z a-z 0-9]", fun->endereco);
                 getchar();
 
-                printf(" | Informe o novo numero: ");
-                scanf("%15[^\n]", fun->telefone);
-                getchar();
-
+                do {
+                    printf(" | Informe o novo numero: ");
+                    scanf("%15[^\n]", fun->telefone);
+                    getchar();
+                } while (!lerNumeros(fun->telefone));
 
     } else if (esc == '2'){
                 
-                printf(" | Informe novo nome: ");
-                scanf("%[A-Z a-z]", fun->nome);
-                getchar();
-
+                do {
+                    printf(" | Informe novo nome: ");
+                    scanf("%[A-Z a-z]", fun->nome);
+                    getchar();
+                } while (!lerNumeros(fun->nome));
     } else if (esc == '3'){
-
-                printf(" | Informe a nova idade: ");
-                scanf("%20[^\n]",fun->idade);
-                getchar();
-
+                do {
+                    printf(" | Informe a nova idade: ");
+                    scanf("%20[^\n]",fun->idade);
+                    getchar();
+                } while (!lerNumeros(fun->idade));
     } else if (esc == '4'){
 
                 printf(" | Informe o novo email: ");
@@ -219,9 +225,11 @@ void tela_alterar_funcionario(){
                 getchar();
 
     } else if (esc == '6') {
-                printf(" | Informe o novo numero: ");
-                scanf("%20[^\n]", fun->telefone);
-                getchar();
+                do {
+                    printf(" | Informe o novo numero: ");
+                    scanf("%20[^\n]", fun->telefone);
+                    getchar();
+                } while (!lerNumeros(fun->telefone));
     }
     fun->status = 'm';
     fseek(fp, (-1)*sizeof(Dados_Funcionario), SEEK_CUR);
