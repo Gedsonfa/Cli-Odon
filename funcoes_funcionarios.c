@@ -161,7 +161,7 @@ void tela_alterar_funcionario(){
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Não é possível continuar o programa...\n");
         exit(1);
-}
+    }
     fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
     system ("cls||clear");
     printf("\t=========================================================\n");
@@ -217,7 +217,7 @@ void tela_alterar_funcionario(){
                     printf(" | Informe novo nome: ");
                     scanf("%[A-Z a-z]", fun->nome);
                     getchar();
-                } while (!lerNumeros(fun->nome));
+                } while (!lerLetras(fun->nome));
     } else if (esc == '3'){
                 do {
                     printf(" | Informe a nova idade: ");
@@ -245,20 +245,15 @@ void tela_alterar_funcionario(){
     fseek(fp, (-1)*sizeof(Dados_Funcionario), SEEK_CUR);
     fwrite(fun, sizeof(Dados_Funcionario), 1, fp);
     printf("\nUsuario editado com sucesso!!!\n");
-
-
-
     } else {
         printf("Tudo bem, os dados não foram alterados!");
     }
-    
     } 
     }
     printf(" | Pressione qualquer tecla para sair...");
     getchar();
     free(fun);
     fclose(fp);
-
 }
 
 
@@ -416,10 +411,14 @@ int listarFuncionariosCad(void)
     }
     
     printf("\t========================================================\n");
-    printf("\t Digite o limite Máximo de idade (So Numeros!):");
-    scanf("%d",&ida);
-    getchar();
-
+    do {
+        printf("\t Digite o limite Máximo de idade (So Numeros!):");
+        scanf("%d",&ida);
+        getchar();
+        if (!lerNumeros(ida)) {
+            printf("\t | So numeros!!!\n");
+        }
+    } while (!lerNumeros(ida));
     fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
     while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
 

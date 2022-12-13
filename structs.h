@@ -144,6 +144,8 @@ char escAtualizarPaciente(void);
 char escAtualizarPagamento(void);
 char escAtualizarServico(void);
 
+//===========================================================================
+
 // Agendamentos
 int listarAgendamentos(void);
 int listarAgendamentosExc(void);
@@ -153,6 +155,8 @@ char* get_nome_full();
 NoAge* listaOrdenadaAge(void);
 void exibeListaAge();
 
+//===========================================================================
+
 // Funcionários
 int listarFuncionarios(void);
 int listarFuncionariosExc(void);
@@ -160,12 +164,16 @@ int listarFuncionariosCad(void);
 NoFun* listaOrdenadaFun(void);
 void exibeListaFun();
 
+//===========================================================================
+
 // Pacientes
 int listarPacientes(void);
 int listarPacientesExc(void);
 int listarPacientesCad(void);
 NoPac* listaOrdenadaPac(void);
 void exibeListaPac();
+
+//===========================================================================
 
 // Despesas
 int listarDespesa(void);
@@ -175,12 +183,16 @@ int listarDespesaBank(void);
 NoPag* listaOrdenadaDes(void);
 void exibeListaDes();
 
+//===========================================================================
+
 // Serviços
 int listarServico(void);
 int listarServicoExc(void);
 int listarServicoCad(void);
 NoSer* listaOrdenadaSer(void);
 void exibeListaSer();
+
+//===========================================================================
 
 // Funções pacientes
 void tela_pesquisar_paciente(Dados_Paciente *pac);
@@ -191,6 +203,8 @@ void tela_alterar_paciente();
 void tela_excluir_paciente();
 void exibe_pacientes();
 
+//===========================================================================
+
 // Funções Funcionarios
 void tela_pesquisar_funcionario(Dados_Funcionario *fun);
 Dados_Funcionario *tela_cadastrar_funcionario();
@@ -199,6 +213,8 @@ Dados_Funcionario *buscar_funcionario();
 void tela_alterar_funcionario();
 void tela_excluir_funcionario();
 void exibe_funcionarios();
+
+//===========================================================================
 
 // Funções Serviço
 void tela_pesquisar_servico(Dados_Servico *ser);
@@ -209,6 +225,8 @@ void tela_alterar_servico();
 void tela_excluir_servico();
 void exibe_servicos();
 
+//===========================================================================
+
 // Funções Pagamentos
 void tela_pesquisar_pagamento(Dados_Pagamento *pag);
 Dados_Pagamento *tela_cadastrar_pagamento();
@@ -217,6 +235,8 @@ Dados_Pagamento *buscar_pagamento();
 void tela_alterar_pagamento();
 void tela_excluir_pagamento();
 void exibe_pagamento();
+
+//===========================================================================
 
 // Funções Agendamentos
 void tela_pesquisar_agendamento(Dados_Agendamento* age);
@@ -227,12 +247,16 @@ void tela_alterar_agendamento();
 void tela_excluir_agendamento();
 void exibe_agendamento();
 
+//===========================================================================
+
 // Funções Relatórios
 void relatorio_agendamentos();
 void relatorio_funcionario();
 void relatorio_paciente();
 void relatorio_servicos();
 void relatorio_despesas();
+
+//===========================================================================
 
 // Funções telas
 void tela_funcionarios();
