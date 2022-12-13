@@ -66,10 +66,14 @@ Dados_Pagamento* buscar_pagamento(void) {
     char pog[15];
 
     printf("\n ===== Buscar Despesa ======");
-    printf("\n Informe o ID: ");
-    scanf("%s", pog);
-    getchar();
-
+    do {
+        printf("\n Informe o ID: ");
+        scanf("%s", pog);
+        getchar();
+        if (!lerNumeros(pog)) {
+            printf(" | Informe um ID valido!!!\n");
+        }
+    } while (!lerNumeros(pog));
     pag = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
     fp = fopen("pagamentos.dat", "rb");
     if (fp == NULL) {

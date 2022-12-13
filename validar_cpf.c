@@ -75,21 +75,16 @@ int lerLetras(char nome[])
       return 0; 
   } else {
       for (int i = 0; i <= (tamanho - 1); i++) 
-        if ((nome[i] <= 'z') && (nome[i] >= 'A'))
-        {
-           if (((nome[i] <= 'a') && (nome[i] <= 'Z')) || (nome[i] == ' ')) {
-            return 1;
-           }
-              if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
-                return 0;
-              }
-            } else{  
+        if ((nome[i] <= 'z') || (nome[i] >= 'A')) {
+          if ((nome[i] <= 'a' || nome[i] <= 'Z') || nome[i] == ' ') {
+            if (nome[i] == '0' || nome[i] <= '9') {
               return 0;
-      
-              }          
-      }
-      return 1;    
+            }
+          }
+        }       
   }
+  return 1;
+}
 
 int lerData(char data[9]) {
     int tamanho = strlen(data);
