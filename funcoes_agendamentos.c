@@ -158,10 +158,14 @@ Dados_Agendamento* buscar_agendamento(){
     char men[15];
 
     printf("\n ===== Buscar Agendamento ======");
-    printf("\n Informe o Codigo do agendamento: ");
-    scanf("%s", men);
-    getchar();
-    
+    do {
+        printf("\n Informe o Codigo do agendamento: ");
+        scanf("%s", men);
+        getchar();
+        if (!lerNumeros(men)) {
+            printf(" | Apenas numeros!!!\n");
+        }
+    } while (!lerNumeros(men));
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
     fp = fopen("agendamentos.dat", "rb");
 
@@ -330,9 +334,14 @@ void tela_alterar_agendamento(){
     printf("\t===================================================\n");
     printf("\t===============   Alterar Agendamento   ===========\n");
     printf("\t===================================================\n");
-    printf("\t Digite o CPF do Cliente: ");
-    scanf("%s", procurando);
-    getchar();
+    do {
+        printf("\t Digite o CPF do Cliente: ");
+        scanf("%s", procurando);
+        getchar();
+        if (!validarCPF(procurando)) {
+            printf(" | Insira um CPF valido!!!\n");
+        }
+    } while (!validarCPF(procurando));
     achou = 0;
     
     while((!achou) && (fread(age, sizeof(Dados_Agendamento), 1, fp))) {
@@ -348,20 +357,31 @@ void tela_alterar_agendamento(){
         esc = escAtualizarAgendamento();
 
         if (esc == '1'){
+                do {
+                    printf(" | Informe novo CPF (So Numeros): ");
+                    scanf("%[0-9]", age->cpf);
+                    getchar();
+                    if (!validarCPF(age->cpf)) {
+                        printf(" | Informe um CPF valido!!!\n");
+                    }
+                } while(!validarCPF(age->cpf));
 
-                printf(" | Informe novo CPF (So Numeros): ");
-                scanf("%[0-9]", age->cpf);
-                getchar();
-
-
-                printf(" | Informe o nova data '00/00/0000': ");
-                scanf("%20[^\n]",age->data);
-                getchar();
-
-                printf(" | Escolha seu novo Horário: ");
-                scanf("%20[^\n]", age->hora);
-                getchar();
-
+                do{
+                    printf(" | Informe o nova data '00/00/0000': ");
+                    scanf("%20[^\n]",age->data);
+                    getchar();
+                    if (!lerData(age->data)) {
+                        printf(" | Informe uma data valida!!!\n");
+                    }
+                } while (!lerData(age->data));
+                do {
+                    printf(" | Escolha seu novo Horário: ");
+                    scanf("%20[^\n]", age->hora);
+                    getchar();
+                    if (!lerHora(age->hora)) {
+                        printf(" | Informe um horario valido!!!\n");
+                    }
+                } while (!lerHora(age->hora));
 
     } else if (esc == '2'){
                 printf(" | Informe novo CPF: ");

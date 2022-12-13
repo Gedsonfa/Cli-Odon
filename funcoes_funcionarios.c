@@ -85,10 +85,14 @@ Dados_Funcionario* buscar_funcionario() {
     char fon[15];
 
     printf("\n ===== Buscar Paciente ======");
-    printf("\n Informe seu CPF: ");
-    scanf("%s", fon);
-    getchar();
-    
+    do {
+        printf("\n Informe seu CPF: ");
+        scanf("%s", fon);
+        getchar();
+        if (!validarCPF(fon)) {
+            printf(" | Informe um CPF cadastrado");
+        }
+    } while (!validarCPF(fon));
     fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
     fp = fopen("funcionarios.dat", "rb");
     if (fp == NULL) {
@@ -102,7 +106,7 @@ Dados_Funcionario* buscar_funcionario() {
             fclose(fp);
             return fun;
         }
-    }
+    } 
 fclose(fp);
 return NULL;
 
@@ -306,6 +310,9 @@ void tela_excluir_funcionario(){
         printf("Informe o CPF do Funcionario: ");
         scanf(" %14[^\n]", procurado);
         getchar();
+        if (!validarCPF(procurado)) {
+            printf("| Informe um CPF valido!!!\n");
+        }
     } while (!validarCPF(procurado));
     fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
     achou = 0;
@@ -411,14 +418,11 @@ int listarFuncionariosCad(void)
     }
     
     printf("\t========================================================\n");
-    do {
-        printf("\t Digite o limite Máximo de idade (So Numeros!):");
-        scanf("%d",&ida);
-        getchar();
-        if (!lerNumeros(ida)) {
-            printf("\t | So numeros!!!\n");
-        }
-    } while (!lerNumeros(ida));
+    
+    printf("\t Digite o limite Máximo de idade (So Numeros!):");
+    scanf("%d",&ida);
+    getchar();
+        
     fun = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
     while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
 
