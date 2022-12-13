@@ -81,6 +81,9 @@ Dados_Paciente* buscaPaciente(void){
         printf("\n Informe seu CPF (So Numeros): ");
         scanf("%s", pes);
         getchar();
+        if (!validarCPF(pes)) {
+            printf(" | Digite um CPF cadastrado!!!\n");
+        }
     } while (!validarCPF(pes));
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     fp = fopen("pacientes.dat", "rb");

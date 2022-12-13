@@ -15,7 +15,7 @@ void tela_progr_odont() {
         printf("\t=======================================================\n");
         printf("\t=========   Sistema Clinica Odontologica   ============\n");
         printf("\t=======================================================\n");
-        printf("\t === 1- Modulo Pacientes\n");
+        printf("\n\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
         printf("\t === 4- Modulo Agendamento\n");
@@ -23,8 +23,8 @@ void tela_progr_odont() {
         printf("\t === 6- Modulo Relatórios\n");
         printf("\t === 7- Tela Sobre\n");
         printf("\t === 0- Voltar\n");
-        printf("\t=====================================================\n");
-        printf("\t=> ");
+        printf("\n\t=====================================================\n");
+        printf("\n\t=> ");
         scanf("%c", &opcao_navegacao);
         getchar();
         switch (opcao_navegacao) {
@@ -216,7 +216,7 @@ void tela_pagamento()
         printf("\t === 3- Editar Despesa\n");
         printf("\t === 4- Excluir Despesa\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao_pagamento);
         getchar();
@@ -266,7 +266,7 @@ void tela_agend()
         printf("\t === 4- Desagendamento\n");
         printf("\t === 5- Listar Agendamentos\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao_agend);
         getchar();
@@ -318,7 +318,7 @@ void tela_relatorios(void) {
         printf("\t === 4- Relatório Despesas\n");
         printf("\t === 5- Relatório Agendamentos\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -357,7 +357,7 @@ void relatorio_paciente() {
         printf("\t === 3- Pacientes por Idade\n");
         printf("\t === 4- Pacientes por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -395,7 +395,7 @@ void relatorio_funcionario() {
         printf("\t === 3- Funcionários Por Idade\n");
         printf("\t === 4- Funcionários Por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -431,7 +431,7 @@ void relatorio_servicos() {
         printf("\t === 3- Serviços por Custo\n");
         printf("\t === 4- Serviços por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -469,7 +469,7 @@ void relatorio_despesas() {
         printf("\t === 4- Despesas por Banco\n");
         printf("\t === 5- Despesas por ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -509,7 +509,7 @@ void relatorio_agendamentos() {
         printf("\t === 3- Agendamentos Por Data\n");
         printf("\t === 4- Agendamentos Por Ordem CPF (Crescente)\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -555,6 +555,7 @@ void sobre(void) {
     printf("\t https://github.com/italo-mauricio \n");
     printf("\t https://github.com/FlaviusGorgonio \n");
     printf("\t https://github.com/DayXL \n");
+    printf("\t https://github.com/ViniciusMaiaM \n");
     printf("\t Perdão caso tenhamos esquecido sua menção\n");
     printf("\t ======================================================== \n");
     printf("\tTecle ENTER para prosseguir...\n");

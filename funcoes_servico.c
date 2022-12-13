@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "structs.h"
+#include "validar.h"
 
 Dados_Servico* tela_cadastrar_servico(){
 
@@ -12,11 +13,14 @@ Dados_Servico* tela_cadastrar_servico(){
     printf("\t===================================================\n");
     printf("\t==============   Cadastrar Serviços   =============\n");
     printf("\t===================================================\n\n");
-   
-    printf("\t === Digite o codigo do serviço: ");
-    scanf("%10[^\n]",ser->codigo);
-    getchar();
-    
+    do {
+        printf("\t === Digite o codigo do serviço: ");
+        scanf("%10[^\n]",ser->codigo);
+        getchar();
+        if (!lerNumeros(ser->codigo)) {
+            printf(" | Digite apenas numeros!!!\n");
+        }
+    } while (!lerNumeros(ser->codigo));
     printf("\t === Digite o nome do serviço: ");
     scanf("%30[^\n]",ser->nome);
     getchar();
@@ -62,10 +66,14 @@ Dados_Servico* buscar_servico(){
     char sor[15];
 
     printf("\n ===== Buscar Serviço ======");
-    printf("\n Informe seu Codigo: ");
-    scanf("%s", sor);
-    getchar();
-    
+    do {
+        printf("\n Informe seu Codigo: ");
+        scanf("%s", sor);
+        getchar();
+        if (!lerNumeros(sor)) {
+            printf(" | Digite um codigo valido!!!");
+        }
+    } while (!lerNumeros(sor));
     ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
     fp = fopen("servicos.dat", "rb");
     if (fp == NULL) {
