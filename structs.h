@@ -4,6 +4,12 @@ typedef struct Dados_Paciente Dados_Paciente;
 typedef struct Dados_Funcionario Dados_Funcionario;
 typedef struct Dados_Agendamento Dados_Agendamento;
 typedef struct noPac NoPac;
+typedef struct noFun NoFun;
+typedef struct noPag NoPag;
+typedef struct noSer NoSer;
+typedef struct noAge NoAge;
+
+//===========================================================================
 
 struct Dados_Pagamento{
 char cpf[15];
@@ -13,7 +19,22 @@ char nome_desp[20];
 char meio_pagamento[30];
 char banco[30];
 char status;
+int cod;
 };
+
+struct noPag{
+char cpf[15];
+char valor[30];
+char data_criacao[20];
+char nome_desp[20];
+char meio_pagamento[30];
+char banco[30];
+char status;
+int cod;
+NoPag* prox;
+};
+
+//===========================================================================
 
 struct Dados_Servico{
 char codigo[11];
@@ -22,7 +43,21 @@ char custo[21];
 char tempo[21];
 char disponi[11];
 char status;
+int cod;
 };
+
+struct noSer{
+char codigo[11];
+char nome[31];
+char custo[21];
+char tempo[21];
+char disponi[11];
+char status;
+int cod;
+NoSer* prox;
+};
+
+//===========================================================================
 
 struct Dados_Paciente{
 char cpf[15];
@@ -47,6 +82,8 @@ int cod;
 NoPac* prox;
 };
 
+//===========================================================================
+
 struct Dados_Funcionario{
 char cpf[15];
 char nome[51];
@@ -55,7 +92,22 @@ char endereco[51];
 char email[51];
 char telefone[15];
 char status;
+int cod;
 };
+
+struct noFun{
+char cpf[15];
+char nome[51];
+char idade[20];
+char endereco[51];
+char email[51];
+char telefone[15];
+char status;
+int cod;
+NoFun* prox;
+};
+
+//===========================================================================
 
 struct Dados_Agendamento{
     char cpf[15];
@@ -63,11 +115,23 @@ struct Dados_Agendamento{
     char data[20];
     char hora[20];
     char status;
+    int cod;
+
+};
+
+struct noAge{
+    char cpf[15];
+    char codigo_servico[16];
+    char data[20];
+    char hora[20];
+    char status;
+    int cod;
+    NoAge* prox;
 
 };
 
     
-
+//===========================================================================
 
 void grava_paciente(Dados_Paciente* pac);
 
@@ -86,14 +150,17 @@ int listarAgendamentosExc(void);
 int listarAgendamentosCad(void);
 char* get_nome_agendamento();
 char* get_nome_full();
+NoAge* listaOrdenadaAge(void);
+void exibeListaAge();
 
 // Funcionários
 int listarFuncionarios(void);
 int listarFuncionariosExc(void);
 int listarFuncionariosCad(void);
+NoFun* listaOrdenadaFun(void);
+void exibeListaFun();
 
 // Pacientes
-void espera();
 int listarPacientes(void);
 int listarPacientesExc(void);
 int listarPacientesCad(void);
@@ -105,8 +172,12 @@ int listarDespesa(void);
 int listarDespesaExc(void);
 int listarDespesaCad(void);
 int listarDespesaBank(void);
+NoPag* listaOrdenadaDes(void);
+void exibeListaDes();
 
 // Serviços
 int listarServico(void);
 int listarServicoExc(void);
 int listarServicoCad(void);
+NoSer* listaOrdenadaSer(void);
+void exibeListaSer();

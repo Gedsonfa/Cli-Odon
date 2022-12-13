@@ -284,7 +284,7 @@ int listarAgendamentosCad(void)
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
-    
+
     printf("\t===================================\n");
     printf("\t Digite a data que procura '00/00/000': ");
     scanf("%s",proc);
@@ -482,5 +482,75 @@ void tela_excluir_agendamento(){
 
 
 
-//update
+NoAge* listaOrdenadaAge(void) {
+  FILE* fp;
+  Dados_Agendamento* age;
+  NoAge* noAge;
+  NoAge* lista;
 
+  lista = NULL;
+  fp = fopen("agendamentos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
+  while(fread(age, sizeof(Dados_Agendamento), 1, fp)) {
+    if (age->status != 'x') {
+      noAge = (NoAge*) malloc(sizeof(NoAge));
+      
+      noAge->cod = age->cod;
+
+      strcpy(noAge->cpf, age->cpf);
+
+      strcpy(noAge->codigo_servico, age->codigo_servico);
+
+      strcpy(noAge->data, age->data);
+
+      strcpy(noAge->hora, age->hora);
+
+      noAge->status = age->status;
+
+      if (lista == NULL) {
+        lista = noAge;
+        noAge->prox = NULL;
+      } else if (strcmp(noAge->cpf,lista->cpf) < 0) {
+        noAge->prox = lista;
+        lista = noAge;
+      } else {
+        NoAge* anter = lista;
+        NoAge* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->cpf,noAge->cpf) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noAge;
+        noAge->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(age);
+  return lista;
+}
+//update
+void exibeListaAge(NoAge* lista){
+    system(" cls || clear");
+    char* nome_pac;
+    while (lista != NULL) {    
+    nome_pac = get_nome_full(lista->cpf);    
+    printf(" | Nome do Paciente: %s\n", nome_pac);
+    printf(" | Codigo do Agendamento: %s\n", lista->codigo_servico);
+    printf(" | CPF: %s\n", lista->cpf);
+    printf(" | Data do Agendamento: %s\n", lista->data);
+    printf(" | Horario do Agendamento: %s\n", lista->hora);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
+
+}

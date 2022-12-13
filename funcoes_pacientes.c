@@ -411,11 +411,6 @@ int listarPacientesCad(void) {
 
 }
 
-void espera(){
-    printf("\nPressione ENTER para continuar...");
-    getchar();
-}
-
 NoPac* listaOrdenadaPac(void) {
   FILE* fp;
   Dados_Paciente* pac;

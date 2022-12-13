@@ -438,4 +438,79 @@ int listarDespesaBank(void) {
 }
 
 
+NoPag* listaOrdenadaDes(void) {
+  FILE* fp;
+  Dados_Pagamento* des;
+  NoPag* noPag;
+  NoPag* lista;
+
+  lista = NULL;
+  fp = fopen("pagamentos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  des = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
+  while(fread(des, sizeof(Dados_Pagamento), 1, fp)) {
+    if (des->status != 'x') {
+      noPag = (NoPag*) malloc(sizeof(NoPac));
+      
+      noPag->cod = des->cod;
+
+      strcpy(noPag->nome_desp, des->nome_desp);
+
+      strcpy(noPag->cpf, des->cpf);
+
+      strcpy(noPag->valor, des->valor);
+
+      strcpy(noPag->data_criacao, des->data_criacao);
+
+      strcpy(noPag->meio_pagamento, des->meio_pagamento);
+
+      strcpy(noPag->banco, des->banco);
+
+      noPag->status = des->status;
+
+      if (lista == NULL) {
+        lista = noPag;
+        noPag->prox = NULL;
+      } else if (strcmp(noPag->nome_desp,lista->nome_desp) < 0) {
+        noPag->prox = lista;
+        lista = noPag;
+      } else {
+        NoPag* anter = lista;
+        NoPag* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->nome_desp,noPag->nome_desp) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noPag;
+        noPag->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(des);
+  return lista;
+}
+
+
+void exibeListaDes(NoPag* lista){
+    system(" cls || clear");
+    while (lista != NULL) {
+    printf(" | ID da despesa: %s\n", lista->cpf);
+    printf(" | Nome da despesa: %s\n ", lista ->nome_desp);
+    printf(" | Valor do pagamento: %s\n", lista->valor);
+    printf(" | Data de criacao: %s\n", lista->data_criacao);
+    printf(" | Meio de pagamento: %s\n", lista->meio_pagamento);
+    printf(" | Banco: %s\n", lista->banco);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
+}
 

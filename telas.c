@@ -445,6 +445,7 @@ void relatorio_paciente() {
 
 void relatorio_funcionario() {
     char opcao;
+    NoFun* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
@@ -453,6 +454,7 @@ void relatorio_funcionario() {
         printf("\t === 1- Todos os funcionários\n");
         printf("\t === 2- Funcionários excluidos\n");
         printf("\t === 3- Funcionários Por Idade\n");
+        printf("\t === 4- Funcionários Por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -468,6 +470,10 @@ void relatorio_funcionario() {
             case '3':
                 listarFuncionariosCad();
                 break;
+            case '4':
+                lista = listaOrdenadaFun();
+                exibeListaFun(lista);
+                break;
             default:
                 break;
         }
@@ -475,14 +481,16 @@ void relatorio_funcionario() {
 }
 void relatorio_servicos() {
     char opcao;
+    NoSer* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
         printf("\t============== Relatórios de Serviços =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Todos os serviços\n");
-        printf("\t === 2- Serviços excluidos\n");
+        printf("\t === 1- Todos os Serviços\n");
+        printf("\t === 2- Serviços Excluidos\n");
         printf("\t === 3- Serviços por Custo\n");
+        printf("\t === 4- Serviços por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -498,6 +506,10 @@ void relatorio_servicos() {
             case '3':
                 listarServicoCad();
                 break;
+            case '4':
+                lista = listaOrdenadaSer();
+                exibeListaSer(lista);
+                break;
             default:
                 break;
         }
@@ -506,6 +518,7 @@ void relatorio_servicos() {
 
 void relatorio_despesas() {
     char opcao;
+    NoPag* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
@@ -515,6 +528,7 @@ void relatorio_despesas() {
         printf("\t === 2- Despesas Excluidas\n");
         printf("\t === 3- Despesas por Data\n");
         printf("\t === 4- Despesas por Banco\n");
+        printf("\t === 5- Despesas por ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -533,6 +547,10 @@ void relatorio_despesas() {
             case '4':
                 listarDespesaBank();
                 break;
+            case '5':
+                lista = listaOrdenadaDes();
+                exibeListaDes(lista);
+                break;
             default:
                 break;
         }
@@ -541,6 +559,7 @@ void relatorio_despesas() {
 
 void relatorio_agendamentos() {
     char opcao;
+    NoAge* lista;
     do {
         system("cls||clear");
         printf("\t=======================================================\n");
@@ -549,6 +568,7 @@ void relatorio_agendamentos() {
         printf("\t === 1- Todos os agendamentos\n");
         printf("\t === 2- Agendamentos excluidos\n");
         printf("\t === 3- Agendamentos Por Data\n");
+        printf("\t === 4- Agendamentos Por Ordem CPF (Crescente)\n");
         printf("\t === 0- Voltar\n");
         printf("\t==================================================\n\n");
         printf("\t=> ");
@@ -564,6 +584,10 @@ void relatorio_agendamentos() {
             case '3':
                 listarAgendamentosCad();
                 break;
+            case '4':
+            lista = listaOrdenadaAge();
+            exibeListaAge(lista);
+            break;
             default:
                 break;
         }

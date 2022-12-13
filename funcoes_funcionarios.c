@@ -418,3 +418,78 @@ int listarFuncionariosCad(void)
     return 0;
 
 }
+
+NoFun* listaOrdenadaFun(void) {
+  FILE* fp;
+  Dados_Funcionario* fun;
+  NoFun* noFun;
+  NoFun* lista;
+
+  lista = NULL;
+  fp = fopen("funcionarios.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
+  while(fread(fun, sizeof(Dados_Funcionario), 1, fp)) {
+    if (fun->status != 'x') {
+      noFun = (NoFun*) malloc(sizeof(NoFun));
+      
+      noFun->cod = fun->cod;
+
+      strcpy(noFun->nome, fun->nome);
+
+      strcpy(noFun->cpf, fun->cpf);
+
+      strcpy(noFun->idade, fun->idade);
+
+      strcpy(noFun->email, fun->email);
+
+      strcpy(noFun->endereco, fun->endereco);
+
+      strcpy(noFun->telefone, fun->telefone);
+
+      noFun->status = fun->status;
+
+      if (lista == NULL) {
+        lista = noFun;
+        noFun->prox = NULL;
+      } else if (strcmp(noFun->nome,lista->nome) < 0) {
+        noFun->prox = lista;
+        lista = noFun;
+      } else {
+        NoFun* anter = lista;
+        NoFun* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->nome,noFun->nome) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noFun;
+        noFun->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(fun);
+  return lista;
+}
+
+void exibeListaFun(NoFun* lista){
+    system(" cls || clear");
+    while (lista != NULL) {
+    printf(" | CPF: %s\n", lista->cpf);
+    printf(" | Nome: %s\n", lista->nome);
+    printf(" | Idade: %s\n", lista->idade);
+    printf(" | E-mail de contato: %s\n", lista->email);
+    printf(" | Endereco: %s\n", lista->endereco);
+    printf(" | Numero de contato: %s\n", lista->telefone);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
+}

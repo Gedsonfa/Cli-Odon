@@ -387,3 +387,76 @@ int listarServicoCad(void) {
     return 0;
 
 }
+
+NoSer* listaOrdenadaSer(void) {
+  FILE* fp;
+  Dados_Servico* ser;
+  NoSer* noSer;
+  NoSer* lista;
+
+  lista = NULL;
+  fp = fopen("servicos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
+  while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+    if (ser->status != 'x') {
+      noSer = (NoSer*) malloc(sizeof(NoSer));
+      
+      noSer->cod = ser->cod;
+
+      strcpy(noSer->codigo, ser->codigo);
+
+      strcpy(noSer->nome, ser->nome);
+
+      strcpy(noSer->custo, ser->custo);
+
+      strcpy(noSer->tempo, ser->tempo);
+
+      strcpy(noSer->disponi, ser->disponi);
+
+      noSer->status = ser->status;
+
+      if (lista == NULL) {
+        lista = noSer;
+        noSer->prox = NULL;
+      } else if (strcmp(noSer->nome,lista->nome) < 0) {
+        noSer->prox = lista;
+        lista = noSer;
+      } else {
+        NoSer* anter = lista;
+        NoSer* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->nome,noSer->nome) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noSer;
+        noSer->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(ser);
+  return lista;
+}
+
+void exibeListaSer(NoSer* lista){
+    system(" cls || clear");
+    while (lista != NULL) {
+    printf(" | Código do Servico: %s\n", lista->codigo);
+    printf(" | Nome: %s\n", lista->nome);
+    printf(" | Duração: %s\n", lista->tempo);
+    printf(" | Preco: %s\n", lista->custo);
+    printf(" | Disponibilidade: %s\n", lista->disponi);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
+
+}
