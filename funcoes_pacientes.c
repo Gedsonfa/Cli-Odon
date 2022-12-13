@@ -29,10 +29,11 @@ Dados_Paciente* tela_cadastrar_paciente(){
         
     }while(!lerLetras(pac->nome));
 
-    printf("\t === Insira a idade:  ");
-    scanf(" %20[^\n]", pac->idade);
-    getchar();
-    
+    do {
+        printf("\t === Insira a idade:  ");
+        scanf(" %20[^\n]", pac->idade);
+        getchar();
+    } while (!lerNumeros(pac->idade));
 
     printf("\t === Insira o endereco:   ");
     scanf( "%51[^\n]",pac->endereco);
@@ -43,10 +44,11 @@ Dados_Paciente* tela_cadastrar_paciente(){
     scanf( "%51[^\n]", pac->email);
     getchar();
 
-    printf("\t === Insira o numero telefonico:  ");
-    scanf("%20[^\n]", pac->numero);
-    getchar();
-
+    do {
+        printf("\t === Insira o numero telefonico:  ");
+        scanf("%20[^\n]", pac->numero);
+        getchar();
+    } while (!lerNumeros(pac->numero));
     pac->status = 'm';
   
 
@@ -74,12 +76,12 @@ Dados_Paciente* buscaPaciente(void){
     FILE* fp;
     Dados_Paciente* pac;
     char pes[15];
-
-    printf("\n ===== Buscar Paciente ======");
-    printf("\n Informe seu CPF (So Numeros): ");
-    scanf("%s", pes);
-    getchar();
-    
+    do {
+        printf("\n ===== Buscar Paciente ======");
+        printf("\n Informe seu CPF (So Numeros): ");
+        scanf("%s", pes);
+        getchar();
+    } while (!validarCPF(pes));
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     fp = fopen("pacientes.dat", "rb");
     if (fp == NULL) {

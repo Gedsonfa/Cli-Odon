@@ -181,3 +181,64 @@ int listarServicoExc(void);
 int listarServicoCad(void);
 NoSer* listaOrdenadaSer(void);
 void exibeListaSer();
+
+// Funções pacientes
+void tela_pesquisar_paciente(Dados_Paciente *pac);
+void grava_paciente(Dados_Paciente *pac);
+Dados_Paciente *tela_cadastrar_paciente();
+Dados_Paciente* buscaPaciente();
+void tela_alterar_paciente();
+void tela_excluir_paciente();
+void exibe_pacientes();
+
+// Funções Funcionarios
+void tela_pesquisar_funcionario(Dados_Funcionario *fun);
+Dados_Funcionario *tela_cadastrar_funcionario();
+void grava_funcionario(Dados_Funcionario *fun);
+Dados_Funcionario *buscar_funcionario();
+void tela_alterar_funcionario();
+void tela_excluir_funcionario();
+void exibe_funcionarios();
+
+// Funções Serviço
+void tela_pesquisar_servico(Dados_Servico *ser);
+Dados_Servico *tela_cadastrar_servico();
+void grava_servico(Dados_Servico *ser);
+Dados_Servico *buscar_servico();
+void tela_alterar_servico();
+void tela_excluir_servico();
+void exibe_servicos();
+
+// Funções Pagamentos
+void tela_pesquisar_pagamento(Dados_Pagamento *pag);
+Dados_Pagamento *tela_cadastrar_pagamento();
+void grava_pagamento(Dados_Pagamento *pag);
+Dados_Pagamento *buscar_pagamento();
+void tela_alterar_pagamento();
+void tela_excluir_pagamento();
+void exibe_pagamento();
+
+// Funções Agendamentos
+void tela_pesquisar_agendamento(Dados_Agendamento* age);
+Dados_Agendamento* tela_cadastrar_agendamento(void);
+void grava_agendamento(Dados_Agendamento *age);
+Dados_Agendamento* buscar_agendamento();
+void tela_alterar_agendamento();
+void tela_excluir_agendamento();
+void exibe_agendamento();
+
+// Funções Relatórios
+void relatorio_agendamentos();
+void relatorio_funcionario();
+void relatorio_paciente();
+void relatorio_servicos();
+void relatorio_despesas();
+
+// Funções telas
+void tela_funcionarios();
+void tela_pagamento();
+void tela_pacientes();
+void tela_servicos();
+void tela_relatorios(void);
+void tela_agend();
+void sobre(void);

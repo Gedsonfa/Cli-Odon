@@ -18,20 +18,27 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
         printf("\t === Insira o CPF (So Numeros):    ");
         scanf("%15[^\n]",fun->cpf);
         getchar();
-        
+        if (!validarCPF(fun->cpf)) {
+            printf("\t | Insira um CPF valido !!!\n");
+        }
     }while(!validarCPF(fun->cpf));
 
     do{
-    printf("\t === Insira o nome:   ");
-    scanf("%51[^\n]",fun->nome);
-    getchar();
-    
+        printf("\t === Insira o nome:   ");
+        scanf("%51[^\n]",fun->nome);
+        getchar();
+        if (!lerLetras(fun->nome)) {
+            printf("\t | Insira um nome valida!!!(sem números)\n");
+        }
     }while(!lerLetras(fun->nome));
 
     do {
         printf("\t === Insira a idade:  ");
         scanf("%20[^\n]",fun->idade);
         getchar();
+        if (!lerNumeros(fun->idade)) {
+            printf("\t | Insira uma idade valida!!!(apenas numeros)\n");
+        }
     } while (!lerNumeros(fun->idade));
 
     printf("\t === Insira o endereco:   ");
@@ -46,6 +53,9 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
         printf("\t === Insira o numero telefonico:  ");
         scanf("%15[^\n]",fun->telefone);
         getchar();
+        if (!lerNumeros(fun->telefone)) {
+            printf("\t | Insira um telefone valido!!!(apenas numeros)\n");
+        }
     } while (!lerNumeros(fun->telefone));
     fun->status = 'm';
     return fun;
@@ -297,8 +307,11 @@ void tela_excluir_funcionario(){
     printf("=========================================\n");
     printf("==== Apagar Cadastro de Funcionario =====\n");
     printf("========================================= \n");
-    printf("Informe o CPF do Funcionario: ");
-    scanf(" %14[^\n]", procurado);
+    do {
+        printf("Informe o CPF do Funcionario: ");
+        scanf(" %14[^\n]", procurado);
+        getchar();
+    } while (!validarCPF(procurado));
     fun = (Dados_Funcionario*) malloc(sizeof(Dados_Funcionario));
     achou = 0;
     while((!achou) && (fread(fun, sizeof(Dados_Funcionario), 1, fp))) {
