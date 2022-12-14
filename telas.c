@@ -3,67 +3,6 @@
 #include <locale.h>
 #include "structs.h"
 
-// Funções pacientes
-void tela_pesquisar_paciente(Dados_Paciente *pac);
-void grava_paciente(Dados_Paciente *pac);
-Dados_Paciente *tela_cadastrar_paciente();
-Dados_Paciente* buscaPaciente();
-void tela_alterar_paciente();
-void tela_excluir_paciente();
-void exibe_pacientes();
-
-// Funções Funcionarios
-void tela_pesquisar_funcionario(Dados_Funcionario *fun);
-Dados_Funcionario *tela_cadastrar_funcionario();
-void grava_funcionario(Dados_Funcionario *fun);
-Dados_Funcionario *buscar_funcionario();
-void tela_alterar_funcionario();
-void tela_excluir_funcionario();
-void exibe_funcionarios();
-
-// Funções Serviço
-void tela_pesquisar_servico(Dados_Servico *ser);
-Dados_Servico *tela_cadastrar_servico();
-void grava_servico(Dados_Servico *ser);
-Dados_Servico *buscar_servico();
-void tela_alterar_servico();
-void tela_excluir_servico();
-void exibe_servicos();
-
-// Funções Pagamentos
-void tela_pesquisar_pagamento(Dados_Pagamento *pag);
-Dados_Pagamento *tela_cadastrar_pagamento();
-void grava_pagamento(Dados_Pagamento *pag);
-Dados_Pagamento *buscar_pagamento();
-void tela_alterar_pagamento();
-void tela_excluir_pagamento();
-void exibe_pagamento();
-
-// Funções Agendamentos
-void tela_pesquisar_agendamento(Dados_Agendamento* age);
-Dados_Agendamento* tela_cadastrar_agendamento(void);
-void grava_agendamento(Dados_Agendamento *age);
-Dados_Agendamento* buscar_agendamento();
-void tela_alterar_agendamento();
-void tela_excluir_agendamento();
-void exibe_agendamento();
-
-// Funções Relatórios
-void relatorio_agendamentos();
-void relatorio_funcionario();
-void relatorio_paciente();
-void relatorio_servicos();
-void relatorio_despesas();
-
-// Funções telas
-void tela_funcionarios();
-void tela_pagamento();
-void tela_pacientes();
-void tela_servicos();
-void tela_relatorios(void);
-void tela_agend();
-void sobre(void);
-
 void tela_progr_odont() {
     char opcao_navegacao;
     do {
@@ -76,7 +15,7 @@ void tela_progr_odont() {
         printf("\t=======================================================\n");
         printf("\t=========   Sistema Clinica Odontologica   ============\n");
         printf("\t=======================================================\n");
-        printf("\t === 1- Modulo Pacientes\n");
+        printf("\n\t === 1- Modulo Pacientes\n");
         printf("\t === 2- Modulo Servicos\n");
         printf("\t === 3- Modulo Funcionarios\n");
         printf("\t === 4- Modulo Agendamento\n");
@@ -84,8 +23,8 @@ void tela_progr_odont() {
         printf("\t === 6- Modulo Relatórios\n");
         printf("\t === 7- Tela Sobre\n");
         printf("\t === 0- Voltar\n");
-        printf("\t=====================================================\n");
-        printf("\t=> ");
+        printf("\n\t=====================================================\n");
+        printf("\n\t=> ");
         scanf("%c", &opcao_navegacao);
         getchar();
         switch (opcao_navegacao) {
@@ -171,7 +110,6 @@ void tela_servicos()
     do
     {
         system("cls||clear");
-
         printf("\t===================================================\n");
         printf("\t==============   Modulo de Servicos   =============\n");
         printf("\t===================================================\n\n");
@@ -277,7 +215,7 @@ void tela_pagamento()
         printf("\t === 3- Editar Despesa\n");
         printf("\t === 4- Excluir Despesa\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao_pagamento);
         getchar();
@@ -327,7 +265,7 @@ void tela_agend()
         printf("\t === 4- Desagendamento\n");
         printf("\t === 5- Listar Agendamentos\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao_agend);
         getchar();
@@ -379,7 +317,7 @@ void tela_relatorios(void) {
         printf("\t === 4- Relatório Despesas\n");
         printf("\t === 5- Relatório Agendamentos\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -407,16 +345,18 @@ void tela_relatorios(void) {
 
 void relatorio_paciente() {
     char opcao;
+    NoPac* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
         printf("\t=============== Relatórios de Pacientes ===========\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Todos os pacientes\n");
-        printf("\t === 2- Pacientes excluidos\n");
-        printf("\t === 3- Pacientes ativos\n");
+        printf("\t === 1- Todos os Pacientes\n");
+        printf("\t === 2- Pacientes Excluidos\n");
+        printf("\t === 3- Pacientes por Idade\n");
+        printf("\t === 4- Pacientes por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -431,6 +371,10 @@ void relatorio_paciente() {
         case '3':
             listarPacientesCad();
             break;
+        case '4':
+            lista = listaOrdenadaPac();
+            exibeListaPac(lista);
+            break;
         default:
             break;
         }
@@ -439,6 +383,7 @@ void relatorio_paciente() {
 
 void relatorio_funcionario() {
     char opcao;
+    NoFun* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
@@ -446,9 +391,10 @@ void relatorio_funcionario() {
         printf("\t===================================================\n\n");
         printf("\t === 1- Todos os funcionários\n");
         printf("\t === 2- Funcionários excluidos\n");
-        printf("\t === 3- Funcionários ativos\n");
+        printf("\t === 3- Funcionários Por Idade\n");
+        printf("\t === 4- Funcionários Por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -462,6 +408,10 @@ void relatorio_funcionario() {
             case '3':
                 listarFuncionariosCad();
                 break;
+            case '4':
+                lista = listaOrdenadaFun();
+                exibeListaFun(lista);
+                break;
             default:
                 break;
         }
@@ -469,16 +419,18 @@ void relatorio_funcionario() {
 }
 void relatorio_servicos() {
     char opcao;
+    NoSer* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
         printf("\t============== Relatórios de Serviços =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Todos os serviços\n");
-        printf("\t === 2- Serviços excluidos\n");
-        printf("\t === 3- Serviços ativos\n");
+        printf("\t === 1- Todos os Serviços\n");
+        printf("\t === 2- Serviços Excluidos\n");
+        printf("\t === 3- Serviços por Custo\n");
+        printf("\t === 4- Serviços por Ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -492,6 +444,10 @@ void relatorio_servicos() {
             case '3':
                 listarServicoCad();
                 break;
+            case '4':
+                lista = listaOrdenadaSer();
+                exibeListaSer(lista);
+                break;
             default:
                 break;
         }
@@ -500,28 +456,38 @@ void relatorio_servicos() {
 
 void relatorio_despesas() {
     char opcao;
+    NoPag* lista;
     do {
         system("cls||clear");
         printf("\t===================================================\n");
         printf("\t============== Relatórios de Despesas =============\n");
         printf("\t===================================================\n\n");
-        printf("\t === 1- Todas as despesas\n");
-        printf("\t === 2- Despesas excluidas\n");
-        printf("\t === 3- Despesas ativas\n");
+        printf("\t === 1- Todas as Despesas\n");
+        printf("\t === 2- Despesas Excluidas\n");
+        printf("\t === 3- Despesas por Data\n");
+        printf("\t === 4- Despesas por Banco\n");
+        printf("\t === 5- Despesas por ordem Alfabética\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
         switch (opcao) {
             case '1':
-                listarPagamentos();
+                listarDespesa();
                 break;
             case '2':
-                listarPagamentosExc();
+                listarDespesaExc();
                 break;
             case '3':
-                listarPagamentosCad();
+                listarDespesaCad();
+                break;
+            case '4':
+                listarDespesaBank();
+                break;
+            case '5':
+                lista = listaOrdenadaDes();
+                exibeListaDes(lista);
                 break;
             default:
                 break;
@@ -531,16 +497,18 @@ void relatorio_despesas() {
 
 void relatorio_agendamentos() {
     char opcao;
+    NoAge* lista;
     do {
         system("cls||clear");
-        printf("\t===================================================\n");
+        printf("\t=======================================================\n");
         printf("\t============== Relatórios de Agendamentos =============\n");
-        printf("\t===================================================\n\n");
+        printf("\t=======================================================\n\n");
         printf("\t === 1- Todos os agendamentos\n");
         printf("\t === 2- Agendamentos excluidos\n");
-        printf("\t === 3- Agendamentos ativos\n");
+        printf("\t === 3- Agendamentos Por Data\n");
+        printf("\t === 4- Agendamentos Por Ordem CPF (Crescente)\n");
         printf("\t === 0- Voltar\n");
-        printf("\t==================================================\n\n");
+        printf("\n\t==================================================\n\n");
         printf("\t=> ");
         scanf("%c", &opcao);
         getchar();
@@ -554,6 +522,10 @@ void relatorio_agendamentos() {
             case '3':
                 listarAgendamentosCad();
                 break;
+            case '4':
+            lista = listaOrdenadaAge();
+            exibeListaAge(lista);
+            break;
             default:
                 break;
         }
@@ -575,12 +547,14 @@ void sobre(void) {
     printf("\t Redes Sociais: @gabriel_wallace_17 \n ");
     printf("\t Git : https://github.com/Japagabriel \n ");
     printf("\t ===================================================== \n ");
-    printf("\t Programa ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao, com o objetivo de servir a uma clinica odontologica fictícia, NÃO NOS RESPONSABILIZAMOS POR QUAISQUER TRANSTORNOS SOFRIDOS POR USO NÃO AUTORIZADO DE TERCEIROS de partes ou de todo o codigo.\n " );
+    printf("\t Programa ultilizado para avaliacao da dupla na disciplina DCT1106 == Programacao, com o objetivo de servir a uma clinica odontologica"); 
+    printf("\t fictícia, NÃO NOS RESPONSABILIZAMOS POR QUAISQUER TRANSTORNOS SOFRIDOS POR USO NÃO AUTORIZADO DE TERCEIROS de partes ou de todo o codigo.\n " );
     printf("\t ======================================================== \n");
     printf("\t Agradecemos a todos que contribuiram com o projeto direta ou indiretamente: \n");
     printf("\t https://github.com/italo-mauricio \n");
     printf("\t https://github.com/FlaviusGorgonio \n");
     printf("\t https://github.com/DayXL \n");
+    printf("\t https://github.com/ViniciusMaiaM \n");
     printf("\t Perdão caso tenhamos esquecido sua menção\n");
     printf("\t ======================================================== \n");
     printf("\tTecle ENTER para prosseguir...\n");

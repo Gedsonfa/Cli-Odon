@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "validar.h"
 #include "structs.h"
 #include "telas.h"
+
 
 Dados_Paciente* tela_cadastrar_paciente(){
 
@@ -16,23 +18,24 @@ Dados_Paciente* tela_cadastrar_paciente(){
     printf("\t===================================================\n\n");
     do
     {
-        printf("\t === Insira o CPF So Numeros]:     ");
+        printf("\t === Insira o CPF (So Numeros):     ");
         scanf("%15[^\n]", pac->cpf);
         getchar();
         
-    } while (!validarCPF(pac->cpf));
+    } while (!((validarCPF(pac->cpf)) && (valida_pac(pac->cpf))));
     
-    do{
+
         printf("\t === Insira o nome:   ");
         scanf(" %51[^\n]", pac->nome);
         getchar();
         
-    }while(!lerLetras(pac->nome));
 
-    printf("\t === Insira a idade:  ");
-    scanf(" %20[^\n]", pac->idade);
-    getchar();
-    
+
+    do {
+        printf("\t === Insira a idade:  ");
+        scanf(" %20[^\n]", pac->idade);
+        getchar();
+    } while (!lerNumeros(pac->idade));
 
     printf("\t === Insira o endereco:   ");
     scanf( "%51[^\n]",pac->endereco);
@@ -43,10 +46,11 @@ Dados_Paciente* tela_cadastrar_paciente(){
     scanf( "%51[^\n]", pac->email);
     getchar();
 
-    printf("\t === Insira o numero telefonico:  ");
-    scanf("%20[^\n]", pac->numero);
-    getchar();
-
+    do {
+        printf("\t === Insira o numero telefonico:  ");
+        scanf("%20[^\n]", pac->numero);
+        getchar();
+    } while (!lerNumeros(pac->numero));
     pac->status = 'm';
   
 
@@ -74,12 +78,15 @@ Dados_Paciente* buscaPaciente(void){
     FILE* fp;
     Dados_Paciente* pac;
     char pes[15];
-
-    printf("\n ===== Buscar Paciente ======");
-    printf("\n Informe seu CPF: ");
-    scanf("%s", pes);
-    getchar();
-    
+    do {
+        printf("\n ===== Buscar Paciente ======");
+        printf("\n Informe seu CPF (So Numeros): ");
+        scanf("%s", pes);
+        getchar();
+        if (!validarCPF(pes)) {
+            printf(" | Digite um CPF cadastrado!!!\n");
+        }
+    } while (!validarCPF(pes));
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     fp = fopen("pacientes.dat", "rb");
     if (fp == NULL) {
@@ -157,7 +164,7 @@ void tela_alterar_paciente(){
     printf("\t===================================================\n");
     printf("\t================   Alterar Paciente   =============\n");
     printf("\t===================================================\n\n");
-    printf("\t === Insira o CPF:    ");
+    printf("\t === Insira o CPF (So Numeros):    ");
     scanf("%s", procurando);
     getchar();
     achou = 0;
@@ -287,8 +294,9 @@ void tela_excluir_paciente(){
     printf("=========================================\n");
     printf("====== Apagar Cadastro de Paciente ======\n");
     printf("========================================= \n");
-    printf("Informe o CPF do Funcionario: ");
+    printf("Informe o CPF do Paciente: ");
     scanf(" %14[^\n]", procurado);
+    getchar();
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     achou = 0;
     while((!achou) && (fread(pac, sizeof(Dados_Paciente), 1, fp))) {
@@ -376,16 +384,26 @@ int listarPacientesExc(void) {
 }
 
 int listarPacientesCad(void) {
+    
     FILE* fp;
     Dados_Paciente* pac;
+    int ida;
     fp = fopen("pacientes.dat", "rb");
     if (fp == NULL) {
         printf("Ops! Erro na abertura do arquivo!\n");
         return 0;
     }
+
+    printf("\t========================================================\n");
+    printf("\t Digite o limite Máximo de idade (So Numeros!):");
+    scanf("%d",&ida);
+    getchar();
+    
     pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
     while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
-        if (pac->status != 'x') {
+        
+        int idade = atoi(pac->idade);
+        if  (idade <= ida && pac->status != 'x') {
             system(" cls || clear");
             printf(" | ===================== Listar Pacientes ======================== | \n");
             printf(" |                                                                 | \n");
@@ -400,3 +418,109 @@ int listarPacientesCad(void) {
     return 0;
 
 }
+
+NoPac* listaOrdenadaPac(void) {
+  FILE* fp;
+  Dados_Paciente* pac;
+  NoPac* noPac;
+  NoPac* lista;
+
+  lista = NULL;
+  fp = fopen("pacientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
+  while(fread(pac, sizeof(Dados_Paciente), 1, fp)) {
+    if (pac->status != 'x') {
+      noPac = (NoPac*) malloc(sizeof(NoPac));
+      
+      noPac->cod = pac->cod;
+
+      strcpy(noPac->nome, pac->nome);
+
+      strcpy(noPac->cpf, pac->cpf);
+
+      strcpy(noPac->idade, pac->idade);
+
+      strcpy(noPac->email, pac->email);
+
+      strcpy(noPac->endereco, pac->endereco);
+
+      strcpy(noPac->numero, pac->numero);
+
+      noPac->status = pac->status;
+
+      if (lista == NULL) {
+        lista = noPac;
+        noPac->prox = NULL;
+      } else if (strcmp(noPac->nome,lista->nome) < 0) {
+        noPac->prox = lista;
+        lista = noPac;
+      } else {
+        NoPac* anter = lista;
+        NoPac* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->nome,noPac->nome) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noPac;
+        noPac->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(pac);
+  return lista;
+}
+
+void exibeListaPac(NoPac* lista){
+    system(" cls || clear");
+    while (lista != NULL) {
+    printf(" | CPF: %s\n", lista->cpf);
+    printf(" | Nome: %s\n", lista->nome);
+    printf(" | Idade: %s\n", lista->idade);
+    printf(" | E-mail de contato: %s\n", lista->email);
+    printf(" | Endereco: %s\n", lista->endereco);
+    printf(" | Numero de contato: %s\n", lista->numero);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
+}
+
+int valida_pac(char* linha)
+{
+    FILE* fp3;
+    Dados_Paciente* teste;
+
+    teste = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+    if (access("pacientes.dat", F_OK) != -1) {
+
+    fp3 = fopen("pacientes.dat", "rt");
+    
+    if (fp3 == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp3);
+        return 1;
+    }
+    while (!feof(fp3))
+    {
+        fread(teste, sizeof(Dados_Paciente), 1, fp3);
+        if (strcmp(linha, teste->cpf) == 0    && (teste->status != 'x'))
+        {
+            fclose(fp3);
+            return 0;
+        }
+    }
+    fclose(fp3);
+    }
+    return 1;
+}   
+
