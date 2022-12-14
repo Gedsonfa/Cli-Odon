@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "validar.h"
 #include "structs.h"
 
@@ -14,28 +15,28 @@ Dados_Pagamento* tela_cadastrar_pagamento(void) {
     printf("\t===============   Cadastrar Despesas   ============\n");
     printf("\t===================================================\n\n");
     do{
-    printf("\t === ID da Despesa:  ");
+    printf("\t === ID da Despesa: ");
     scanf("%15[^\n]", pag->cpf);
     getchar();
     }while(!((lerNumeros(pag->cpf)) && (valida_des(pag->cpf))));
 
-    printf("\t === Insira o valor:  ");
+    printf("\t === Insira o valor: ");
     scanf("%15[^\n]", pag->valor);
     getchar();
 
-    printf("\t === Insira a data de criacao '00/00/0000':    ");
+    printf("\t === Insira a data de criacao '00/00/0000': ");
     scanf("%15[^\n]", pag->data_criacao);
     getchar();
 
-    printf("\t === Insira o nome da despesa:    ");
+    printf("\t === Insira o nome da despesa: ");
     scanf("%15[^\n]", pag->nome_desp);
     getchar();
 
-    printf("\t === Insira o meio de pagamento:  ");
+    printf("\t === Insira o meio de pagamento: ");
     scanf("%15[^\n]", pag->meio_pagamento);
     getchar();
 
-    printf("\t === Insira o banco:  ");
+    printf("\t === Insira o banco: ");
     scanf("%15[^\n]", pag->banco);
     getchar();
 
@@ -103,11 +104,11 @@ void tela_pesquisar_pagamento(Dados_Pagamento* pag){
         printf("\n Pagamento nao encontrado");
     }else{
         printf(" | ============== Pagamento encontrado =============\n");
-        printf(" | ID da despesa : %s\n", pag->cpf);
-        printf(" | Nome da despesa: %s\n ", pag ->nome_desp);
-        printf(" | Valor do pagamento: %s\n", pag->valor);
-        printf(" | Data de criação: %s\n", pag->data_criacao);
-        printf(" | Meio de Pagamento: %s\n", pag->meio_pagamento);
+        printf(" | ID da despesa : %s \n", pag->cpf);
+        printf(" | Nome da despesa: %s \n", pag ->nome_desp);
+        printf(" | Valor do pagamento: %s \n", pag->valor);
+        printf(" | Data de criação: %s \n", pag->data_criacao);
+        printf(" | Meio de Pagamento: %s \n", pag->meio_pagamento);
         printf(" | Banco: %s\n", pag->banco);
         printf(" | ================================================\n");
         printf(" | aperte ENTER para continuar");
@@ -121,7 +122,7 @@ void tela_pesquisar_pagamento(Dados_Pagamento* pag){
 void exibe_pagamento(Dados_Pagamento* pag) {
 
     printf(" | ID da despesa: %s\n", pag->cpf);
-    printf(" | Nome da despesa: %s\n ", pag ->nome_desp);
+    printf(" | Nome da despesa: %s\n", pag ->nome_desp);
     printf(" | Valor do pagamento: %s\n", pag->valor);
     printf(" | Data de criacao: %s\n", pag->data_criacao);
     printf(" | Meio de pagamento: %s\n", pag->meio_pagamento);
@@ -525,7 +526,7 @@ int valida_des(char* linha)
     Dados_Pagamento* teste;
 
     teste = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
-    
+    if (access("pagamentos.dat", F_OK) != -1) {
     fp3 = fopen("pagamentos.dat", "rt");
     
     if (fp3 == NULL)
@@ -544,5 +545,6 @@ int valida_des(char* linha)
         }
     }
     fclose(fp3);
+    }
     return 1;
 }

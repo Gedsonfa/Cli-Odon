@@ -111,7 +111,9 @@ NoFun* prox;
 
 struct Dados_Agendamento{
     char cpf[15];
-    char codigo_servico[16];
+    char nome_ser[15];
+    char codigo_agen[16];
+    char codigo_ser[16];
     char data[20];
     char hora[20];
     char status;
@@ -196,6 +198,8 @@ int listarServicoCad(void);
 NoSer* listaOrdenadaSer(void);
 void exibeListaSer();
 int valida_ser(char* linha);
+char* get_nome_servico();
+char* get_ser_full();
 
 //===========================================================================
 

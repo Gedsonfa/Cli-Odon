@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "validar.h"
 #include "structs.h"
 
@@ -76,12 +77,82 @@ char* get_nome_full(char* cpf)
 
 }
 
+char* get_nome_servico(char* codigo_ser) //Devolve um apontador, recebe um aportador pra cpf
+{
 
+  Dados_Servico* ser;
+  FILE* fp;
+  char* nome;
+
+  nome = (char*) malloc(81*sizeof(char)); //Aloca o tamanho 
+
+  ser = (Dados_Servico*)malloc(sizeof(Dados_Servico)); //Alocar tamanho de acordo com o struct
+  fp = fopen("servicos.dat", "rb");
+
+    if (fp == NULL) //Se o arquivo for nulo
+    {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    while (!feof(fp)) // Busca até o final do arquivo
+    { 
+        fread(ser, sizeof(Dados_Servico), 1, fp);
+        if (strcmp(ser->codigo, codigo_ser) == 0 && (ser->status != 'x'))/*Verifica se o código é igual e o status*/
+        { 
+            fclose(fp);
+            strcpy(nome, ser->nome);//Realiza a cópia do conteúdo de uma variável a outra
+            free(ser);
+            return nome;
+        }
+    }
+
+    fclose(fp);
+    free(ser);
+    return NULL;
+
+}
+
+char* get_ser_full(char* codigo_ser) 
+{
+    Dados_Servico* ser;
+    FILE* fp;
+    char* nome;
+
+    nome = (char*) malloc(81*sizeof(char));
+
+    ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    fp = fopen("servicos.dat", "rb");
+
+    if (fp == NULL)
+    {
+        printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
+        exit(1);
+    }
+
+    while (!feof(fp)) // Busca até o final do arquivo
+    {
+        fread(ser, sizeof(Dados_Servico), 1, fp);
+        if (strcmp(ser->codigo, codigo_ser) == 0)/*Verifica se o código é igual e o status*/
+        { 
+            fclose(fp);
+            strcpy(nome, ser->nome);
+            free(ser);
+            return nome;
+        }
+    }
+
+    fclose(fp);
+    free(ser);
+    return NULL;
+
+}
 
 Dados_Agendamento* tela_cadastrar_agendamento(void){
 
     Dados_Agendamento* age;
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
+    char* nome_ser;
     char* nome_pac;
     system ("cls||clear");
     printf("\t=====================================================\n");
@@ -106,25 +177,51 @@ Dados_Agendamento* tela_cadastrar_agendamento(void){
         
         do{
         printf("\t === Insira o codigo do Agendamento:  ");
-        scanf("%10[^\n]", age->codigo_servico);
-        getchar();
-        }while(!valida_age(age->codigo_servico));
-
-        printf("\t === Insira a data de agendamento '00/00/0000':   ");
-        scanf("%s", age->data);
+        scanf("%15[^\n]", age->codigo_agen);
         getchar();
 
-        printf("\t === Insira o horario:   ");
-        scanf("%s", age->hora);
+        }while(!valida_age(age->codigo_agen));
+
+        printf("\t === Insira o codigo do Serviço:  ");
+        scanf("%15[^\n]", age->codigo_ser);
         getchar();
 
-        age->status = 'm';
-        return age;
-        printf("\t==================================================\n\n");
-        system("\tPause");
-        system("cls | clear");
-        printf(" Aperte ENTER para continuar...");
-        getchar();
+        nome_ser = get_nome_servico(age->codigo_ser);
+        if (nome_ser != NULL) {
+
+        printf("\t ================================= \n");
+        printf("\t Serviço encontrado com sucesso!\n");
+        printf("\t Nome do Serviço: %s\n", nome_ser);
+        printf("\t ================================= \n");
+        free(nome_ser);
+
+            printf("\t === Insira a data de agendamento '00/00/0000':   ");
+            scanf("%s", age->data);
+            getchar();
+
+            printf("\t === Insira o horario:   ");
+            scanf("%s", age->hora);
+            getchar();
+
+            age->status = 'm';
+            return age;
+            printf("\t==================================================\n\n");
+            system("\tPause");
+            system("cls | clear");
+            printf(" Aperte ENTER para continuar...");
+            getchar();
+
+        }else{
+            printf("\t ================================= \n");
+            printf("\t Ops, Serviço não encontrado!\n");
+            printf("\t Verifique se esse serviço existe ou está ativo!\n");
+            printf("\t ================================= \n\n");
+            printf("\t==================================================\n\n");
+            getchar();
+            system("\tPause");
+            system("cls | clear");
+            return NULL;
+        }
 
     } else {
         printf("\t ================================= \n");
@@ -163,14 +260,10 @@ Dados_Agendamento* buscar_agendamento(){
     char men[15];
 
     printf("\n ===== Buscar Agendamento ======");
-    do {
         printf("\n Informe o Codigo do agendamento: ");
         scanf("%s", men);
         getchar();
-        if (!lerNumeros(men)) {
-            printf(" | Apenas numeros!!!\n");
-        }
-    } while (!lerNumeros(men));
+
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
     fp = fopen("agendamentos.dat", "rb");
 
@@ -181,7 +274,7 @@ Dados_Agendamento* buscar_agendamento(){
     }
     while(!feof(fp)){
         fread(age, sizeof(Dados_Agendamento), 1, fp);//A função retorna o número de unidades efetivamente lidas
-        if ((strcmp(age -> codigo_servico, men) == 0) &&(age->status != 'x')){
+        if ((strcmp(age -> codigo_agen, men) == 0) &&(age->status != 'x')){
             fclose(fp);
             return age;
         }
@@ -194,6 +287,7 @@ return NULL;
 void tela_pesquisar_agendamento(Dados_Agendamento* age){
 
     char* nome_pac;
+    char* nome_ser;
     system ("cls||clear");
     printf("\t===================================================\n");
     printf("\t============   Pesquisar Agendamento   ============\n");
@@ -203,10 +297,12 @@ void tela_pesquisar_agendamento(Dados_Agendamento* age){
     }else{
         
         nome_pac = get_nome_full(age->cpf);
+        nome_ser = get_ser_full(age -> codigo_ser);
         printf(" | ============== Agendamento encontrado ========\n");
         printf(" | Nome do Paciente: %s\n", nome_pac);
         printf(" | CPF : %s\n", age->cpf);
-        printf(" | Codigo do agendamento: %s\n", age->codigo_servico);
+        printf(" | Nome do do Serviço: %s\n", nome_ser);
+        printf(" | Codigo do agendamento: %s\n", age->codigo_agen);
         printf(" | Data do agendamento: %s\n", age->data);
         printf(" | Horario: %s\n", age->hora);
         printf(" | ==============================================\n");
@@ -220,13 +316,18 @@ void tela_pesquisar_agendamento(Dados_Agendamento* age){
 
 void exibe_agendamento(Dados_Agendamento* age) {
     char* nome_pac;
+    char* nome_ser;
     nome_pac = get_nome_full(age->cpf);
+    nome_ser = get_ser_full(age -> codigo_ser);
+    printf("\n | ============== Agendamento encontrado ========\n");
     printf(" | Nome do Paciente: %s\n", nome_pac);
-    printf(" | Codigo do Agendamento: %s\n", age->codigo_servico);
     printf(" | CPF: %s\n", age->cpf);
+    printf(" | Nome do do Serviço: %s\n", nome_ser);
+    printf(" | Codigo do Agendamento: %s\n", age->codigo_agen);
     printf(" | Data do Agendamento: %s\n", age->data);
     printf(" | Horario do Agendamento: %s\n", age->hora);
     printf(" | Status: %c\n", age->status);
+    printf(" | ==============================================\n");
     printf("\n");
 
 
@@ -467,7 +568,7 @@ void tela_excluir_agendamento(){
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
     achou = 0;
     while((!achou) && (fread(age, sizeof(Dados_Agendamento), 1, fp))) {
-    if ((strcmp(age->codigo_servico, procurado) == 0) && (age->status == 'm')) {
+    if ((strcmp(age->codigo_agen, procurado) == 0) && (age->status == 'm')) {
         achou = 1;
     }
     }
@@ -524,7 +625,7 @@ NoAge* listaOrdenadaAge(void) {
 
       strcpy(noAge->cpf, age->cpf);
 
-      strcpy(noAge->codigo_servico, age->codigo_servico);
+      strcpy(noAge->codigo_servico, age->codigo_agen);
 
       strcpy(noAge->data, age->data);
 
@@ -580,25 +681,27 @@ int valida_age(char* linha)
     Dados_Agendamento* teste;
 
     teste = (Dados_Agendamento*)malloc(sizeof(Dados_Agendamento));
-    
-    fp3 = fopen("agendamentos.dat", "rt");
-    
-    if (fp3 == NULL)
-    {
-        printf("Gerando arquivo...");
-        fclose(fp3);
-        return 1;
-    }
-    while (!feof(fp3))
-    {
-        fread(teste, sizeof(Dados_Agendamento), 1, fp3);
-        if (strcmp(linha, teste->codigo_servico) == 0    && (teste->status != 'x'))
+    if (access("agendamentos.dat", F_OK) != -1) {
+        fp3 = fopen("agendamentos.dat", "rt");
+        
+        if (fp3 == NULL)
         {
+            printf("Gerando arquivo...");
             fclose(fp3);
-            return 0;
+            return 1;
         }
+
+        while (!feof(fp3))
+        {
+            fread(teste, sizeof(Dados_Agendamento), 1, fp3);
+            if (strcmp(linha, teste->codigo_agen) == 0    && (teste->status != 'x'))
+            {
+                fclose(fp3);
+                return 0;
+            }
+        }
+        fclose(fp3);
     }
-    fclose(fp3);
     return 1;
 }
 

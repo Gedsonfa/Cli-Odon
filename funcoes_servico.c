@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "structs.h"
 #include "validar.h"
 
@@ -474,7 +475,7 @@ int valida_ser(char* linha)
     Dados_Servico* teste;
 
     teste = (Dados_Servico*)malloc(sizeof(Dados_Servico));
-    
+    if (access("servicos.dat", F_OK) != -1) {
     fp3 = fopen("servicos.dat", "rt");
     
     if (fp3 == NULL)
@@ -493,6 +494,7 @@ int valida_ser(char* linha)
         }
     }
     fclose(fp3);
+    }
     return 1;
 }
 

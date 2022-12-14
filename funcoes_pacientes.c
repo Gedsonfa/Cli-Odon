@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "validar.h"
 #include "structs.h"
 #include "telas.h"
@@ -499,7 +500,8 @@ int valida_pac(char* linha)
     Dados_Paciente* teste;
 
     teste = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
-    
+    if (access("pacientes.dat", F_OK) != -1) {
+
     fp3 = fopen("pacientes.dat", "rt");
     
     if (fp3 == NULL)
@@ -518,5 +520,7 @@ int valida_pac(char* linha)
         }
     }
     fclose(fp3);
+    }
     return 1;
-}
+}   
+
