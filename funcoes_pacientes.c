@@ -295,6 +295,7 @@ void tela_excluir_paciente(){
     printf("========================================= \n");
     printf("Informe o CPF do Paciente: ");
     scanf(" %14[^\n]", procurado);
+    getchar();
     pac = (Dados_Paciente*) malloc(sizeof(Dados_Paciente));
     achou = 0;
     while((!achou) && (fread(pac, sizeof(Dados_Paciente), 1, fp))) {

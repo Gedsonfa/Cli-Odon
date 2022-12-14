@@ -274,6 +274,7 @@ void tela_excluir_servico(){
     printf("========================================= \n");
     printf("Informe o codigo do Servico: ");
     scanf(" %14[^\n]", procurado);
+    getchar();
     ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
     achou = 0;
     while((!achou) && (fread(ser, sizeof(Dados_Servico), 1, fp))) {

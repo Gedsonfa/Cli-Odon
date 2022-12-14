@@ -284,6 +284,7 @@ void tela_excluir_pagamento(void) {
     printf("========================================== \n");
     printf("Informe o ID: ");
     scanf(" %14[^\n]", procurado);
+    getchar();
     pag = (Dados_Pagamento*) malloc(sizeof(Dados_Pagamento));
     achou = 0;
     while((!achou) && (fread(pag, sizeof(Dados_Pagamento), 1, fp))) {

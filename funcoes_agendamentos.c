@@ -5,31 +5,31 @@
 #include "structs.h"
 
 
-char* get_nome_agendamento(char* cpf) 
+char* get_nome_agendamento(char* cpf) //Devolve um apontador, recebe um aportador pra cpf
 {
 
   Dados_Paciente* pac;
   FILE* fp;
   char* nome;
 
-  nome = (char*) malloc(81*sizeof(char));
+  nome = (char*) malloc(81*sizeof(char)); //Aloca o tamanho 
 
-  pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+  pac = (Dados_Paciente*)malloc(sizeof(Dados_Paciente)); //Alocar tamanho de acordo com o struct
   fp = fopen("pacientes.dat", "rb");
 
-    if (fp == NULL)
+    if (fp == NULL) //Se o arquivo for nulo
     {
         printf("Ocorreu um erro na abertura do arquivo, não é possivel continuar o programa");
         exit(1);
     }
 
-    while (!feof(fp))
-    { // Busca até o final do arquivo
+    while (!feof(fp)) // Busca até o final do arquivo
+    { 
         fread(pac, sizeof(Dados_Paciente), 1, fp);
-        if (strcmp(pac->cpf, cpf) == 0 && (pac->status != 'x'))
-        { /*Verifica se o código é igual e o status*/
+        if (strcmp(pac->cpf, cpf) == 0 && (pac->status != 'x'))/*Verifica se o código é igual e o status*/
+        { 
             fclose(fp);
-            strcpy(nome, pac->nome);
+            strcpy(nome, pac->nome);//Realiza a cópia do conteúdo de uma variável a outra
             free(pac);
             return nome;
         }
@@ -58,11 +58,11 @@ char* get_nome_full(char* cpf)
         exit(1);
     }
 
-    while (!feof(fp))
-    { // Busca até o final do arquivo
+    while (!feof(fp)) // Busca até o final do arquivo
+    {
         fread(pac, sizeof(Dados_Paciente), 1, fp);
-        if (strcmp(pac->cpf, cpf) == 0)
-        { /*Verifica se o código é igual e o status*/
+        if (strcmp(pac->cpf, cpf) == 0)/*Verifica se o código é igual e o status*/
+        { 
             fclose(fp);
             strcpy(nome, pac->nome);
             free(pac);
@@ -151,7 +151,9 @@ void grava_agendamento(Dados_Agendamento* age){
         printf("Não é possivel continuar esse programa...\n");
         exit(1);
     }
-    fwrite(age,sizeof(Dados_Agendamento),1,fp);
+    fwrite(age,sizeof(Dados_Agendamento),1,fp);/* o endereço da variável cujo conteúdo será escrito no arquivo; – 
+    o tamanho do dado que será escrito; – a quantidade de dados que serão escritos; – o ponteiro para o arquivo onde os 
+    dados serão escritos*/
     fclose(fp);
 }
 
@@ -178,7 +180,7 @@ Dados_Agendamento* buscar_agendamento(){
         exit(1);
     }
     while(!feof(fp)){
-        fread(age, sizeof(Dados_Agendamento), 1, fp);
+        fread(age, sizeof(Dados_Agendamento), 1, fp);//A função retorna o número de unidades efetivamente lidas
         if ((strcmp(age -> codigo_servico, men) == 0) &&(age->status != 'x')){
             fclose(fp);
             return age;
@@ -395,7 +397,8 @@ void tela_alterar_agendamento(){
                 getchar();
     }
     age->status = 'm';
-    fseek(fp, (-1)*sizeof(Dados_Agendamento), SEEK_CUR);
+    fseek(fp, (-1)*sizeof(Dados_Agendamento), SEEK_CUR); /*move a posição corrente de leitura ou escrita no arquivo de 
+    um valor especificado, a partir de um ponto especificado*/ //SEEK_CUR: Ponto corrente no arquivo
     fwrite(age, sizeof(Dados_Agendamento), 1, fp);
     printf("\nUsuario editado com sucesso!!!\n");
 
@@ -460,6 +463,7 @@ void tela_excluir_agendamento(){
     printf("==================================================\n");
     printf("Informe o codigo do agendamento a ser apagado: ");
     scanf(" %19[^\n]", procurado);
+    getchar();
     age = (Dados_Agendamento*) malloc(sizeof(Dados_Agendamento));
     achou = 0;
     while((!achou) && (fread(age, sizeof(Dados_Agendamento), 1, fp))) {
