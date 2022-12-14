@@ -45,55 +45,76 @@ int validarCPF(char cpf[15])
     return 1;
 }
 
+int lerNumeros(char numero[]) {
+    int tamanho = strlen(numero);
+    if (tamanho < 1) {
+        return 0;
+    } else {
+        for (int i = 0; i <= (tamanho - 1); i++) {
+            if ((numero[i] == '0') || (numero[i] <= '9')) {
+                if (numero[i] == ' ') {
+                    return 1;
+                } if (numero[i] == '@') {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
+        }
 
-int lerLetras(char nome[])
-{
+    }
+    return 1;
+    
+}
 
-  int tamanho = strlen(nome);
-
-  if (tamanho < 1) {
-      return 0; 
-  } else {
-      for (int i = 0; i <= (tamanho - 1); i++) 
-        if ((nome[i] <= 'z') && (nome[i] >= 'A'))
-        {
-           if (((nome[i] <= 'a') && (nome[i] <= 'Z')) || (nome[i] == ' ')) {
-            return 1;
-           }
-              if((nome[i] == '@') || (nome[i] == 0) || (nome[i] <= 9)) {
+int lerData(char data[9]) {
+    int tamanho = strlen(data);
+    if (tamanho < 1 || tamanho > 9) {
+        return 0;
+    } else {
+        for (int i = 0; i <= (tamanho - 1); i++) {
+            if (data[i] == '0' || data[i] <= '9') {
+              if (data[2] == '/' && data[5] == '/') {
+                  if (data[i] == ' ') {
+                      return 1;
+                  }
+                  if (data[i] == '@') {
+                      return 0;
+                  }
+              } else {
                 return 0;
               }
-            } else{  
-              return 0;
-      
-              }          
-      }
-      return 1;    
-  }
+            } else {
+                return 0;
+            }
+        }
 
-//baseado em: https://rafaelomarques.wordpress.com/2010/08/28/validacao-de-data-em-cc/
-int validarData(int *dia,int *mes,int *ano){
-  if((32>*dia && *dia>0) && (13>*mes && *mes>0) && (*ano>1900))
-  {
-    if(*mes==2 && *ano%4==1){
-      if(*dia==29){
-        return 1;
-      } 
     }
-    if(*mes>7 && *mes%2==1){
-      if(*dia==31){
-        return 1;
-      }
-    }
-    if(*mes<=6 && *mes%2==0){
-      if(*dia==31){
-        return 1;
-      }
-    }
-  }else{
     return 1;
+}
+
+int lerHora(char hora[5]) {
+  int tamanho = strlen(hora);
+  if (tamanho < 1 || tamanho >5) {
+    return 0;
+  } else {
+    for (int i = 0; i <= (tamanho - 1); i++) {
+      if (hora[i] == '0' || hora[i] <= '9') {
+        if (hora[2] == ':' && (hora[0] == '0' || hora[0] <= '2' )){
+          if (hora[3] <= '5') {
+           return 1;
+          } else {
+            return 0;
+          }
+        } else{
+          return 0;
+        }
+      } else {
+        return 0;
+      }
     }
-  return 0;
+  }
+  return 1;
 }
 
 // baseado em : https://www.clubedohardware.com.br/profile/941265-lucca-rodrigues/

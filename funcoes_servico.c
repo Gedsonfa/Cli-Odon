@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "structs.h"
+#include "validar.h"
 
 Dados_Servico* tela_cadastrar_servico(){
 
@@ -12,11 +14,12 @@ Dados_Servico* tela_cadastrar_servico(){
     printf("\t===================================================\n");
     printf("\t==============   Cadastrar Serviços   =============\n");
     printf("\t===================================================\n\n");
-   
-    printf("\t === Digite o codigo do serviço: ");
-    scanf("%10[^\n]",ser->codigo);
-    getchar();
-    
+    do {
+        printf("\t === Digite o codigo do serviço: ");
+        scanf("%10[^\n]",ser->codigo);
+        getchar();
+    } while (!((lerNumeros(ser->codigo)) && (valida_ser(ser->codigo))));
+
     printf("\t === Digite o nome do serviço: ");
     scanf("%30[^\n]",ser->nome);
     getchar();
@@ -62,10 +65,14 @@ Dados_Servico* buscar_servico(){
     char sor[15];
 
     printf("\n ===== Buscar Serviço ======");
-    printf("\n Informe seu Codigo: ");
-    scanf("%s", sor);
-    getchar();
-    
+    do {
+        printf("\n Informe seu Codigo: ");
+        scanf("%s", sor);
+        getchar();
+        if (!lerNumeros(sor)) {
+            printf(" | Digite um codigo valido!!!");
+        }
+    } while (!lerNumeros(sor));
     ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
     fp = fopen("servicos.dat", "rb");
     if (fp == NULL) {
@@ -111,15 +118,14 @@ void tela_pesquisar_servico(Dados_Servico* ser){
 
 void exibe_servicos(Dados_Servico* ser) {
 
-    printf("CPF: %s\n", ser->codigo);
-    printf("Nome: %s\n", ser->nome);
-    printf("Idade: %s\n", ser->tempo);
-    printf("E-mail de contato: %s\n", ser->custo);
-    printf("Endereco: %s\n", ser->disponi);
-    printf("Status: %c\n", ser->status);
+    printf(" | Código do Servico: %s\n", ser->codigo);
+    printf(" | Nome: %s\n", ser->nome);
+    printf(" | Duração: %s\n", ser->tempo);
+    printf(" | Preco: %s\n", ser->custo);
+    printf(" | Disponibilidade: %s\n", ser->disponi);
+    printf(" | Status: %c\n", ser->status);
     printf("\n");
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
 
 }
 
@@ -132,11 +138,11 @@ void tela_alterar_servico(){
     char procurando[20];
 
     fp = fopen("servicos.dat", "r+b");
-     if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar o programa...\n");
-      exit(1);
- }
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+}
     ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
 
     system ("cls||clear");
@@ -152,11 +158,11 @@ void tela_alterar_servico(){
     if ((strcmp(ser->codigo, procurando) == 0) && (ser->status == 'm')) {
     achou = 1;
     }if (achou) {
-       exibe_servicos(ser);
-       printf(" Deseja realmente editar este Servico? [s/n] ");
-       scanf("%c", &resp);
-       getchar();
-       if (resp == 's' || resp == 'S') {
+        exibe_servicos(ser);
+        printf(" Deseja realmente editar este Servico? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
         
         esc = escAtualizarServico();
 
@@ -180,36 +186,36 @@ void tela_alterar_servico(){
                 getchar();
 
 
-     } else if (esc == '2'){
+    } else if (esc == '2'){
                 
                 printf(" | Informe o novo Nome: ");
                 scanf("%30[^\n]", ser->nome);
                 getchar();
 
-     } else if (esc == '3'){
+    } else if (esc == '3'){
 
                 printf(" | Informe o novo Custo: ");
                 scanf("%20[^\n]",ser->custo);
                 getchar();
 
-     } else if (esc == '4'){
+    } else if (esc == '4'){
 
                 printf(" | Informe a nova duracao do Servico: ");
                 scanf("%20[^\n]", ser-> tempo);
                 getchar();
-     } else if (esc == '5'){
+    } else if (esc == '5'){
                 printf(" | Informe a nova disponibilidade para o Servico: ");
                 scanf("%[A-Z a-z]", ser->disponi);
                 getchar();
 
-     } 
+    } 
     ser->status = 'm';
     fseek(fp, (-1)*sizeof(Dados_Servico), SEEK_CUR);
     fwrite(ser, sizeof(Dados_Servico), 1, fp);
     printf("\nservico editado com sucesso!!!\n");
-    grava_servico(ser);
-    free(ser);
-   
+    //grava_servico(ser);
+    //free(ser);
+
 
 
     } else {
@@ -269,6 +275,7 @@ void tela_excluir_servico(){
     printf("========================================= \n");
     printf("Informe o codigo do Servico: ");
     scanf(" %14[^\n]", procurado);
+    getchar();
     ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
     achou = 0;
     while((!achou) && (fread(ser, sizeof(Dados_Servico), 1, fp))) {
@@ -305,8 +312,7 @@ void tela_excluir_servico(){
 }
 //update
 
-int listarServico(void)
-{
+int listarServico(void) {
     FILE* fp;
     Dados_Servico* ser;
     fp = fopen("servicos.dat", "rb");
@@ -319,12 +325,176 @@ int listarServico(void)
         system(" cls || clear");
         printf(" | ===================== Listar Serviços ========================== | \n");
         printf(" |                                                                  | \n");
-        exibe_servicos(ser); 
+        exibe_servicos(ser);     
+        printf(" | Pressione qualquer tecla para sair...");
+        getchar();
     }
-    printf(" | Pressione qualquer tecla para sair...");
-    getchar();
+
     fclose(fp);
     free(ser);
     return 0;
 
 }
+
+int listarServicoExc(void) {
+    FILE* fp;
+    Dados_Servico* ser;
+    fp = fopen("servicos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+        if (ser->status == 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Serviços ========================== | \n");
+            printf(" |                                                                  | \n");
+            exibe_servicos(ser);     
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } 
+    }
+
+    fclose(fp);
+    free(ser);
+    return 0;
+
+}
+
+int listarServicoCad(void) {
+    int val;
+    FILE* fp;
+    Dados_Servico* ser;
+    fp = fopen("servicos.dat", "rb");
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }
+    printf("\t========================================================\n");
+    printf("\t Digite o limite Máximo de Custo (So Numeros!):");
+    scanf("%d",&val);
+    getchar();
+
+    ser = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+        
+        int custo = atoi(ser->custo);
+        if  (custo <= val && ser->status != 'x') {
+            system(" cls || clear");
+            printf(" | ===================== Listar Serviços ========================== | \n");
+            printf(" |                                                                  | \n");
+            exibe_servicos(ser);     
+            printf(" | Pressione qualquer tecla para sair...");
+            getchar();
+        } 
+    }
+
+    fclose(fp);
+    free(ser);
+    return 0;
+
+}
+
+NoSer* listaOrdenadaSer(void) {
+  FILE* fp;
+  Dados_Servico* ser;
+  NoSer* noSer;
+  NoSer* lista;
+
+  lista = NULL;
+  fp = fopen("servicos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  ser = (Dados_Servico*) malloc(sizeof(Dados_Servico));
+  while(fread(ser, sizeof(Dados_Servico), 1, fp)) {
+    if (ser->status != 'x') {
+      noSer = (NoSer*) malloc(sizeof(NoSer));
+      
+      noSer->cod = ser->cod;
+
+      strcpy(noSer->codigo, ser->codigo);
+
+      strcpy(noSer->nome, ser->nome);
+
+      strcpy(noSer->custo, ser->custo);
+
+      strcpy(noSer->tempo, ser->tempo);
+
+      strcpy(noSer->disponi, ser->disponi);
+
+      noSer->status = ser->status;
+
+      if (lista == NULL) {
+        lista = noSer;
+        noSer->prox = NULL;
+      } else if (strcmp(noSer->nome,lista->nome) < 0) {
+        noSer->prox = lista;
+        lista = noSer;
+      } else {
+        NoSer* anter = lista;
+        NoSer* atual = lista->prox;
+        while ((atual != NULL) && strcmp(atual->nome,noSer->nome) < 0) {
+          anter = atual;
+          atual = atual->prox;
+        }
+        anter->prox = noSer;
+        noSer->prox = atual;
+      }
+    }
+  }
+  fclose(fp);
+  free(ser);
+  return lista;
+}
+
+void exibeListaSer(NoSer* lista){
+    system(" cls || clear");
+    while (lista != NULL) {
+    printf(" | Código do Servico: %s\n", lista->codigo);
+    printf(" | Nome: %s\n", lista->nome);
+    printf(" | Duração: %s\n", lista->tempo);
+    printf(" | Preco: %s\n", lista->custo);
+    printf(" | Disponibilidade: %s\n", lista->disponi);
+    printf(" | Status: %c\n", lista->status);
+    printf("\n");
+    getchar();
+    system(" cls || clear");
+    lista = lista->prox;
+    }
+
+}
+
+int valida_ser(char* linha)
+{
+    FILE* fp3;
+    Dados_Servico* teste;
+
+    teste = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    if (access("servicos.dat", F_OK) != -1) {
+    fp3 = fopen("servicos.dat", "rt");
+    
+    if (fp3 == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp3);
+        return 1;
+    }
+    while (!feof(fp3))
+    {
+        fread(teste, sizeof(Dados_Servico), 1, fp3);
+        if (strcmp(linha, teste->codigo) == 0   && (teste->status != 'x'))
+        {
+            fclose(fp3);
+            return 0;
+        }
+    }
+    fclose(fp3);
+    }
+    return 1;
+}
+
