@@ -67,26 +67,6 @@ int lerNumeros(char numero[]) {
     
 }
 
-int lerLetras(char nome[])
-{
-
-  int tamanho = strlen(nome);
-
-  if (tamanho < 1) {
-      return 0; 
-  } else {
-      for (int i = 0; i <= (tamanho - 1); i++) 
-        if ((nome[i] <= 'z') || (nome[i] >= 'A')) {
-          if ((nome[i] <= 'a' || nome[i] <= 'Z') || nome[i] == ' ') {
-            if (nome[i] == '0' || nome[i] <= '9') {
-              return 0;
-            }
-          }
-        }       
-  }
-  return 1;
-}
-
 int lerData(char data[9]) {
     int tamanho = strlen(data);
     if (tamanho < 1 || tamanho > 9) {

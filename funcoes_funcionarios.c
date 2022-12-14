@@ -183,11 +183,11 @@ void tela_alterar_funcionario(){
         esc = escAtualizarFuncionario();
 
         if (esc == '1'){
-                do {
-                    printf(" | Informe novo nome: ");
-                    scanf("%[A-Z a-z]", fun->nome);
-                    getchar();
-                } while (!lerLetras(fun->nome));
+                
+                printf(" | Informe novo nome: ");
+                scanf("%[A-Z a-z]", fun->nome);
+                getchar();
+                
 
                 do {
                     printf(" | Informe a nova idade: ");
@@ -211,11 +211,11 @@ void tela_alterar_funcionario(){
 
     } else if (esc == '2'){
                 
-                do {
+                
                     printf(" | Informe novo nome: ");
                     scanf("%[A-Z a-z]", fun->nome);
                     getchar();
-                } while (!lerLetras(fun->nome));
+                
     } else if (esc == '3'){
                 do {
                     printf(" | Informe a nova idade: ");
