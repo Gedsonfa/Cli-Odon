@@ -5,6 +5,7 @@
 #include "structs.h"
 #include "telas.h"
 
+
 Dados_Paciente* tela_cadastrar_paciente(){
 
     Dados_Paciente* pac;
@@ -20,14 +21,14 @@ Dados_Paciente* tela_cadastrar_paciente(){
         scanf("%15[^\n]", pac->cpf);
         getchar();
         
-    } while (!validarCPF(pac->cpf));
+    } while (!((validarCPF(pac->cpf)) && (valida_pac(pac->cpf))));
     
-    do{
+
         printf("\t === Insira o nome:   ");
         scanf(" %51[^\n]", pac->nome);
         getchar();
         
-    }while(!lerLetras(pac->nome));
+
 
     do {
         printf("\t === Insira a idade:  ");
@@ -489,4 +490,32 @@ void exibeListaPac(NoPac* lista){
     system(" cls || clear");
     lista = lista->prox;
     }
+}
+
+int valida_pac(char* linha)
+{
+    FILE* fp3;
+    Dados_Paciente* teste;
+
+    teste = (Dados_Paciente*)malloc(sizeof(Dados_Paciente));
+    
+    fp3 = fopen("pacientes.dat", "rt");
+    
+    if (fp3 == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp3);
+        return 1;
+    }
+    while (!feof(fp3))
+    {
+        fread(teste, sizeof(Dados_Paciente), 1, fp3);
+        if (strcmp(linha, teste->cpf) == 0    && (teste->status != 'x'))
+        {
+            fclose(fp3);
+            return 0;
+        }
+    }
+    fclose(fp3);
+    return 1;
 }

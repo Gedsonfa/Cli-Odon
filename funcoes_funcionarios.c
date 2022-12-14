@@ -18,19 +18,12 @@ Dados_Funcionario* tela_cadastrar_funcionario(){
         printf("\t === Insira o CPF (So Numeros):    ");
         scanf("%15[^\n]",fun->cpf);
         getchar();
-        if (!validarCPF(fun->cpf)) {
-            printf("\t | Insira um CPF valido !!!\n");
-        }
-    }while(!validarCPF(fun->cpf));
+    }while(!((validarCPF(fun->cpf)) && (valida_fun(fun->cpf))));
 
-    do{
+
         printf("\t === Insira o nome:   ");
         scanf("%51[^\n]",fun->nome);
         getchar();
-        if (!lerLetras(fun->nome)) {
-            printf("\t | Insira um nome valida!!!(sem números)\n");
-        }
-    }while(!lerLetras(fun->nome));
 
     do {
         printf("\t === Insira a idade:  ");
@@ -201,6 +194,7 @@ void tela_alterar_funcionario(){
                     scanf("%20[^\n]",fun->idade);
                     getchar();
                 } while (!lerNumeros(fun->idade));
+                
                 printf(" | Informe o novo email: ");
                 scanf("%s", fun->email);
                 getchar();
@@ -516,4 +510,32 @@ void exibeListaFun(NoFun* lista){
     system(" cls || clear");
     lista = lista->prox;
     }
+}
+
+int valida_fun(char* linha)
+{
+    FILE* fp3;
+    Dados_Funcionario* teste;
+
+    teste = (Dados_Funcionario*)malloc(sizeof(Dados_Funcionario));
+    
+    fp3 = fopen("funcionarios.dat", "rt");
+    
+    if (fp3 == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp3);
+        return 1;
+    }
+    while (!feof(fp3))
+    {
+        fread(teste, sizeof(Dados_Funcionario), 1, fp3);
+        if (strcmp(linha, teste->cpf) == 0    && (teste->status != 'x'))
+        {
+            fclose(fp3);
+            return 0;
+        }
+    }
+    fclose(fp3);
+    return 1;
 }

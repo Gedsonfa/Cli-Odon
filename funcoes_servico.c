@@ -17,10 +17,8 @@ Dados_Servico* tela_cadastrar_servico(){
         printf("\t === Digite o codigo do serviço: ");
         scanf("%10[^\n]",ser->codigo);
         getchar();
-        if (!lerNumeros(ser->codigo)) {
-            printf(" | Digite apenas numeros!!!\n");
-        }
-    } while (!lerNumeros(ser->codigo));
+    } while (!((lerNumeros(ser->codigo)) && (valida_ser(ser->codigo))));
+
     printf("\t === Digite o nome do serviço: ");
     scanf("%30[^\n]",ser->nome);
     getchar();
@@ -468,3 +466,32 @@ void exibeListaSer(NoSer* lista){
     }
 
 }
+
+int valida_ser(char* linha)
+{
+    FILE* fp3;
+    Dados_Servico* teste;
+
+    teste = (Dados_Servico*)malloc(sizeof(Dados_Servico));
+    
+    fp3 = fopen("servicos.dat", "rt");
+    
+    if (fp3 == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp3);
+        return 1;
+    }
+    while (!feof(fp3))
+    {
+        fread(teste, sizeof(Dados_Servico), 1, fp3);
+        if (strcmp(linha, teste->codigo) == 0   && (teste->status != 'x'))
+        {
+            fclose(fp3);
+            return 0;
+        }
+    }
+    fclose(fp3);
+    return 1;
+}
+

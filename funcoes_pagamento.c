@@ -13,11 +13,11 @@ Dados_Pagamento* tela_cadastrar_pagamento(void) {
     printf("\t===================================================\n");
     printf("\t===============   Cadastrar Despesas   ============\n");
     printf("\t===================================================\n\n");
-    
+    do{
     printf("\t === ID da Despesa:  ");
     scanf("%15[^\n]", pag->cpf);
     getchar();
-
+    }while(!((lerNumeros(pag->cpf)) && (valida_des(pag->cpf))));
 
     printf("\t === Insira o valor:  ");
     scanf("%15[^\n]", pag->valor);
@@ -518,3 +518,30 @@ void exibeListaDes(NoPag* lista){
     }
 }
 
+int valida_des(char* linha)
+{
+    FILE* fp3;
+    Dados_Pagamento* teste;
+
+    teste = (Dados_Pagamento*)malloc(sizeof(Dados_Pagamento));
+    
+    fp3 = fopen("pagamentos.dat", "rt");
+    
+    if (fp3 == NULL)
+    {
+        printf("Gerando arquivo...");
+        fclose(fp3);
+        return 1;
+    }
+    while (!feof(fp3))
+    {
+        fread(teste, sizeof(Dados_Pagamento), 1, fp3);
+        if (strcmp(linha, teste->cpf) == 0    && (teste->status != 'x'))
+        {
+            fclose(fp3);
+            return 0;
+        }
+    }
+    fclose(fp3);
+    return 1;
+}

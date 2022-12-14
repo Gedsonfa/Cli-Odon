@@ -154,6 +154,7 @@ char* get_nome_agendamento();
 char* get_nome_full();
 NoAge* listaOrdenadaAge(void);
 void exibeListaAge();
+int valida_age(char* linha);
 
 //===========================================================================
 
@@ -163,6 +164,7 @@ int listarFuncionariosExc(void);
 int listarFuncionariosCad(void);
 NoFun* listaOrdenadaFun(void);
 void exibeListaFun();
+int valida_fun(char* linha);
 
 //===========================================================================
 
@@ -172,6 +174,7 @@ int listarPacientesExc(void);
 int listarPacientesCad(void);
 NoPac* listaOrdenadaPac(void);
 void exibeListaPac();
+int valida_pac(char* linha);
 
 //===========================================================================
 
@@ -182,6 +185,7 @@ int listarDespesaCad(void);
 int listarDespesaBank(void);
 NoPag* listaOrdenadaDes(void);
 void exibeListaDes();
+int valida_des(char* linha);
 
 //===========================================================================
 
@@ -191,6 +195,7 @@ int listarServicoExc(void);
 int listarServicoCad(void);
 NoSer* listaOrdenadaSer(void);
 void exibeListaSer();
+int valida_ser(char* linha);
 
 //===========================================================================
 

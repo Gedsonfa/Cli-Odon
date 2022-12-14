@@ -64,6 +64,7 @@ int lerNumeros(char numero[]) {
 
     }
     return 1;
+    
 }
 
 int lerLetras(char nome[])
