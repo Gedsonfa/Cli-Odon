@@ -263,7 +263,7 @@ void tela_agend()
         printf("\t === 2- Exibir Agendamento\n");
         printf("\t === 3- Alterar Agendamento\n");
         printf("\t === 4- Desagendamento\n");
-        printf("\t === 5- Listar Agendamentos\n");
+       // printf("\t === 5- Listar Agendamentos\n");
         printf("\t === 0- Voltar\n");
         printf("\n\t==================================================\n\n");
         printf("\t=> ");
@@ -293,9 +293,9 @@ void tela_agend()
 
             //free(agendamento);
             break;
-        case '5':
-            listarAgendamentos();
-            break;
+        //case '5':
+        //    listarAgendamentos();
+        //    break;
         default:
             printf("Opção inválida!");
             break;
